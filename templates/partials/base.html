@@ -2,102 +2,117 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
+<head>
 
 
-        <meta charset="utf-8" />
-        <title>{% block title %}{% endblock title %} | KINS</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content=" " />
-        <meta name="keywords" content="" />
-        <meta content="Themesdesign" name="author" />
+  <meta charset="utf-8" />
+  <title>{% block title %}{% endblock title %} | KINS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content=" " />
+  <meta name="keywords" content="" />
+  <meta content="Themesdesign" name="author" />
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
-        {% block css %}
+  {% block css %}
 
 
-        {% block extra_css %}
-        {% endblock extra_css %}
+  {% block extra_css %}
+  {% endblock extra_css %}
 
-        <!-- Bootstrap Css -->
-        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
-        <!--Custom Css-->
-        {% endblock css %}
+  <!-- Bootstrap Css -->
+  <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+  <!-- App Css-->
+  <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+  <!--Custom Css-->
+  {% endblock css %}
 
-    </head>
+  <style>
+    .badge {
+      color: #111928;
+      background-color: #F3F4F6;
+    }
 
-    <body>
-         <!--start page Loader -->
-         <div id="preloader">
-            <div id="status">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                  </ul>
-            </div>
-        </div>
-        <!--end page Loader -->
+    .vl {
+      border-left: 1px solid gray;
+      height: 150px;
+      display: inline;
+      margin-left: 10px;
+    }
+    
+  </style>
+</head>
 
-        <!-- Begin page -->
-        <div>
+<body>
+  <!--start page Loader -->
+  <div id="preloader">
+    <div id="status">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <!--end page Loader -->
 
-            {% block topbar %}
-                {% include 'partials/topbar.html' %}
-            {% endblock topbar %}
+  <!-- Begin page -->
+  <div>
 
-            {% block navbar %}
-                {% include 'partials/navbar.html' %}
-            {% endblock navbar %}
+    {% block topbar %}
+    {% include 'partials/topbar.html' %}
+    {% endblock topbar %}
 
-            {% block signupmodal %}
-                {% include 'partials/signup-modal.html' %}
-            {% endblock signupmodal %}
+    {% block navbar %}
+    {% include 'partials/navbar.html' %}
+    {% endblock navbar %}
 
-            <div class="main-content">
+    {% block signupmodal %}
+    {% include 'partials/signup-modal.html' %}
+    {% endblock signupmodal %}
 
-                <div class="page-content">
+    <div class="main-content">
 
-                    {% block content %}
-                    {% endblock content %}
+      <div class="page-content">
 
-                </div> <!-- ????????? -->
-                <!-- End Page-content -->
+        {% block content %}
+        {% endblock content %}
 
-                {% block subscribe %}
-                    {% include 'partials/subscribe.html' %}
-                {% endblock subscribe %}
+      </div> <!-- ????????? -->
+      <!-- End Page-content -->
 
-                {% block footer %}
-                    {% include 'partials/footer.html' %}
-                {% endblock footer %}
+      {% block subscribe %}
+      {% include 'partials/subscribe.html' %}
+      {% endblock subscribe %}
 
-                {% block switcher %}
-                    {% include 'partials/switcher.html' %}
-                {% endblock switcher %}
+      {% block footer %}
+      {% include 'partials/footer.html' %}
+      {% endblock footer %}
 
-                <!--start back-to-top-->
-                <button onclick="topFunction()" id="back-to-top">
-                    <i class="mdi mdi-arrow-up"></i>
-                </button>
-                <!--end back-to-top-->
-            </div> <!-- <>><><><><><><><><> -->
-            <!-- end main content-->
+      {% block switcher %}
+      {% include 'partials/switcher.html' %}
+      {% endblock switcher %}
 
-        </div>
-        <!-- END layout-wrapper -->
+      <!--start back-to-top-->
+      <button onclick="topFunction()" id="back-to-top">
+        <i class="mdi mdi-arrow-up"></i>
+      </button>
+      <!--end back-to-top-->
+    </div> <!-- <>><><><><><><><><> -->
+    <!-- end main content-->
 
-        {% block javascript %}
-        {% endblock javascript %}
+  </div>
+  <!-- END layout-wrapper -->
 
-    </body>
+  {% block javascript %}
+  {% endblock javascript %}
+
+</body>
+
 </html>
