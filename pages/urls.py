@@ -9,7 +9,7 @@ urlpatterns = [
     path('job-grid-2', views.JobGrid2.as_view(),name="job-grid-2"),
     path('job-details', views.JobDetails.as_view(),name="job-details"),
     path('job-categories', views.JobCategories.as_view(),name="job-categories"),
-    
+
     # Candidates/Company
     path('candidate-list', views.CandidateList.as_view(),name="candidate-list"),
     path('candidate-grid', views.CandidateGrid.as_view(),name="candidate-grid"),
@@ -25,5 +25,8 @@ urlpatterns = [
     path('comingsoon', views.ComingSoon.as_view(),name="comingsoon"),
     path('404-error', views.Error404.as_view(),name="404-error"),
     path('components', views.Components.as_view(),name="components"),
+
+
+    path('calendar', views.CalendarView.as_view(), name='calendar'),
 
 ]

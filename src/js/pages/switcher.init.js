@@ -27,14 +27,10 @@ function setColorGreen() {
 // Set Default  Color
 defaultColor();
 function defaultColor(e) {
-  console.log(color);
-
     if (window.localStorage.getItem('color') == null) {
-        color = 'blue'
+        color = 'purple'
     }else{
         color = window.localStorage.getItem('color');
-
-        console.log(color);
     }
     if (color == 'blue'){
       document.getElementById('bootstrap-style').href = '../static/css/bootstrap.min.css';
@@ -50,7 +46,7 @@ function defaultColor(e) {
 defaultMode();
 function defaultMode(e) {
     if (window.localStorage.getItem('mode') == null) {
-        var mode = 'light'
+        var mode = 'light';
     }else{
         var mode = window.localStorage.getItem('mode');
     }
