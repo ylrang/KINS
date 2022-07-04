@@ -43,20 +43,25 @@ class Components(TemplateView):
     template_name = "pages/extra-pages/components.html"
 
 
+from django.shortcuts import render
+
+def notice(request):
+    return render(request, "index/notice.html")
+
+
 
 from .models import *
-# from account.models import Folders
+# # from account.models import Folders
 from .utils import Calendar
 from datetime import timedelta
 import calendar
 from django.views import generic
-from contact.models import Contact
 from datetime import datetime, date
-
+from django.utils.safestring import mark_safe
 
 class CalendarView(generic.ListView):
-    model = Contact
-    template_name = 'pages/cal.html'
+    model = Event
+    template_name = 'pages/extra-pages/cal.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

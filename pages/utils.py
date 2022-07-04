@@ -16,7 +16,7 @@ class Calendar(HTMLCalendar):
 		d = ''
 		for event in events_per_day:
 			# d += f'<li class="btn-open-popup" onclick=testfunc(this)><button class="btn-open-popup">{event.title}</button></li>'
-			d += f'<button type="button" data-toggle="modal" data-target="#myModal{event.id}">{event.title}</button>'
+			d += f'<li><a href="#" data-toggle="modal" data-target="#myModal{event.id}">{event.title}</a></li>'
 			d += f'<div class="modal" id="myModal{event.id}" data-backdrop="static" data-keyboard="true">\
 			 <div class="modal-dialog modal-xl modal-dialog-centered">\
 			<div class="modal-content"><div class="modal-header">\
@@ -27,7 +27,7 @@ class Calendar(HTMLCalendar):
 
 
 		if day != 0:
-			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
+			return f"<td><span class='date'>{day}</span><ul>{d}</ul></td>"
 		return '<td></td>'
 
 	# formats a week as a tr

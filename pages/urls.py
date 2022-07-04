@@ -28,5 +28,6 @@ urlpatterns = [
 
 
     path('calendar', views.CalendarView.as_view(), name='calendar'),
+    path('notice', views.notice, name='notice'),
 
 ]

@@ -23,7 +23,7 @@
             <span class="dropdown-header">대시보드</span>
 
             <li><a class="dropdown-item" href="{% url 'index'%}">사업소개</a></li>
-            <li><a class="dropdown-item" href="{% url 'index-2' %}">공지사항</a></li>
+            <li><a class="dropdown-item" href="{% url 'notice' %}">공지사항</a></li>
           </ul>
         </li>
 
@@ -49,7 +49,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
             <span class="dropdown-header">일정</span>
-            <li><a class="dropdown-item" href="{% url 'blog' %}">캘린더</a></li>
+            <li><a class="dropdown-item" href="{% url 'calendar' %}">캘린더</a></li>
           </ul>
         </li>
         <!--end dropdown-->
@@ -151,7 +151,7 @@
       </li>
       <li class="list-inline-item dropdown">
         <a href="javascript:void(0)" class="header-item" id="userdropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{% static 'images/profile.jpg' %}" alt="mdo" width="35" height="35" class="rounded-circle me-1"> <span class="d-none d-md-inline-block fw-medium">Hi, Jennifer</span>
+          <img src="{% static 'images/profile.jpg' %}" alt="mdo" width="35" height="35" class="rounded-circle me-1"> <span class="d-none d-md-inline-block fw-medium">Hi, 이정현님!</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
           <span class="dropdown-header">내 프로필</span>
