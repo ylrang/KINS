@@ -12,13 +12,13 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">My Profile</h3>
+          <h3 class="mb-4"> 회원정보 관리 </h3>
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">My Profile</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> My Profile </li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)"> 내 프로필 </a></li>
+                <li class="breadcrumb-item active" aria-current="page"> 회원정보 관리 </li>
               </ol>
             </nav>
           </div>
@@ -53,7 +53,7 @@
             <div class="text-center pb-4 border-bottom">
               <img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-lg img-thumbnail rounded-circle mb-4" />
               <h5 class="mb-0">Jennifer Dickens</h5>
-              <p class="text-muted">Developer</p>
+              <p class="text-muted">연구개발팀</p>
 
             </div>
             <!--end profile-->
@@ -102,12 +102,12 @@
           <ul class="profile-content-nav nav nav-pills border-bottom mb-4" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
-                Company
+                참여현황
               </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="settings-tab" data-bs-toggle="pill" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">
-                Settings
+                정보수정
               </button>
             </li>
           </ul>
@@ -116,7 +116,7 @@
             <div class="tab-content" id="pills-tabContent">
               <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                 <div>
-                  <h5 class="fs-18 fw-bold">About</h5>
+                  <h5 class="fs-18 fw-bold"> 업로드 수 </h5>
                   <p class="text-muted mt-4">
                     Developer with over 5 years' experience working in both
                     the public and private sectors. Diplomatic, personable,
@@ -147,12 +147,7 @@
                   <span class="badge fs-13 bg-soft-blue mt-2">UI & UX Designer</span>
                   <span class="badge fs-13 bg-soft-blue mt-2">UI & UX Designer</span>
                 </div>
-                <div class="mt-4">
-                  <h5 class="fs-18 fw-bold">Spoken languages</h5>
-                  <span class="badge fs-13 bg-soft-success mt-2">English</span>
-                  <span class="badge fs-13 bg-soft-success mt-2">German</span>
-                  <span class="badge fs-13 bg-soft-success mt-2">French</span>
-                </div>
+
               </div>
               <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <form action="#">
@@ -207,83 +202,7 @@
                     <!--end row-->
                   </div>
                   <!--end account-->
-                  <div class="mt-4">
-                    <h5 class="fs-17 fw-semibold mb-3">Profile</h5>
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="mb-3">
-                          <label for="exampleFormControlTextarea1" class="form-label">Introduce Yourself</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1"
-                            rows="5">Developer with over 5 years' experience working in both the public and private sectors. Diplomatic, personable, and adept at managing sensitive situations. Highly organized, self-motivated, and proficient with computers. Looking to boost students’ satisfactions scores for International University. Bachelor's degree in communications.</textarea>
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="languages" class="form-label">Languages</label>
-                          <input type="text" class="form-control" id="languages" value="English, German, French" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="choices-single-location" class="form-label">Location</label>
-                          <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
-                            <option value="ME">Montenegro</option>
-                            <option value="MS">Montserrat</option>
-                            <option value="MA">Morocco</option>
-                            <option value="MZ">Mozambique</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-12">
-                        <div class="mb-3">
-                          <label for="attachmentscv" class="form-label">Attachments
-                            CV</label>
-                          <input class="form-control" type="file" id="attachmentscv" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!--end row-->
-                  </div>
-                  <!--end profile-->
-                  <div class="mt-4">
-                    <h5 class="fs-17 fw-semibold mb-3">Social Media</h5>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="facebook" class="form-label">Facebook</label>
-                          <input type="text" class="form-control" id="facebook" value="https://www.facebook.com" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="twitter" class="form-label">Twitter</label>
-                          <input type="text" class="form-control" id="twitter" value="https://www.twitter.com" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="linkedin" class="form-label">Linkedin</label>
-                          <input type="text" class="form-control" id="linkedin" value="https://www.linkedin.com" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-lg-6">
-                        <div class="mb-3">
-                          <label for="whatsapp" class="form-label">Whatsapp</label>
-                          <input type="text" class="form-control" id="whatsapp" value="https://www.whatsapp.com" />
-                        </div>
-                      </div>
-                      <!--end col-->
-                    </div>
-                    <!--end row-->
-                  </div>
-                  <!--end socia-media-->
+
                   <div class="mt-4">
                     <h5 class="fs-17 fw-semibold mb-3 mb-3">
                       Change Password
