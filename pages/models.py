@@ -6,7 +6,8 @@ class Event(models.Model):
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    charge = models.ManyToManyField(myUser)
+    charge = models.ForeignKey(myUser, on_delete=models.PROTECT, related_name='charge', default='ljhyun')
+    participants = models.ManyToManyField(myUser)
 
     class Meta:
         verbose_name = 'Scheduling'

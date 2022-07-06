@@ -191,8 +191,8 @@
 
         &:hover {
             color: $white;
-            background-color: $danger;
-            border-color: $danger;
+            background-color: $primary;
+            border-color: $primary;
         }
     }
 }
@@ -203,7 +203,7 @@
     }
     .favorite-icon {
         a {
-            background-color: $danger;
+            background-color: $primary;
             color: $white;
             border-color: danger;
         }

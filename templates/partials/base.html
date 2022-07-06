@@ -30,6 +30,11 @@
   <!--Custom Css-->
   {% endblock css %}
 
+  <script>
+    $(document).ready(function() {
+      $("#add-schedule").modal();
+    });
+  </script>
   <style>
     .badge {
       color: #111928;
@@ -42,7 +47,6 @@
       display: inline;
       margin-left: 10px;
     }
-
   </style>
 </head>
 
@@ -87,9 +91,7 @@
       </div>
       <!-- End Page-content -->
 
-      {% block subscribe %}
-      {% include 'partials/subscribe.html' %}
-      {% endblock subscribe %}
+      {% block subscribe %}{% endblock subscribe %}
 
       {% block footer %}
       {% include 'partials/footer.html' %}
@@ -111,6 +113,7 @@
   <!-- END layout-wrapper -->
 
   {% block javascript %}
+
   {% endblock javascript %}
 
 </body>

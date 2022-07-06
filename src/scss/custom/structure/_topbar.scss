@@ -40,7 +40,7 @@
 .navbar {
     transition: all 0.5s ease;
     padding: 0;
-    margin-top: 44px;
+    margin-top: 0;
     background-color: $white;
     box-shadow: $box-shadow;
 
@@ -54,7 +54,7 @@
             transition: all 0.3s ease;
             position: relative;
             font-weight: 600;
-            &:hover,    
+            &:hover,
             &:active,
             &.active {
                 color: $primary;
@@ -108,7 +108,7 @@
             background-color: $light;
         }
     }
-    
+
 }
 
 .notification-header {
@@ -122,7 +122,7 @@
     .count{
         position: absolute;
         top: 15px;
-        right: -6px;    
+        right: -6px;
         margin-top: -3px;
         margin-right: -5px;
         width: 21px;

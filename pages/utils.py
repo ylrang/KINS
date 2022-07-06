@@ -16,14 +16,49 @@ class Calendar(HTMLCalendar):
 		d = ''
 		for event in events_per_day:
 			# d += f'<li class="btn-open-popup" onclick=testfunc(this)><button class="btn-open-popup">{event.title}</button></li>'
-			d += f'<li><a href="#" data-toggle="modal" data-target="#myModal{event.id}">{event.title}</a></li>'
-			d += f'<div class="modal" id="myModal{event.id}" data-backdrop="static" data-keyboard="true">\
-			 <div class="modal-dialog modal-xl modal-dialog-centered">\
-			<div class="modal-content"><div class="modal-header">\
-			<h2 class="modal-title">{event.title}</h2>\
-			<button type="button" class="close" data-dismiss="modal">&times;</button></div>\
-			<div class="modal-body">{event.description}</div>\
-			<div class="modal-footer"></div></div></div></div>'
+			d += f'<li><a href="#myModal{event.id}" data-bs-toggle="modal">{event.title}</a></li>'
+
+			d += f'<div class="modal fade" id="myModal{event.id}" tabindex="-1" aria-labelledby="myModal{event.id}" aria-hidden="true">\
+			    <div class="modal-dialog modal-dialog-centered">\
+			        <div class="modal-content">\
+			            <div class="modal-body p-5">\
+			                <div class="text-center mb-4">\
+			                    <h5 class="modal-title" id="staticBackdropLabel">{event.title}</h5>\
+			                </div>\
+			                <div class="position-absolute end-0 top-0 p-3">\
+			                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>\
+			                </div>\
+			                <div class="mb-3">\
+			                    <label for="nameControlInput" class="form-label">일시</label>\
+			                    <input type="date" class="form-control" id="dateControlInput" value="{event.start_time}">\
+			                </div>\
+			                <div class="mb-3">\
+			                    <label for="messageControlTextarea" class="form-label">세부일정</label>\
+			                    <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="{event.description}"></textarea>\
+			                </div>\
+			                <div class="mb-4">\
+			                    <label class="form-label" for="inputGroupFile01">Resume Upload</label>\
+			                    <input type="file" class="form-control" id="inputGroupFile01">\
+			                </div>\
+			                <div class="mb-3">\
+			                    <label for="emailControlInput2" class="form-label">담당자</label>\
+			                    <input type="text" class="form-control" id="emailControlInput2" readonly="readonly" placeholder="{event.charge}">\
+			                </div>\
+			                    <button type="submit" class="btn btn-primary w-30 right">수정</button>\
+			                    <button type="submit" class="btn btn-primary w-30 right">삭제</button>\
+			            </div>\
+			        </div>\
+			    </div>\
+			</div>'
+
+
+			# d += f'<div class="modal fade" id="myModal{event.id} "tabindex="-1" aria-labelledby="myModal{event.id}" aria-hidden="true">\
+			#  <div class="modal-dialog modal-dialog-centered">\
+			# <div class="modal-content"><div class="modal-header">\
+			# <h2 class="modal-title">{event.title}</h2>\
+			# <button type="button" class="close" data-dismiss="modal">&times;</button></div>\
+			# <div class="modal-body">{event.description}</div>\
+			# <div class="modal-footer"></div></div></div></div>'
 
 
 		if day != 0:

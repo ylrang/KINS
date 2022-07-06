@@ -17,7 +17,7 @@
                                         <div class="page-next">
                                             <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                                 <ol class="breadcrumb justify-content-center">
-                                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                                    <li class="breadcrumb-item"><a href="index.html">대시보드</a></li>
                                                     <li class="breadcrumb-item active" aria-current="page"> 공지사항 </li>
                                                 </ol>
                                             </nav>
@@ -88,7 +88,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-lg-10">
                                                     <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">중간 보고서</a></h5>
+                                                        <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">중간 보고서 작성안내</a></h5>
                                                         <ul class="list-inline mb-0">
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0">작성자:ljhyun 조회수:12  </p>
@@ -102,12 +102,69 @@
                                         </div>
                                     </div><!--end job-box-->
 
-                                </div><!--end col-->
+                                    <div class="job-box card mt-4">
+                                        <div class="card-body p-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-10">
+                                                    <div class="mt-3 mt-lg-0">
+                                                        <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">착수회의 일정 공지</a></h5>
+                                                        <ul class="list-inline mb-0">
+                                                            <li class="list-inline-item">
+                                                                <p class="text-muted fs-14 mb-0">작성자:ljhyun 조회수:12  </p>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div><!--end job-box-->
+
+                                    <div class="job-box card mt-4">
+                                        <div class="card-body p-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-10">
+                                                    <div class="mt-3 mt-lg-0">
+                                                        <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">착수회의 일정 공지</a></h5>
+                                                        <ul class="list-inline mb-0">
+                                                            <li class="list-inline-item">
+                                                                <p class="text-muted fs-14 mb-0">작성자:ljhyun 조회수:12  </p>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div><!--end job-box-->
+
+                                    <div class="job-box card mt-4">
+                                        <div class="card-body p-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-10">
+                                                    <div class="mt-3 mt-lg-0">
+                                                        <h5 class="fs-17 mb-1"><a href="{% url 'job-details' %}" class="text-dark">최종보고서 제출 마감</a></h5>
+                                                        <ul class="list-inline mb-0">
+                                                            <li class="list-inline-item">
+                                                                <p class="text-muted fs-14 mb-0">작성자:ljhyun 조회수:12  </p>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div><!--end job-box-->
+                                  </div><!--end col-->
+
                                 <div class="col-lg-2">
                                   <div class="accordion-item mt-3">
                                       <h2 class="accordion-header" id="jobType">
                                           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
-                                              분류
+                                              회사
                                           </button>
                                       </h2>
                                       <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
@@ -146,39 +203,6 @@
                                               </div>
                                           </div>
                                       </div>
-                                  </div><!-- end accordion-item -->
-                                  <div class="accordion-item mt-4">
-                                  <h2 class="accordion-header" id="experienceOne">
-                                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
-                                          Company
-                                      </button>
-                                  </h2>
-                                  <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
-                                      <div class="accordion-body">
-                                          <div class="side-title">
-                                              <div class="form-check mt-2">
-                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                                                  <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">전체</label>
-                                              </div>
-                                              <div class="form-check mt-2">
-                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                                                  <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">N/Star</label>
-                                              </div>
-                                              <div class="form-check mt-2">
-                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                                  <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">논문</label>
-                                              </div>
-                                              <div class="form-check mt-2">
-                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                                  <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">보고서</label>
-                                              </div>
-                                              <div class="form-check mt-2">
-                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                                  <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">일정</label>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
                                   </div><!-- end accordion-item -->
 
                                 </div>

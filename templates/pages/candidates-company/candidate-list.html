@@ -17,7 +17,6 @@
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'index'%}">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">자료 게시판</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> 전체 공유문서함 </li>
               </ol>
@@ -107,285 +106,339 @@
     </div>
     <!--end row-->
 
-    <div class="row align-items-center">
-      <div class="col-lg-8">
-        <div class="mb-3 mb-lg-0">
-          <h6 class="fs-16 mb-0"> Showing 1 – 8 of 11 results </h6>
-        </div>
-      </div>
-      <!--end col-->
+    <div class=" row align-items-center">
+                      <div class="col-lg-8">
+                        <div class="mb-3 mb-lg-0">
+                          <h6 class="fs-16 mb-0"> Showing 1 – 8 of 11 results </h6>
+                        </div>
+                      </div>
+                      <!--end col-->
 
-      <div class="col-lg-4">
-        <div class="candidate-list-widgets">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="selection-widget">
-                <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
-                  <option value="df">Default</option>
-                  <option value="ne">Newest</option>
-                  <option value="od">Oldest</option>
-                  <option value="rd">Random</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="selection-widget mt-2 mt-lg-0">
-                <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
-                  <option value="df">All</option>
-                  <option value="ne">8 per Page</option>
-                  <option value="ne">12 per Page</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end candidate-list-widgets-->
-      </div>
-      <!--end col-->
-    </div>
-    <!--end row-->
-    <div class="row">
-      <div class="col-lg-9">
-        <div class="candidate-list">
-
-          <!-- start card -->
-          <div class="candidate-list-box card mt-4">
-            <div class="card-body p-4">
-              <div class="row align-items-center">
-                <div class="col-auto">
-
+                      <div class="col-lg-4">
+                        <div class="candidate-list-widgets">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="selection-widget">
+                                <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
+                                  <option value="df">Default</option>
+                                  <option value="ne">Newest</option>
+                                  <option value="od">Oldest</option>
+                                  <option value="rd">Random</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="selection-widget mt-2 mt-lg-0">
+                                <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
+                                  <option value="df">All</option>
+                                  <option value="ne">8 per Page</option>
+                                  <option value="ne">12 per Page</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end candidate-list-widgets-->
+                      </div>
+                      <!--end col-->
                 </div>
-                <!--end col-->
+                <!--end row-->
+                <div class="row">
+                  <div class="col-lg-9">
+                    <div class="candidate-list">
 
-                <div class="col-lg-5">
-                  <div class="candidate-list-content mt-3 mt-lg-0">
-                    <h5 class="fs-19 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">심층처분시스템 보고서</a> </h5>
-                    <p class="text-muted mb-2"> NCS | 이정현</p>
-                    <ul class="list-inline mb-0 text-muted">
-                      <li class="list-inline-item">
-                        <i class="mdi mdi-map-marker"></i> 등록일자
-                      </li>
-                      <li class="list-inline-item">
-                        <i class="uil uil-wallet"></i> 조회수
-                      </li>
-                    </ul>
+                      <!-- start card -->
+                      <div class="candidate-list-box bookmark-post card mt-4">
+                        <div class="card-body p-4">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <div class="candidate-list-images">
+                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-5">
+                              <div class="candidate-list-content mt-3 mt-lg-0">
+                                <h5 class="fs-19 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">심층처분시스템 보고서</a> </h5>
+                                <p class="text-muted mb-2"> NCS | 홍길동</p>
+                                <ul class="list-inline mb-0 text-muted">
+                                  <li class="list-inline-item">
+                                    <i class="mdi mdi-map-marker"></i> 등록일자: 2022.06.28
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <i class="uil uil-wallet"></i> 조회수: 11
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-4">
+                              <div class="mt-2 mt-lg-0">
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                          <div class="favorite-icon">
+                            <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end card-->
+
+                      <!-- start card -->
+                      <div class="candidate-list-box card mt-4">
+                        <div class="card-body p-4">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <div class="candidate-list-images">
+                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-5">
+                              <div class="candidate-list-content mt-3 mt-lg-0">
+                                <h5 class="fs-19 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">중간보고서 제출</a> </h5>
+                                <p class="text-muted mb-2"> NCS | 홍길동</p>
+                                <ul class="list-inline mb-0 text-muted">
+                                  <li class="list-inline-item">
+                                    <i class="mdi mdi-map-marker"></i> 등록일자: 2022.06.28
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <i class="uil uil-wallet"></i> 조회수: 136
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-4">
+                              <div class="mt-2 mt-lg-0">
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                          <div class="favorite-icon">
+                            <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end card-->
+
+                      <!-- start card -->
+                      <div class="candidate-list-box bookmark-post card mt-4">
+                        <div class="card-body p-4">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <div class="candidate-list-images">
+                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-5">
+                              <div class="candidate-list-content mt-3 mt-lg-0">
+                                <h5 class="fs-19 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">심층처분시스템 보고서</a> </h5>
+                                <p class="text-muted mb-2"> NCS | 홍길동</p>
+                                <ul class="list-inline mb-0 text-muted">
+                                  <li class="list-inline-item">
+                                    <i class="mdi mdi-map-marker"></i> 등록일자: 2022.06.28
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <i class="uil uil-wallet"></i> 조회수: 71
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-4">
+                              <div class="mt-2 mt-lg-0">
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                          <div class="favorite-icon">
+                            <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end card-->
+
+                      <!-- start card -->
+                      <div class="candidate-list-box card mt-4">
+                        <div class="card-body p-4">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <div class="candidate-list-images">
+                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-5">
+                              <div class="candidate-list-content mt-3 mt-lg-0">
+                                <h5 class="fs-19 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">8월 데이터</a> </h5>
+                                <p class="text-muted mb-2"> NCS | 홍길동</p>
+                                <ul class="list-inline mb-0 text-muted">
+                                  <li class="list-inline-item">
+                                    <i class="mdi mdi-map-marker"></i> 등록일자: 2022.06.28
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <i class="uil uil-wallet"></i> 조회수: 71
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-4">
+                              <div class="mt-2 mt-lg-0">
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
+                                <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                          <div class="favorite-icon">
+                            <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end card-->
+
+
+
+                    </div>
+                    <!--end candidate-list-->
                   </div>
-                </div>
-                <!--end col-->
+                  <!--end col-->
 
-                <div class="col-lg-4">
-                  <div class="mt-2 mt-lg-0">
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
-                  </div>
-                </div>
-                <!--end col-->
-              </div>
-              <!--end row-->
-              <div class="favorite-icon">
-                <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
-              </div>
-            </div>
-          </div>
-          <!--end card-->
-
-          <div class="candidate-list-box bookmark-post card mt-4">
-            <div class="card-body p-4">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <div class="candidate-list-images">
-                    <a href="javascript:void(0)"><img src="{% static 'images/user/img-02.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
-                  </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-5">
-                  <div class="candidate-list-content mt-3 mt-lg-0">
-                    <h5 class="fs-19 mb-0"><a href="{% url 'candidate-details' %}" class="primary-link">Gabriel Palmer</a> <span class="badge bg-warning ms-1"><i class="mdi mdi-star align-middle"></i> 3.4</span></h5>
-                    <p class="text-muted mb-2"> HTML Developer</p>
-                    <ul class="list-inline mb-0 text-muted">
-                      <li class="list-inline-item">
-                        <i class="mdi mdi-map-marker"></i> Oakridge Lane California
-                      </li>
-                      <li class="list-inline-item">
-                        <i class="uil uil-wallet"></i> $250 / hours
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-4">
-                  <div class="mt-2 mt-lg-0">
-                    <span class="badge bg-soft-muted fs-14 mt-1">design</span>
-                    <span class="badge bg-soft-muted fs-14 mt-1">Developer</span>
-                  </div>
-                </div>
-              </div>
-              <!--end row-->
-              <div class="favorite-icon">
-                <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
-              </div>
-            </div>
-          </div>
-          <!--end card-->
-
-
-
-          <!-- start card -->
-          <div class="candidate-list-box card mt-4">
-            <div class="card-body p-4">
-              <div class="row align-items-center">
-
-
-                <div class="col-lg-5">
-                  <div class="candidate-list-content mt-3 mt-lg-0">
-                    <h6 class="fs-17 mb-1"><a href="{% url 'candidate-details' %}" class="primary-link">중간 보고서</a> </h6>
-                    <p class="text-muted mb-2"> NCS 이정현</p>
-                    <ul class="list-inline mb-0 text-muted">
-                      <li class="list-inline-item">
-                        <i class="mdi mdi-map-marker"></i> 등록일자: 2022.06.28
-                      </li>
-                      <li class="list-inline-item">
-                        <i class="uil uil-wallet"></i> 조회수: 11
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4">
-                  <div class="mt-2 mt-lg-0">
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명1</span>
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명2</span>
-                    <span class="badge bg-soft-muted fs-14 mt-1">파일명3</span>
-                  </div>
-                </div>
-                <!--end col-->
-              </div>
-              <!--end row-->
-              <div class="favorite-icon">
-                <a href="javascript:void(0)"><i class="uil uil-folder-plus fs-18"></i></a>
-              </div>
-            </div>
-          </div>
-          <!--end card-->
-
-
-
-        </div>
-        <!--end candidate-list-->
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-3">
-        <div class="accordion-item mt-3">
-            <h2 class="accordion-header" id="jobType">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
-                    분류
-                </button>
-            </h2>
-            <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
-                <div class="accordion-body">
-                    <div class="side-title">
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
-                            <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
+                  <div class="col-lg-3">
+                    <div class="accordion-item mt-3">
+                      <h2 class="accordion-header" id="jobType">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
+                          회사
+                        </button>
+                      </h2>
+                      <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
+                        <div class="accordion-body">
+                          <div class="side-title">
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
                                 전체
-                            </label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
                                 KINS
-                            </label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                            <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
                                 NCS
-                            </label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                            <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
                                 UNIST
-                            </label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                            <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
                                 BRNC
-                            </label>
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                    </div><!-- end accordion-item -->
+                    <div class="accordion-item mt-4">
+                      <h2 class="accordion-header" id="experienceOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
+                          분류
+                        </button>
+                      </h2>
+                      <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
+                        <div class="accordion-body">
+                          <div class="side-title">
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">전체</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">N/Star</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">논문</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">보고서</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">일정</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- end accordion-item -->
+
+                  </div>
                 </div>
-            </div>
-        </div><!-- end accordion-item -->
-        <div class="accordion-item mt-4">
-        <h2 class="accordion-header" id="experienceOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
-                Company
-            </button>
-        </h2>
-        <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
-            <div class="accordion-body">
-                <div class="side-title">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                        <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">전체</label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                        <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">N/Star</label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                        <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">논문</label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                        <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">보고서</label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                        <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">일정</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div><!-- end accordion-item -->
-
-      </div>
-    </div>
-    <!--end row-->
+                <!--end row-->
 
 
-    <div class="row">
-      <div class="col-lg-12 mt-5">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination job-pagination mb-0 justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                <i class="mdi mdi-chevron-double-left fs-15"></i>
-              </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-            <li class="page-item">
-              <a class="page-link" href="javascript:void(0)">
-                <i class="mdi mdi-chevron-double-right fs-15"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <!--end col-->
-    </div><!-- end row -->
+                <div class="row">
+                  <div class="col-lg-12 mt-5">
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination job-pagination mb-0 justify-content-center">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                            <i class="mdi mdi-chevron-double-left fs-15"></i>
+                          </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="javascript:void(0)">
+                            <i class="mdi mdi-chevron-double-right fs-15"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <!--end col-->
+                </div><!-- end row -->
 
-  </div>
-  <!--end container-->
+              </div>
+              <!--end container-->
 </section>
 <!-- END JOB-LIST -->
 {% endblock content %}

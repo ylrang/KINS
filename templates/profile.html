@@ -16,7 +16,6 @@
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)"> 내 프로필 </a></li>
                 <li class="breadcrumb-item active" aria-current="page"> 회원정보 관리 </li>
               </ol>
@@ -52,7 +51,7 @@
           <div class="card-body p-4">
             <div class="text-center pb-4 border-bottom">
               <img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-lg img-thumbnail rounded-circle mb-4" />
-              <h5 class="mb-0">Jennifer Dickens</h5>
+              <h5 class="mb-0">홍길동</h5>
               <p class="text-muted">연구개발팀</p>
 
             </div>
@@ -66,7 +65,7 @@
                       <label>Email</label>
                       <div>
                         <p class="text-muted text-break mb-0">
-                          jennifer@gmail.com
+                          gildong@gmail.com
                         </p>
                       </div>
                     </div>
@@ -116,7 +115,7 @@
             <div class="tab-content" id="pills-tabContent">
               <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                 <div>
-                  <h5 class="fs-18 fw-bold"> 업로드 수 </h5>
+                  <h5 class="fs-18 fw-bold"> 업로드 현황 </h5>
                   <p class="text-muted mt-4">
                     Developer with over 5 years' experience working in both
                     the public and private sectors. Diplomatic, personable,
@@ -135,7 +134,7 @@
                   </p>
                 </div>
                 <div class="mt-4">
-                  <h5 class="fs-18 fw-bold">Skills</h5>
+                  <h5 class="fs-18 fw-bold">작성한 글</h5>
                   <span class="badge fs-13 bg-soft-blue mt-2">Cloud Management</span>
                   <span class="badge fs-13 bg-soft-blue mt-2">Responsive Design</span>
                   <span class="badge fs-13 bg-soft-blue mt-2">Network Architecture</span>
@@ -152,10 +151,10 @@
               <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <form action="#">
                   <div>
-                    <h5 class="fs-17 fw-semibold mb-3 mb-0">My Account</h5>
+                    <h5 class="fs-17 fw-semibold mb-3 mb-0">내 정보</h5>
                     <div class="text-center">
                       <div class="mb-4 profile-user">
-                        <img src="{% static 'images/user/img-02.jpg' %}" class="rounded-circle img-thumbnail profile-img" id="profile-img" alt="">
+                        <img src="{% static 'images/profile.jpg' %}" class="rounded-circle img-thumbnail profile-img" id="profile-img" alt="">
                         <div class="p-0 rounded-circle profile-photo-edit">
                           <input id="profile-img-file-input" type="file" class="profile-img-file-input" onchange="previewImg()">
                           <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
@@ -168,14 +167,14 @@
                       <div class="col-lg-6">
                         <div class="mb-3">
                           <label for="firstName" class="form-label">이름</label>
-                          <input type="text" class="form-control" id="firstName" value="Jennifer" />
+                          <input type="text" class="form-control" id="firstName" value="홍길동" />
                         </div>
                       </div>
                       <!--end col-->
                       <div class="col-lg-6">
                         <div class="mb-3">
                           <label for="email" class="form-label">Email</label>
-                          <input type="text" class="form-control" id="email" value="jennifer@gmail.com" />
+                          <input type="text" class="form-control" id="email" value="gildong@gmail.com" />
                         </div>
                       </div>
                       <!--end col-->
@@ -205,21 +204,19 @@
 
                   <div class="mt-4">
                     <h5 class="fs-17 fw-semibold mb-3 mb-3">
-                      Change Password
+                      비밀번호 변경
                     </h5>
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="mb-3">
-                          <label for="current-password-input" class="form-label">Current
-                            password</label>
+                          <label for="current-password-input" class="form-label">현재 비밀번호</label>
                           <input type="password" class="form-control" placeholder="Enter Current password" id="current-password-input" />
                         </div>
                       </div>
                       <!--end col-->
                       <div class="col-lg-6">
                         <div class="mb-3">
-                          <label for="new-password-input" class="form-label">New
-                            password</label>
+                          <label for="new-password-input" class="form-label">새 비밀번호</label>
                           <input type="password" class="form-control" placeholder="Enter new password" id="new-password-input" />
                         </div>
                       </div>
@@ -235,7 +232,7 @@
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" value="" id="verification" />
                           <label class="form-check-label" for="verification">
-                            Enable Two-Step Verification via email
+                            이메일 이중 인증 사용
                           </label>
                         </div>
                       </div>
