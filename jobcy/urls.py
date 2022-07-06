@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Index Page
-    path('', views.Index.as_view(),name='index'),
+    path('', views.Index2.as_view(),name='index'),
     path('index-2/', views.Index2.as_view(),name='index-2'),
     path('index-3/', views.Index3.as_view(),name='index-3'),
 
