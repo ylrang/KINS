@@ -9,6 +9,7 @@ class Docs(models.Model):
     last_updated = models.DateTimeField()
     writer = models.ForeignKey(myUser, on_delete=models.PROTECT)
     tags = models.ManyToManyField('kinsdb.Tag', related_name='tags')
+    views = models.IntegerField(verbose_name='VIEWS', default=0)
 
     class Meta:
         verbose_name = 'Document'
