@@ -7,14 +7,14 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="footer-item mt-4 mt-lg-0 me-lg-5">
-                                    <h4 class="text-white mb-4">Jobcy</h4>
-                                    <p class="text-white-50">It is a long established fact that a reader will be of a page reader
-                                        will be of at its layout.</p>
+                                    <h4 class="text-white mb-4">KINS</h4>
+                                    <p class="text-white-50">File Managing Cloud Flatform for KINS</p>
+
                                 </div>
                             </div><!--end col-->
                             <div class="col-lg-2 col-6">
                                 <div class="footer-item mt-4 mt-lg-0">
-                                    <p class="fs-16 text-white mb-4">Company</p>
+                                    <p class="fs-16 text-white mb-4">HOME</p>
                                     <ul class="list-unstyled footer-list mb-0">
                                         <li><a href="{% url 'about' %}"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
                                         <li><a href="{% url 'contact' %}"><i class="mdi mdi-chevron-right"></i> Contact Us</a></li>
@@ -27,28 +27,25 @@
                             </div><!--end col-->
                             <div class="col-lg-2 col-6">
                                 <div class="footer-item mt-4 mt-lg-0">
-                                    <p class="fs-16 text-white mb-4">For Jobs</p>
+                                    <p class="fs-16 text-white mb-4">BULLETIN</p>
                                     <ul class="list-unstyled footer-list mb-0">
-                                        <li><a href="{% url 'job-categories' %}"><i class="mdi mdi-chevron-right"></i> Browser Categories</a></li>
-                                        <li><a href="{% url 'job-list' %}"><i class="mdi mdi-chevron-right"></i> Browser Jobs</a></li>
-                                        <li><a href="{% url 'job-details' %}"><i class="mdi mdi-chevron-right"></i> Job Details</a></li>
-                                        <li><a href="{% url 'bookmark-jobs' %}"><i class="mdi mdi-chevron-right"></i> Bookmark Jobs</a></li>
+                                        <li><a href="{% url 'job-categories' %}"><i class="mdi mdi-chevron-right"></i>전체 공유 문서함</a></li>
+                                        <li><a href="{% url 'job-list' %}"><i class="mdi mdi-chevron-right"></i>기관별 공유 문서함</a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->
                             <div class="col-lg-2 col-6">
                                 <div class="footer-item mt-4 mt-lg-0">
-                                    <p class="text-white fs-16 mb-4">For Candidates</p>
+                                    <p class="text-white fs-16 mb-4">CALENDAR</p>
                                     <ul class="list-unstyled footer-list mb-0">
-                                        <li><a href="{% url 'candidate-list' %}"><i class="mdi mdi-chevron-right"></i> Candidate List</a></li>
-                                        <li><a href="{% url 'candidate-grid' %}"><i class="mdi mdi-chevron-right"></i> Candidate Grid</a></li>
-                                        <li><a href="{% url 'candidate-details' %}"><i class="mdi mdi-chevron-right"></i> Candidate Details</a></li>
+                                        <li><a href="{% url 'candidate-list' %}"><i class="mdi mdi-chevron-right"></i> 일정 관리 </a></li>
+                                        <li><a href="{% url 'candidate-grid' %}"><i class="mdi mdi-chevron-right"></i> 알림 </a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->
                             <div class="col-lg-2 col-6">
                                 <div class="footer-item mt-4 mt-lg-0">
-                                    <p class="fs-16 text-white mb-4">Support</p>
+                                    <p class="fs-16 text-white mb-4">CONTACT</p>
                                     <ul class="list-unstyled footer-list mb-0">
                                         <li><a href="{% url 'contact' %}"><i class="mdi mdi-chevron-right"></i> Help Center</a></li>
                                         <li><a href="{% url 'faqs' %}"><i class="mdi mdi-chevron-right"></i> FAQ's</a></li>
@@ -64,12 +61,16 @@
                 <div class="footer-alt">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-10">
                                 <p class="text-white-50 text-center mb-0">
                                     <script>document.write(new Date().getFullYear())</script> &copy; (주)엔씨스퀘어 - KINS File Cloud by <a href="http://ncsquare.co.kr/" target="_blank"
                                         class="text-reset text-decoration-underline">NCS</a>
                                 </p>
                             </div><!--end col-->
+
+
+                            <div class="col-lg-2"><a href="{% url 'database' %}"
+                                class="text-reset text-decoration-underline">Show Database</a></div>
                         </div><!--end row-->
                     </div><!--end container-->
                 </div>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pages',
     'blog',
     'contact',
+    'kinsdb',
 ]
 
 MIDDLEWARE = [

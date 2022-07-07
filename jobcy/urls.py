@@ -42,4 +42,7 @@ urlpatterns = [
     path('manage-jobs-post',views.ManageJobs.as_view(),name='manage-jobs-post'),
     path('bookmark-jobs',views.BookmarkJobs.as_view(),name='bookmark-jobs'),
     path('profile',views.Profile.as_view(),name='profile'),
+
+    # Database
+    path('kinsdb/',include('kinsdb.urls')),
 ]
