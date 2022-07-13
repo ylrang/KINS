@@ -43,7 +43,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="candidate-list-widgets mb-4">
-          <form method="get">
+          <form method="get" name="search_filter" id="search_filter">
             <div class="row g-2">
 
               <div class="col-lg-2">
@@ -106,7 +106,9 @@
     <div class=" row align-items-center">
                       <div class="col-lg-8">
                         <div class="mb-3 mb-lg-0">
-                          <h6 class="fs-16 mb-0"> Showing  {{ page_obj.paginator.page }} – {{ page_obj.number }} of {{ page_obj.paginator.count }} results </h6>
+                          <h6 class="fs-16 mb-0"> Showing {% for doc in page_obj %}{% if forloop.first %}{{ doc.id }}{% endif %}{% endfor %} – {% for doc in page_obj %}{% if forloop.last %}{{ doc.id }}{% endif %}{% endfor %} of
+                            {{ page_obj.paginator.count }} results
+                          </h6>
                         </div>
                       </div>
 
@@ -176,8 +178,7 @@
                               <div class="mt-2 mt-lg-0">
 
                                 {% for tag in doc.tags.all %}
-                                <span class="badge bg-soft-muted fs-14 mt-1">#{{ tag.tag_content }}</span>
-
+                                <span class="badge bg-soft-muted fs-14 mt-1"><a onclick="searchTag('{{ tag.tag_content }}')">#{{ tag.tag_content }}</a></span>
                                 {% endfor %}
                               </div>
                             </div>
@@ -189,6 +190,13 @@
                       <!--end card-->
                       {% endfor %}
 
+                      <script>
+                        function searchTag(tag_content) {
+                          var form = document.getElementById('search_filter');
+                          document.getElementById('exampleFormControlInput1').value = tag_content;
+                          form.submit();
+                        }
+                      </script>
 
 
                     </div>
