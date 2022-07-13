@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'contact',
     'kinsdb',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

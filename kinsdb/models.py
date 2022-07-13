@@ -15,6 +15,6 @@ class Docs(models.Model):
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
 
-#
+
 class Tag(models.Model):
     tag_content = models.CharField(max_length=100)
