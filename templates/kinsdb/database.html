@@ -64,7 +64,7 @@
                   <i class="uil uil-search"></i>
 
                   <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }} " onfocus="this.value=''" placeholder="검색어 입력">
-
+                  <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
                 </div>
               </div>
               <!--end col-->
@@ -106,8 +106,8 @@
     <div class=" row align-items-center">
                       <div class="col-lg-8">
                         <div class="mb-3 mb-lg-0">
-                          <h6 class="fs-16 mb-0"> Showing {% for doc in page_obj %}{% if forloop.first %}{{ doc.id }}{% endif %}{% endfor %} – {% for doc in page_obj %}{% if forloop.last %}{{ doc.id }}{% endif %}{% endfor %} of
-                            {{ page_obj.paginator.count }} results
+                          <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
+                            <b>{{ page_obj.paginator.count }} results</b>
                           </h6>
                         </div>
                       </div>
@@ -193,7 +193,9 @@
                       <script>
                         function searchTag(tag_content) {
                           var form = document.getElementById('search_filter');
+
                           document.getElementById('exampleFormControlInput1').value = tag_content;
+                          document.getElementById('fieldFormControlInput').value = 'tag';
                           form.submit();
                         }
                       </script>

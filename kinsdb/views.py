@@ -8,22 +8,22 @@ from django.db.models import Q
 def database(request):
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
+    field = request.GET.get('field', '')
 
     if search:
-        docs = docs.filter(Q(title__icontains=search))
+        if field == 'title':
+            docs = docs.filter(Q(title__icontains=search))
+        elif field == 'tag':
+            docs = docs.filter(Q(tags__tag_content__icontains=search))
 
-    myFilter = DocsFilter(request.GET, queryset=docs)
-    docs = myFilter.qs
+    docsFilter = DocsFilter(request.GET, queryset=docs)
+    docs = docsFilter.qs
 
     paginator = Paginator(docs, 5)
     page_number = request.GET.get('page', '1')
     page_obj = paginator.page(page_number)
 
-    print('HI')
-    print(paginator)
-    print(page_number)
-
-    context = {'docs': docs, 'page_obj': page_obj }
+    context = {'docs': docs, 'page_obj': page_obj, 'field': field }
     return render(request, "kinsdb/database.html", context)
 
 
