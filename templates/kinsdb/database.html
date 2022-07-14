@@ -107,7 +107,8 @@
                       <div class="col-lg-8">
                         <div class="mb-3 mb-lg-0">
                           <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
-                            <b>{{ page_obj.paginator.count }} results</b>
+                            <b>{{ page_obj.paginator.count }} results</b> {{ field }} {{ search }}
+                            <!-- {% if '{{ field }}'='tag' %} # {% else %} "" {% endif %} -->
                           </h6>
                         </div>
                       </div>

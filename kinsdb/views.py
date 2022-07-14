@@ -23,7 +23,7 @@ def database(request):
     page_number = request.GET.get('page', '1')
     page_obj = paginator.page(page_number)
 
-    context = {'docs': docs, 'page_obj': page_obj, 'field': field }
+    context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search }
     return render(request, "kinsdb/database.html", context)
 
 
