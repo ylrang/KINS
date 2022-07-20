@@ -1,0 +1,376 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load paginate %}
+{% block title %}Database{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+
+{% endblock extra_css %}
+{% block content %}
+<!-- Start home -->
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h2 class="mb-4">BRNC</h2>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- end home -->
+
+<!-- START SHAPE -->
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
+<!-- END SHAPE -->
+
+
+<!-- START JOB-LIST -->
+<section class="section">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="candidate-list-widgets mb-4">
+          <form method="post" name="search_filter" id="search_filter">
+            {% csrf_token %}
+
+            <div class="row g-2">
+
+              <div class="col-lg-2">
+                <div class="filler-job-form">
+                  <i class="uil uil-draggabledots"></i>
+                  <select class="form-select " data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
+                    <option selected value="1">제목</option>
+                    <option value="2">담당자</option>
+                    <option value="3">분류</option>
+                  </select>
+                </div>
+              </div>
+              <!--end col-->
+
+              <div class="col-lg-8">
+                <div class="filler-job-form">
+                  <i class="uil uil-search"></i>
+
+                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }} " onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
+                  <input type="hidden" class="form-control filter-job-input-box" id="tagInput" name="tag" value="{{ tag }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
+
+                  <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
+                </div>
+              </div>
+              <!--end col-->
+
+              <div class="col-lg-2"></div>
+
+              <div class="col-lg-3">
+                <div class="filler-job-form">
+                  <i class="uil uil-check"></i>
+                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput2" placeholder="검색어 입력">
+                </div>
+              </div>
+              <!--end col-->
+              <p style="display:inline;width:auto;margin-top:auto;margin-bottom:auto;">~</p>
+              <div class="col-lg-3">
+                <div class="filler-job-form">
+                  <i class="uil uil-check"></i>
+                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput3" placeholder="검색어 입력">
+                </div>
+              </div>
+              <!--end col-->
+              <div class="col-lg-4">
+                <div>
+                  <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</button>
+
+                  <a href="javascript:void(0)" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
+                </div>
+              </div>
+            </div>
+            <!--end row-->
+          </form>
+          <!--end form-->
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class=" row align-items-center">
+                      <div class="col-lg-8">
+                        <div class="mb-3 mb-lg-0">
+                          <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
+                            <b>{{ page_obj.paginator.count }} results</b>
+
+                            {% if field == "tag" %} for #{{ search }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
+                          </h6>
+                        </div>
+                      </div>
+
+                      <!--end col-->
+                      <div class="col-lg-4">
+                        <div class="candidate-list-widgets">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="selection-widget">
+                                <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
+                                  <option value="df">Default</option>
+                                  <option value="ne">Newest</option>
+                                  <option value="od">Oldest</option>
+                                  <option value="rd">Random</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="selection-widget mt-2 mt-lg-0">
+                                <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
+                                  <option value="df">All</option>
+                                  <option value="ne">8 per Page</option>
+                                  <option value="ne">12 per Page</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end candidate-list-widgets-->
+                      </div>
+                      <!--end col-->
+                </div>
+                <!--end row-->
+                <div class="row">
+                  <div class="col-lg-9">
+                    <div class="candidate-list">
+
+                      {% for doc in page_obj %}
+                      <!-- start card -->
+                      <div class="candidate-list-box card mt-4">
+                        <div class="card-body p-4">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <div class="candidate-list-images">
+                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-6">
+                              <div class="candidate-list-content mt-3 mt-lg-0">
+                                <h5 class="fs-19 mb-1"><a href="{% url 'docs-details' pk=doc.id %}" class="primary-link">{{ doc.title }}</a> </h5>
+                                <p class="text-muted mb-2"> {{ doc.writer.company }} | {{ doc.writer.dept }} </p>
+                                <ul class="list-inline mb-0 text-muted">
+                                  <li class="list-inline-item">
+                                    <i class="mdi mdi-map-marker"></i> 등록일자: {{ doc.regist_date|date:'Y-m-d' }}
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <i class="uil uil-wallet"></i> 조회수: {{ doc.views }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <div class="col-lg-4">
+                              <div class="mt-2 mt-lg-0">
+
+                                {% for tag in doc.tags.all %}
+                                <span class="badge bg-soft-muted fs-14 mt-1"><a onclick="searchTag('{{ tag.tag_content }}')">#{{ tag.tag_content }}</a></span>
+                                {% endfor %}
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                        </div>
+                      </div>
+                      <!--end card-->
+                      {% endfor %}
+
+                      <script>
+                        function searchTag(tag_content) {
+                          var form = document.getElementById('search_filter');
+
+                          document.getElementById('tagInput').value = tag_content;
+                          document.getElementById('fieldFormControlInput').value = 'tag';
+                          form.submit();
+                        }
+                      </script>
+
+
+                    </div>
+                    <!--end candidate-list-->
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-lg-3">
+                    <div class="accordion-item mt-3">
+                      <h2 class="accordion-header" id="jobType">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
+                          회사
+                        </button>
+                      </h2>
+                      <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
+                        <div class="accordion-body">
+                          <div class="side-title">
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
+                                전체
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
+                                KINS
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
+                                NCS
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
+                                UNIST
+                              </label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
+                                BRNC
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- end accordion-item -->
+                    <div class="accordion-item mt-4">
+                      <h2 class="accordion-header" id="experienceOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
+                          분류
+                        </button>
+                      </h2>
+                      <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
+                        <div class="accordion-body">
+                          <div class="side-title">
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">전체</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">N/Star</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">논문</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">보고서</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
+                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">일정</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- end accordion-item -->
+
+                  </div>
+                </div>
+                <!--end row-->
+
+                <div class="row">
+                  <div class="col-lg-12 mt-5">
+                    <nav>
+                      <ul class="pagination job-pagination mb-0 justify-content-center">
+
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                          <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
+
+                            <i class="mdi mdi-chevron-double-left fs-15"></i>
+                          </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link" href="javascript:void(0)">
+
+                            <i class="mdi mdi-chevron-double-left fs-15"></i>
+                          </a>
+                        </li>
+                        {% endif %}
+
+
+                        {% for page_number in page_obj.paginator.page_range %}
+                        {% if page_number == page_obj.number %}
+                        <li class="page-item active" aria-current="page">
+                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                          <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
+                            <i class="mdi mdi-chevron-double-right fs-15"></i>
+                          </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                            <i class="mdi mdi-chevron-double-right fs-15"></i>
+                          </a>
+                        </li>
+                        {% endif %}
+
+                      </ul>
+                    </nav>
+                  </div>
+                  <!--end col-->
+                </div><!-- end row -->
+
+              </div>
+              <!--end container-->
+</section>
+<!-- END JOB-LIST -->
+{% endblock content %}
+{% block javascript %}
+
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Init Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+
+<!-- Job-list Init Js -->
+<script src="{% static 'js/pages/job-list.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}

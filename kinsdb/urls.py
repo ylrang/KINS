@@ -3,7 +3,7 @@ from django.urls import path
 from kinsdb import views
 
 urlpatterns = [
-    path('database', views.database, name='database'),
+    path('database-index', views.index, name='database-index'),
+    path('database<str:company>', views.database, name='database'),
     path('docs-details<int:pk>', views.docs_detail, name='docs-details'),
-
 ]

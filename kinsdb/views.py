@@ -4,27 +4,31 @@ from .filters import DocsFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+def index(request):
+    return render(request, "kinsdb/database-index.html")
 
-def database(request):
-    docs = Docs.objects.all()
-    search = request.GET.get('search', '')
-    field = request.GET.get('field', '')
 
-    if search:
-        if field == 'title':
-            docs = docs.filter(Q(title__icontains=search))
-        elif field == 'tag':
-            docs = docs.filter(Q(tags__tag_content__icontains=search))
+def database(request, company):
+    docs = Docs.objects.filter(writer__company=company)
+    search = request.POST.get('search','')
+    tag = request.POST.get('tag','')
+    field = request.POST.get('field')
 
-    docsFilter = DocsFilter(request.GET, queryset=docs)
+    if field == 'title':
+        docs = docs.filter(Q(title__icontains=search))
+    elif field == 'tag':
+        docs = docs.filter(Q(tags__tag_content__icontains=tag))
+
+
+    docsFilter = DocsFilter(request.POST, queryset=docs)
     docs = docsFilter.qs
 
     paginator = Paginator(docs, 5)
-    page_number = request.GET.get('page', '1')
+    page_number = request.POST.get('page', '1')
     page_obj = paginator.page(page_number)
 
-    context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search }
-    return render(request, "kinsdb/database.html", context)
+    context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'tag': tag }
+    return render(request, "kinsdb/%s_database.html" %company, context)
 
 
 def docs_detail(request, pk):

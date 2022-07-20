@@ -6,14 +6,15 @@ from django.contrib.auth.models import AbstractUser
 
 class myUser(AbstractUser):
     COMPANY_CHOICES = (
-        ('NCS', 'NC Square'),
-        ('BRNC', 'brnc'),
-        ('UNIST', 'unist'),
-        ('KINS', 'kins'),
+        ('NCS', 'NCS'),
+        ('BRNC', 'BRNC'),
+        ('UNIST', 'UNIST'),
+        ('KINS', 'KINS'),
     )
     grade = models.CharField(default='A', max_length=100)
     writings = models.IntegerField(default=0)
     company = models.CharField(max_length=100, choices=COMPANY_CHOICES)
+    dept = models.CharField(max_length=100, default='소속없음')
 
 
 # class Folders(models.Model):

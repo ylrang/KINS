@@ -66,18 +66,18 @@
 
               <li>
                 <div class="d-flex">
-                  <label class="text-dark">분류</label>
+                  <label class="text-dark">문서번호</label>
                   <div>
-                    <p class="text-muted mb-0">보고서</p>
+                    <p class="text-muted mb-0">10CRF60</p>
                   </div>
                 </div>
               </li>
 
               <li>
                 <div class="d-flex">
-                  <label class="text-dark">소속</label>
+                  <label class="text-dark">발간/개정일</label>
                   <div>
-                    <p class="text-muted mb-0">신규사업팀</p>
+                    <p class="text-muted mb-0">{{ doc.regist_date|date:'Y/m/d' }}</p>
                   </div>
                 </div>
               </li>
@@ -115,42 +115,12 @@
 
 
           <div class="candidate-contact-details card-body p-4 border-top">
-            <h6 class="fs-17 fw-semibold mb-3">상세내용</h6>
+            <h6 class="fs-17 fw-semibold mb-3">연관 태그</h6>
             <ul class="list-unstyled mb-0">
-              <li>
-                <div class="d-flex align-items-center mt-4">
-                  <div class="icon bg-soft-primary flex-shrink-0">
-                    <i class="uil uil-envelope-alt"></i>
-                  </div>
-                  <div class="ms-3">
-                    <h6 class="fs-14 mb-1">Email</h6>
-                    <p class="text-muted mb-0">gabrielpalmer@gmail.com</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="d-flex align-items-center mt-4">
-                  <div class="icon bg-soft-primary flex-shrink-0">
-                    <i class="uil uil-map-marker"></i>
-                  </div>
-                  <div class="ms-3">
-                    <h6 class="fs-14 mb-1">Address</h6>
-                    <p class="text-muted mb-0">Dodge City, Louisiana</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="d-flex align-items-center mt-4">
-                  <div class="icon bg-soft-primary flex-shrink-0">
-                    <i class="uil uil-phone"></i>
-                  </div>
-                  <div class="ms-3">
-                    <h6 class="fs-14 mb-1">Phone</h6>
-                    <p class="text-muted mb-0">+1(452) 125-6789</p>
-                  </div>
-                </div>
-              </li>
-
+              <!-- TAGS -->
+              {% for tag in doc.tags.all %}
+              <span class="badge bg-soft-muted fs-14 mt-1">#{{ tag.tag_content }}</span>
+              {% endfor %}
             </ul>
           </div>
           <!--end candidate-overview-->
@@ -202,15 +172,7 @@
                 <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> 06.27 </div>
                 <div class="ms-4">
                   <h6 class="fs-16 mb-1">필드 수정</h6>
-                  <p class="text-muted">데이터베이스 검색을 위한 제목 필드로 수정 완료하였습니다.</p>
-                </div>
-              </div>
-              <div class="candidate-education-content mt-4 d-flex">
-                <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> 07.06 </div>
-                <div class="ms-4">
-                  <h6 class="fs-16 mb-1">태그 추가</h6>
-                  <p class="text-muted mb-2">NCS | 홍길동</p>
-                  <p class="text-muted">각 항목별 태그의 수를 5개 이상으로 추가하여 수정하였습니다.</p>
+                  <p class="text-muted">{{ doc.content }}</p>
                 </div>
               </div>
             </div>
