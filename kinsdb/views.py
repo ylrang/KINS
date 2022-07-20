@@ -27,7 +27,7 @@ def database(request):
     return render(request, "kinsdb/database.html", context)
 
 
-def docs_detail(request):
-    docs = Docs.objects.all()
-    context = {'docs': docs}
-    return render(request, "kinsdb/database.html", context)
+def docs_detail(request, pk):
+    doc = Docs.objects.get(pk=pk)
+    context = {'doc': doc}
+    return render(request, "kinsdb/docs-detail.html", context)
