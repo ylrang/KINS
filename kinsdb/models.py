@@ -16,13 +16,21 @@ class Docs(models.Model):
 
     document = models.ForeignKey('kinsdb.Document', on_delete=models.CASCADE)
 
+
     class Meta:
         verbose_name = 'Docs'
         verbose_name_plural = 'Docs'
 
+    def __str__(self):
+        return self.title
+
 
 class Tag(models.Model):
     tag_content = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tag_content
+
 
 
 def content_file_name(instance, filename):
@@ -32,9 +40,12 @@ def content_file_name(instance, filename):
 class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to=content_file_name)
-    serial_num = models.IntegerField(default=0, verbose_name='SERIAL')
+    serial_num = models.CharField(max_length=100)
     institution = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = 'Documents'
         verbose_name_plural = 'Documents'
+
+    def __str__(self):
+        return self.title

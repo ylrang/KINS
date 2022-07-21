@@ -68,7 +68,7 @@
                 <div class="d-flex">
                   <label class="text-dark">문서번호</label>
                   <div>
-                    <p class="text-muted mb-0">10CRF60</p>
+                    <p class="text-muted mb-0">{{ doc.document.serial_num }}</p>
                   </div>
                 </div>
               </li>
@@ -76,7 +76,7 @@
                 <div class="d-flex">
                   <label class="text-dark">기관/국가</label>
                   <div>
-                    <p class="text-muted mb-0">미국</p>
+                    <p class="text-muted mb-0">{{ doc.document.institution }}</p>
                   </div>
                 </div>
               </li>
@@ -133,44 +133,32 @@
           <div class="card-body p-4 candidate-personal-detail">
 
             <div class="mt-4 border-bottom pb-4">
-                <h5 class="fs-17 fw-bold mb-3">파일 다운로드</h5>
-                <ul class="profile-document list-unstyled mb-0">
-                    <li>
-                        <div class="profile-document-list d-flex align-items-center mt-4 ">
-                            <div class="icon flex-shrink-0">
-                                <i class="uil uil-file"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="fs-16 mb-0">Resume.pdf</h6>
-                                <p class="text-muted mb-0">1.25 MB</p>
-                            </div>
-                            <div class="ms-auto">
-                                <a href="{% static 'images/dark-logo.png' %}" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
-                            </div>
-                        </div>
-                    </li>
+              <h5 class="fs-17 fw-bold mb-3">파일 다운로드</h5>
+              <ul class="profile-document list-unstyled mb-0">
+                {{ doc.document.title }}
 
-                    <li>
-                        <div class="profile-document-list d-flex align-items-center mt-4 ">
-                            <div class="icon flex-shrink-0">
-                                <i class="uil uil-file"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="fs-16 mb-0">Cover-letter.pdf</h6>
-                                <p class="text-muted mb-0">1.25 MB</p>
-                            </div>
-                            <div class="ms-auto">
-                                <a href="{% static 'images/dark-logo.png' %}" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                    
-                </ul>
+                <li>
+                  <div class="profile-document-list d-flex align-items-center mt-4 ">
+                    <div class="icon flex-shrink-0">
+                      <i class="uil uil-file"></i>
+                    </div>
+                    <div class="ms-3">
+                      <h6 class="fs-16 mb-0">{{ doc.document.file }}</h6>
+                      <p class="text-muted mb-0">1.25 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <a href="{% static 'images/dark-logo.png' %}" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
             </div>
             <div class="candidate-education-details mt-4 pt-3">
-              <h6 class="fs-17 fw-bold mb-0"> [60.1] {{ doc.title }}</h6>
+              <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.title }}</h6>
               <div class="candidate-education-content mt-4 d-flex">
-                  <p class="text-muted">{{ doc.content }}</p>
+                <p class="text-muted">{{ doc.index_title }}</p>
+                <p class="text-muted">{{ doc.content }}</p>
               </div>
             </div>
             <!--end candidate-education-details-->
@@ -179,6 +167,14 @@
           <!--end card-body-->
         </div>
         <!--end card-->
+
+        <div class="row">
+          <div class="col-lg-10">
+          </div>
+          <div class="col-lg-2 mt-4">
+            <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'database' company='BRNC' %}">목록</button>
+          </div>
+        </div>
       </div>
       <!--end col-->
     </div>

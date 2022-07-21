@@ -13,6 +13,10 @@ class Event(models.Model):
         verbose_name = 'Scheduling'
         verbose_name_plural = 'Scheduling'
 
+    def __str__(self):
+        return self.title
+
+
 #
 # from django.db import models
 # from django.utils import timezone
