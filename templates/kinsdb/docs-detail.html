@@ -147,7 +147,7 @@
                       <p class="text-muted mb-0">1.25 MB</p>
                     </div>
                     <div class="ms-auto">
-                      <a href="{% static 'images/dark-logo.png' %}" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>
+                      <a onclick=location.href="{% url 'download_file' filename=doc.document.file %}" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>
                     </div>
                   </div>
                 </li>
@@ -155,9 +155,8 @@
               </ul>
             </div>
             <div class="candidate-education-details mt-4 pt-3">
-              <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.title }}</h6>
-              <div class="candidate-education-content mt-4 d-flex">
-                <p class="text-muted">{{ doc.index_title }}</p>
+              <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title }}</h6>
+              <div class="candidate-education-content mt-4">
                 <p class="text-muted">{{ doc.content }}</p>
               </div>
             </div>

@@ -93,7 +93,7 @@
                 <div>
                   <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</button>
 
-                  <a href="javascript:void(0)" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
+                  <a href="{% url 'database' company='BRNC' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@
                         <!--end candidate-list-widgets-->
                       </div>
                       <!--end col-->
-                      
+
                 </div>
                 <!--end row-->
                 <div class="row">
@@ -183,8 +183,8 @@
                             <div class="col-lg-4">
                               <div class="mt-2 mt-lg-0">
 
-                                {% for tag in doc.tags.all %}
-                                <span class="badge bg-soft-muted fs-14 mt-1"><a onclick="searchTag('{{ tag.tag_content }}')">#{{ tag.tag_content }}</a></span>
+                                {% for t in doc.tags.all %}
+                                <span class="badge {% if t.tag_content == tag %}bg-soft-primary{% else %}bg-soft-muted{% endif %} fs-14 mt-1"><a onclick="searchTag('{{ t.tag_content }}')">#{{ t.tag_content }}</a></span>
                                 {% endfor %}
                               </div>
                             </div>
@@ -317,15 +317,15 @@
 
 
                         {% for page_number in page_obj.paginator.page_range %}
-                        {% if page_number == page_obj.number %}
-                        <li class="page-item active" aria-current="page">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% endif %}
+                          {% if page_number == page_obj.number %}
+                          <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                          </li>
+                          {% else %}
+                          <li class="page-item">
+                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                          </li>
+                          {% endif %}
                         {% endfor %}
 
 
