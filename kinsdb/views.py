@@ -44,6 +44,7 @@ from django.core.files.storage import FileSystemStorage
 
 def download_file(request, filename):
     file_path = os.path.abspath("media")
+    file_name = os.path.basename(filename)
     fs = FileSystemStorage(file_path)
     response = FileResponse(fs.open(filename, 'r'),
                             content_type='application/force-download')  # mime_type

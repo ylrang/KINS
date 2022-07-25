@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load split %}
 {% block title %}Candidate Details{% endblock title %}
 {% block extra_css %}
 <!-- Choise Css -->
@@ -21,13 +22,13 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">상세내용</h3>
+          <h3 class="mb-4">문서</h3>
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'index'%}">자료 게시판</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">전체 공유문서함</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> 상세내용 </li>
+                <li class="breadcrumb-item"><a href="{% url 'database-index' %}">Database</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'database' company='BRNC' %}">BRNC</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> 문서 </li>
               </ol>
             </nav>
           </div>
@@ -85,7 +86,7 @@
                 <div class="d-flex">
                   <label class="text-dark">작성자</label>
                   <div>
-                    <p class="text-muted mb-0">홍길동</p>
+                    <p class="text-muted mb-0">{{ doc.writer.company }} | {{ doc.writer.dept }}</p>
                   </div>
                 </div>
               </li>
@@ -93,7 +94,7 @@
                 <div class="d-flex">
                   <label class="text-dark">조회</label>
                   <div>
-                    <p class="text-muted mb-0">12</p>
+                    <p class="text-muted mb-0">{{ doc.views }}</p>
                   </div>
                 </div>
               </li>
@@ -135,7 +136,6 @@
             <div class="mt-4 border-bottom pb-4">
               <h5 class="fs-17 fw-bold mb-3">파일 다운로드</h5>
               <ul class="profile-document list-unstyled mb-0">
-                {{ doc.document.title }}
 
                 <li>
                   <div class="profile-document-list d-flex align-items-center mt-4 ">
@@ -143,8 +143,11 @@
                       <i class="uil uil-file"></i>
                     </div>
                     <div class="ms-3">
-                      <h6 class="fs-16 mb-0">{{ doc.document.file }}</h6>
-                      <p class="text-muted mb-0">1.25 MB</p>
+                      <h6 class="fs-16 mb-0">
+                        {% with doc.document.file.name|split:"/"|last as file %}
+                                {{ file }}{% endwith %}
+                      </h6>
+                      <p class="text-muted mb-0">{{ doc.document.file.size|filesizeformat }}</p>
                     </div>
                     <div class="ms-auto">
                       <a onclick=location.href="{% url 'download_file' filename=doc.document.file %}" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>

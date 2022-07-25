@@ -40,11 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'company',
-    'pages',
+    'cloud',
     'blog',
     'contact',
     'kinsdb',
     'django_filters',
+    'django_rename_app',
 ]
 
 MIDDLEWARE = [

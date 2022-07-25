@@ -24,7 +24,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Index Page
-    path('', views.Index2.as_view(),name='index'),
+    path('', include('rnd.urls')),
+    path('cloud', views.Index2.as_view(),name='index'),
+
     path('index-2/', views.Index2.as_view(),name='index-2'),
     path('index-3/', views.Index3.as_view(),name='index-3'),
 
@@ -32,7 +34,7 @@ urlpatterns = [
     path('company/',include('company.urls')),
 
     # Pages
-    path('pages/',include('pages.urls')),
+    path('cloud/',include('cloud.urls')),
 
     # Blog
     path('blog/',include('blog.urls')),
@@ -48,4 +50,5 @@ urlpatterns = [
 
     # Database
     path('kinsdb/',include('kinsdb.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

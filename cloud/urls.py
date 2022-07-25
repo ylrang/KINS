@@ -1,6 +1,6 @@
 from django.urls import path
 # urls.py
-from pages import views
+from cloud import views
 urlpatterns = [
     # Jobs
     path('job-list', views.JobList.as_view(),name="job-list"),
