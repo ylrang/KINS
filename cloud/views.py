@@ -2,45 +2,45 @@ from django.views.generic import TemplateView
 
 # Jobs
 class JobList(TemplateView):
-    template_name = "pages/jobs/job-list.html"
+    template_name = "cloud/jobs/job-list.html"
 class JobList2(TemplateView):
-    template_name = "pages/jobs/job-list-2.html"
+    template_name = "cloud/jobs/job-list-2.html"
 class JobGrid(TemplateView):
-    template_name = "pages/jobs/job-grid.html"
+    template_name = "cloud/jobs/job-grid.html"
 class JobGrid2(TemplateView):
-    template_name = "pages/jobs/job-grid-2.html"
+    template_name = "cloud/jobs/job-grid-2.html"
 class JobDetails(TemplateView):
-    template_name = "pages/jobs/job-details.html"
+    template_name = "cloud/jobs/job-details.html"
 class JobCategories(TemplateView):
-    template_name = "pages/jobs/job-categories.html"
+    template_name = "cloud/jobs/job-categories.html"
 
 # Candidates-Company
 class CandidateList(TemplateView):
-    template_name = "pages/candidates-company/candidate-list.html"
+    template_name = "cloud/candidates-company/candidate-list.html"
 class CandidateGrid(TemplateView):
-    template_name = "pages/candidates-company/candidate-grid.html"
+    template_name = "cloud/candidates-company/candidate-grid.html"
 class CandidateDetails(TemplateView):
-    template_name = "pages/candidates-company/candidate-details.html"
+    template_name = "cloud/candidates-company/candidate-details.html"
 class CompanyList(TemplateView):
-    template_name = "pages/candidates-company/company-list.html"
+    template_name = "cloud/candidates-company/company-list.html"
 class CompanyDetails(TemplateView):
-    template_name = "pages/candidates-company/company-details.html"
+    template_name = "cloud/candidates-company/company-details.html"
 
 # Extra-Pages
 class SignUp(TemplateView):
-    template_name = "pages/extra-pages/sign-up.html"
+    template_name = "cloud/extra-pages/sign-up.html"
 class Signin(TemplateView):
-    template_name = "pages/extra-pages/sign-in.html"
+    template_name = "cloud/extra-pages/sign-in.html"
 class SignOut(TemplateView):
-    template_name = "pages/extra-pages/sign-out.html"
+    template_name = "cloud/extra-pages/sign-out.html"
 class ResetPassword(TemplateView):
-    template_name = "pages/extra-pages/reset-password.html"
+    template_name = "cloud/extra-pages/reset-password.html"
 class ComingSoon(TemplateView):
-    template_name = "pages/extra-pages/coming-soon.html"
+    template_name = "cloud/extra-cloud/coming-soon.html"
 class Error404(TemplateView):
-    template_name = "pages/extra-pages/404-error.html"
+    template_name = "cloud/extra-pages/404-error.html"
 class Components(TemplateView):
-    template_name = "pages/extra-pages/components.html"
+    template_name = "cloud/extra-pages/components.html"
 
 
 from django.shortcuts import render
@@ -61,7 +61,7 @@ from django.utils.safestring import mark_safe
 
 class CalendarView(generic.ListView):
     model = Event
-    template_name = 'pages/extra-pages/cal.html'
+    template_name = 'cloud/extra-pages/cal.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
