@@ -10,8 +10,8 @@
 {% endblock extra_css %}
 {% block content %}
                     <!-- START HOME -->
-                    <section class="bg-home" id="home">
-                        <div class="bg-overlay"></div>
+                    <section class="bg-home" id="home" style="background: url('static/images/kins.jpg') no-repeat; background-size: cover">
+                        <div class="bg-overlay" style="background-color: #1e2b38; opacity: 0.5"></div>
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
@@ -2074,12 +2074,12 @@
         <script src="{% static 'libs/swiper/swiper-bundle.min.js' %}"></script>
 
         <!-- Job-list Init Js -->
-        <script src="{% static 'js/pages/job-list.init.js' %}"></script>
+        <script src="{% static 'js/cloud/job-list.init.js' %}"></script>
 
         <!-- Switcher Js -->
-        <script src="{% static 'js/pages/switcher.init.js' %}"></script>
+        <script src="{% static 'js/cloud/switcher.init.js' %}"></script>
 
-        <script src="{% static 'js/pages/index.init.js' %}"></script>
+        <script src="{% static 'js/cloud/index.init.js' %}"></script>
 
         <script src="{% static 'js/app.js' %}"></script>
 {% endblock javascript %}

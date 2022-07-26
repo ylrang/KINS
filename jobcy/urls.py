@@ -25,9 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Index Page
     path('', include('rnd.urls')),
-    path('cloud', views.Index2.as_view(),name='index'),
+    path('cloud', views.CloudIndex.as_view(),name='index'),
 
-    path('index-2/', views.Index2.as_view(),name='index-2'),
     path('index-3/', views.Index3.as_view(),name='index-3'),
 
     # Company

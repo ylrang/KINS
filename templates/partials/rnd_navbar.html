@@ -4,9 +4,9 @@
 <!--Navbar Start-->
 <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar" style="margin-top:0 !important">
   <div class="container-fluid custom-container">
-    <a class="navbar-brand text-dark fw-bold me-auto" href="{% url 'index'%}">
-      <img src="{% static 'images/logo-dark.png' %}" height="22" alt="" class="logo-dark" />
-      <img src="{% static 'images/logo-light.png' %}" height="22" alt="" class="logo-light" />
+    <a class="navbar-brand text-dark fw-bold me-auto" href="{% url 'rnd:index'%}">
+      <img src="{% static 'images/kins-logo.png' %}" height="22" alt="" class="logo-light" style="height:30px"/>
+      <img src="{% static 'images/KINS_LOGO.png' %}" height="22" alt="" class="logo-dark" style="height:30px"/>
     </a>
     <div>
       <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
@@ -21,11 +21,11 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
             <span class="dropdown-header">R&D  지원 제도 안내</span>
-            <li><a class="dropdown-item" href="{% url 'support' %}">개요</a></li>
-            <li><a class="dropdown-item" href="{% url 'support' %}">검토범위</a></li>
-            <li><a class="dropdown-item" href="{% url 'support'%}">검토절차</a></li>
-            <li><a class="dropdown-item" href="{% url 'support' %}">관련법규</a></li>
-            <li><a class="dropdown-item" href="{% url 'support' %}">필요서류</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">개요</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">검토범위</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:about'%}">검토절차</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">관련법규</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">필요서류</a></li>
           </ul>
         </li>
 
@@ -39,10 +39,11 @@
 
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="jobsdropdown">
             <span class="dropdown-header">R&D 지원 검토 사례</span>
-            <li><a class="dropdown-item" href="{% url 'case' %}">검토 진행사항</a></li>
-            <li><a class="dropdown-item" href="{% url 'case' %}">KAERI 연구 검토사례</a></li>
-            <li><a class="dropdown-item" href="{% url 'case' %}">KORAD 연구 검토사례</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:case' %}">검토 진행사항</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:case' %}">KAERI 연구 검토사례</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:case' %}">KORAD 연구 검토사례</a></li>
           </ul>
+
         </li>
         <!--end dropdown-->
         <li class="nav-item dropdown dropdown-hover">
@@ -50,11 +51,11 @@
             심층처분 데이터베이스
             <div class="arrow-down"></div>
           </a>
-          <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
+          <ul class="dropdown-menu dropd\own-menu-center" aria-labelledby="productdropdown">
             <span class="dropdown-header">심층처분 데이터베이스</span>
-            <li><a class="dropdown-item" href="{% url 'case' %}">데이터베이스 개요</a></li>
-            <li><a class="dropdown-item" href="{% url 'case' %}">규제기준 관련</a></li>
-            <li><a class="dropdown-item" href="{% url 'case' %}">규제사례 관련</a></li>
+            <li><a class="dropdown-item" href="{% url 'database-index' %}">데이터베이스 개요</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:case' %}">규제기준 관련</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:case' %}">규제사례 관련</a></li>
           </ul>
         </li>
         <!--end dropdown-->
@@ -65,10 +66,10 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
             <span class="dropdown-header">기관 안내</span>
-            <li><a class="dropdown-item" href="{% url 'about' %}">검토기관 소개</a></li>
-            <li><a class="dropdown-item" href="{% url 'about' %}">검토기관 안내</a></li>
-            <li><a class="dropdown-item" href="{% url 'about' %}">조직도/연락처</a></li>
-            <li><a class="dropdown-item" href="{% url 'about' %}">오시는길</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">검토기관 소개</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">검토기관 안내</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">조직도/연락처</a></li>
+            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">오시는길</a></li>
           </ul>
         </li>
       </ul>
@@ -148,8 +149,7 @@
                 </div>
                 <div class="flex-grow-1">
                   <h6 class="mt-0 mb-1 fs-15">Creative Agency</h6>
-                  <p class="text-muted mb-0 fs-12"><i class="mdi mdi-clock-outline"></i> <span>2 hour
-                      ago</span></p>
+                  <p class="text-muted mb-0 fs-12"><i class="mdi mdi-clock-outline"></i> <span>2 hour ago</span></p>
                 </div>
               </div>
             </a>
@@ -176,6 +176,19 @@
           <li><a class="dropdown-item" href="{% url 'sign-out' %}">로그아웃</a></li>
         </ul>
       </li>
+
+      <li>
+            <div class="text-center p-3">
+                <!-- light-dark mode -->
+                <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3" style="height:35px; width:50px; line-height:35px;">
+                    <i class="uil uil-brightness mode-dark mx-auto"></i>
+                    <i class="uil uil-moon mode-light"></i>
+                </a>
+                <!-- END light-dark Mode -->
+            </div>
+      </li>
+
+
     </ul>
     <!--end header-menu-->
   </div>

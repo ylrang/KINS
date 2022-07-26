@@ -1,4 +1,4 @@
-{% extends 'partials/base.html' %}
+{% extends 'partials/rnd_base.html' %}
 {% load static %}
 {% load paginate %}
 {% block title %}Database{% endblock title %}
@@ -364,14 +364,14 @@
 <script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
 
 <!-- Candidate Init Js -->
-<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+<script src="{% static 'js/cloud/candidate.init.js' %}"></script>
 
 
 <!-- Job-list Init Js -->
-<script src="{% static 'js/pages/job-list.init.js' %}"></script>
+<script src="{% static 'js/cloud/job-list.init.js' %}"></script>
 
 <!-- Switcher Js -->
-<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+<script src="{% static 'js/cloud/switcher.init.js' %}"></script>
 
 <script src="{% static 'js/app.js' %}"></script>
 {% endblock javascript %}

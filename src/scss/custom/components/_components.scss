@@ -8,14 +8,13 @@
   position: sticky;
   overflow-y: auto;
   top: 90px;
-  height: calc(100vh - 165px);
   margin-right: 20px;
   .nav {
     .nav-item {
       .nav-link {
         color: $text-muted;
         font-weight: 500;
-  
+
         &:hover {
           color: $dark;
         }
@@ -76,6 +75,6 @@ body[data-layout-mode="dark"] {
 
   .table-striped>tbody>tr:nth-of-type(odd) {
     color: $gray-100;
-    --bs-table-accent-bg: #283039; 
+    --bs-table-accent-bg: #283039;
   }
 }
