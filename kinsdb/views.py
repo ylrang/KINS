@@ -8,7 +8,7 @@ def index(request):
     return render(request, "kinsdb/database-index.html")
 
 
-def database(request, company):
+def database(request, company, institution):
     docs = Docs.objects.filter(writer__company=company)
     search = request.POST.get('search','')
     tag = request.POST.get('tag','')
@@ -29,6 +29,12 @@ def database(request, company):
 
     context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'tag': tag }
     return render(request, "kinsdb/%s_database.html" %company, context)
+
+
+
+def institution(request):
+    return render(request, "kinsdb/institution.html")
+
 
 
 def docs_detail(request, pk):

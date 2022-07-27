@@ -1,5 +1,11 @@
 from django.views.generic import TemplateView
 
+
+#Cloud
+class CloudIndex(TemplateView):
+    template_name = "cloud/index.html"
+
+
 # Jobs
 class JobList(TemplateView):
     template_name = "cloud/jobs/job-list.html"

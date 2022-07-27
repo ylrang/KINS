@@ -1,7 +1,15 @@
 from django.urls import path
 # urls.py
 from cloud import views
+
 urlpatterns = [
+
+    #Cloud
+    path('', views.CloudIndex.as_view(),name='index'),
+    path('calendar', views.CalendarView.as_view(), name='calendar'),
+    path('notice', views.notice, name='notice'),
+
+    
     # Jobs
     path('job-list', views.JobList.as_view(),name="job-list"),
     path('job-list-2', views.JobList2.as_view(),name="job-list-2"),
@@ -25,9 +33,5 @@ urlpatterns = [
     path('comingsoon', views.ComingSoon.as_view(),name="comingsoon"),
     path('404-error', views.Error404.as_view(),name="404-error"),
     path('components', views.Components.as_view(),name="components"),
-
-
-    path('calendar', views.CalendarView.as_view(), name='calendar'),
-    path('notice', views.notice, name='notice'),
 
 ]

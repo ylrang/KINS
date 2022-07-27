@@ -53,9 +53,6 @@
           </ul>
         </li>
         <!--end dropdown-->
-        <li class="nav-item">
-          <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-        </li>
       </ul>
       <!--end navbar-nav-->
     </div>
@@ -160,6 +157,16 @@
           <li><a class="dropdown-item" href="{% url 'bookmark-jobs' %}">내 폴더</a></li>
           <li><a class="dropdown-item" href="{% url 'sign-out' %}">로그아웃</a></li>
         </ul>
+      </li>
+      <li>
+            <div class="text-center p-3">
+                <!-- light-dark mode -->
+                <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3" style="height:35px; width:50px; line-height:35px;">
+                    <i class="uil uil-brightness mode-dark mx-auto"></i>
+                    <i class="uil uil-moon mode-light"></i>
+                </a>
+                <!-- END light-dark Mode -->
+            </div>
       </li>
     </ul>
     <!--end header-menu-->

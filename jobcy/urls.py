@@ -23,12 +23,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     # Index Page
     path('', include('rnd.urls')),
-    path('cloud', views.CloudIndex.as_view(),name='index'),
-
-    path('index-3/', views.Index3.as_view(),name='index-3'),
-
     # Company
     path('company/',include('company.urls')),
 
@@ -37,9 +34,6 @@ urlpatterns = [
 
     # Blog
     path('blog/',include('blog.urls')),
-
-    # Contact
-    path('',include('contact.urls')),
 
     # Manage-Jobs
     path('manage-jobs',views.ManageJobs.as_view(),name='manage-jobs'),

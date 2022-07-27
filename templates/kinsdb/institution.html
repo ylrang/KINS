@@ -1,0 +1,188 @@
+{% extends 'partials/rnd_base.html' %}
+{% load static %}
+{% block title %}Database{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+<style>
+  .img-fluid {
+    object-fit: scale-down;
+    height: 100px !important;
+    max-width: 80% !important;
+  }
+</style>
+{% endblock extra_css %}
+{% block content %}
+<!-- Start home -->
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h3 class="mb-4"> BRNC 국가별 데이터 </h3>
+
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- end home -->
+
+<!-- START SHAPE -->
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
+<!-- END SHAPE -->
+
+
+
+<!-- START COMPANY-LIST -->
+<section class="section">
+  <div class="container">
+
+    <!--end row-->
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">IAEA</h6>
+              </a>
+              <p class="text-muted mb-4">국제 원자력 기구</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">미국</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">스웨덴</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">핀란드</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">프랑스</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">독일</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">캐나다</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <div class="mt-4">
+              <a href="#" class="primary-link">
+                <h6 class="fs-18 mb-2">일본</h6>
+              </a>
+              <p class="text-muted mb-4">해외 선도국</p>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- END COMPANY-LIST -->
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}

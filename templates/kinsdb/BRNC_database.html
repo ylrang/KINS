@@ -106,93 +106,62 @@
     </div>
     <!--end row-->
 
-    <div class=" row align-items-center">
-                      <div class="col-lg-8">
-                        <div class="mb-3 mb-lg-0">
-                          <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
-                            <b>{{ page_obj.paginator.count }} results</b>
+                <div class=" row">
+                      <div class="col-lg-12">
+                        <div class=" row align-items-center">
+                          <div class="col-lg-8">
+                            <div class="mb-3 mb-lg-0">
+                              <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
+                                <b>{{ page_obj.paginator.count }} results</b>
 
-                            {% if field == "tag" %} for #{{ tag }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
-                          </h6>
-                        </div>
-                      </div>
-                      <!--end col-->
-
-                      <div class="col-lg-4">
-                        <div class="candidate-list-widgets">
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <div class="selection-widget">
-                                <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
-                                  <option value="df">Default</option>
-                                  <option value="ne">Newest</option>
-                                  <option value="od">Oldest</option>
-                                  <option value="rd">Random</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div class="selection-widget mt-2 mt-lg-0">
-                                <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
-                                  <option value="df">All</option>
-                                  <option value="ne">8 per Page</option>
-                                  <option value="ne">12 per Page</option>
-                                </select>
-                              </div>
+                                {% if field == "tag" %} for #{{ tag }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
+                              </h6>
                             </div>
                           </div>
-                        </div>
-                        <!--end candidate-list-widgets-->
-                      </div>
-                      <!--end col-->
+                          <!--end col-->
 
+                          <div class="col-lg-4">
+                            <div class="candidate-list-widgets">
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="selection-widget">
+                                    <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
+                                      <option value="df">Default</option>
+                                      <option value="ne">Newest</option>
+                                      <option value="od">Oldest</option>
+                                      <option value="rd">Random</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="selection-widget mt-2 mt-lg-0">
+                                    <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
+                                      <option value="df">All</option>
+                                      <option value="ne">8 per Page</option>
+                                      <option value="ne">12 per Page</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--end candidate-list-widgets-->
+                          </div>
+                          <!--end col-->
+
+                        </div>
+                        <!--end row-->
+
+                      </div>
                 </div>
-                <!--end row-->
-                <div class="row">
+
+                <div class=" row">
                   <div class="col-lg-9">
                     <div class="candidate-list">
 
                       {% for doc in page_obj %}
                       <!-- start card -->
-                      <div class="candidate-list-box card mt-4">
-                        <div class="card-body p-4">
-                          <div class="row align-items-center">
-                            <div class="col-auto">
-                              <div class="candidate-list-images">
-                                <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
-                              </div>
-                            </div>
-                            <!--end col-->
+                      {% include 'partials/data_card.html' %}
 
-                            <div class="col-lg-6">
-                              <div class="candidate-list-content mt-3 mt-lg-0">
-                                <h5 class="fs-19 mb-1"><a href="{% url 'docs-details' pk=doc.id %}" class="primary-link">{{ doc.title }}</a> </h5>
-                                <p class="text-muted mb-2"> {{ doc.writer.company }} | {{ doc.writer.dept }} </p>
-                                <ul class="list-inline mb-0 text-muted">
-                                  <li class="list-inline-item">
-                                    <i class="mdi mdi-map-marker"></i> 등록일자: {{ doc.regist_date|date:'Y-m-d' }}
-                                  </li>
-                                  <li class="list-inline-item">
-                                    <i class="uil uil-wallet"></i> 조회수: {{ doc.views }}
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <!--end col-->
-
-                            <div class="col-lg-4">
-                              <div class="mt-2 mt-lg-0">
-
-                                {% for t in doc.tags.all %}
-                                <span class="badge {% if t.tag_content == tag %}bg-soft-primary{% else %}bg-soft-muted{% endif %} fs-14 mt-1"><a onclick="searchTag('{{ t.tag_content }}')">#{{ t.tag_content }}</a></span>
-                                {% endfor %}
-                              </div>
-                            </div>
-                            <!--end col-->
-                          </div>
-                          <!--end row-->
-                        </div>
-                      </div>
                       <!--end card-->
                       {% endfor %}
 
@@ -205,7 +174,6 @@
                           form.submit();
                         }
                       </script>
-
 
                     </div>
                     <!--end candidate-list-->
@@ -317,15 +285,15 @@
 
 
                         {% for page_number in page_obj.paginator.page_range %}
-                          {% if page_number == page_obj.number %}
-                          <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                          </li>
-                          {% else %}
-                          <li class="page-item">
-                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                          </li>
-                          {% endif %}
+                        {% if page_number == page_obj.number %}
+                        <li class="page-item active" aria-current="page">
+                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                        </li>
+                        {% endif %}
                         {% endfor %}
 
 
