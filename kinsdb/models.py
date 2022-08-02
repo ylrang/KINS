@@ -49,3 +49,29 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Site(models.Model):
+    title = models.CharField(max_length=200)
+    country = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    group = models.CharField(max_length=100)
+    site = models.CharField(max_length=100)
+    factor = models.CharField(max_length=100)
+    keywords = models.ManyToManyField('kinsdb.Keyword', related_name='keywords')
+    preference = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+
+    regist_date = models.DateTimeField()
+    last_updated = models.DateTimeField()
+    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)
+
+
+class Keyword(models.Model):
+    key_content = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.key_content
+
+
+####

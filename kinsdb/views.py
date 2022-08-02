@@ -9,7 +9,7 @@ def index(request):
 
 
 def database(request, company, institution):
-    docs = Docs.objects.filter(writer__company=company)
+    docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)
     search = request.POST.get('search','')
     tag = request.POST.get('tag','')
     field = request.POST.get('field')
@@ -35,6 +35,9 @@ def database(request, company, institution):
 def institution(request):
     return render(request, "kinsdb/institution.html")
 
+
+def site(request):
+    return render(request, "kinsdb/site.html")
 
 
 def docs_detail(request, pk):

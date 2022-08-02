@@ -41,22 +41,18 @@
 </div>
 <!-- END SHAPE -->
 
-
-
 <!-- START COMPANY-LIST -->
 <section class="section">
   <div class="container">
 
-    <!--end row-->
     <div class="row">
       <div class="col-lg-2 col-md-6"></div>
       <div class="col-lg-4 col-md-6">
         <div class="card text-center mb-4">
           <div class="card-body px-4 py-5">
-            <img src="{% static 'images/logo/brnc-logo.png' %}" alt="" class="img-fluid rounded-3">
             <div class="mt-4">
               <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">BRNC</h6>
+                <h6 class="fs-18 mb-2">규제기준</h6>
               </a>
               <p class="text-muted mb-4">(주)비알엔씨</p>
 
@@ -69,14 +65,12 @@
       <div class="col-lg-4 col-md-6">
         <div class="card text-center mb-4">
           <div class="card-body px-4 py-5">
-            <img src="{% static 'images/logo/unist-logo.png' %}" alt="" class="img-fluid rounded-3">
             <div class="mt-4">
               <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">UNIST</h6>
+                <h6 class="fs-18 mb-2">규제사례</h6>
               </a>
               <p class="text-muted mb-4">울산과학기술원</p>
-
-              <a href="{% url 'database' company='UNIST' institution='미국' %}" class="btn btn-primary">부지인자별 문서</a>
+              <a href="{% url 'site' %}" class="btn btn-primary">부지인자별 문서</a>
             </div>
           </div>
         </div>
@@ -107,4 +101,6 @@
 <script src="{% static 'js/pages/switcher.init.js' %}"></script>
 
 <script src="{% static 'js/app.js' %}"></script>
+
+
 {% endblock javascript %}
