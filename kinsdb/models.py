@@ -61,6 +61,7 @@ class Site(models.Model):
     keywords = models.ManyToManyField('kinsdb.Keyword', related_name='keywords')
     preference = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    views = models.IntegerField(verbose_name='VIEWS', default=0)
 
     regist_date = models.DateTimeField()
     last_updated = models.DateTimeField()

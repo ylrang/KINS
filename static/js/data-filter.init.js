@@ -1,0 +1,1 @@
+var singleCategories, singleGroups, singleSite=new Choices("#choices-single-site"),singleCategorie=document.getElementById("choices-single-categories");singleCategorie&&(singleCategories=new Choices("#choices-single-categories")),singleGroup=document.getElementById("choices-single-groups");singleGroup&&(singleGroups=new Choices("#choices-single-groups"));

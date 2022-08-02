@@ -1,0 +1,43 @@
+{% load static %}
+<!-- start card -->
+
+<div class="candidate-list-box card mt-4">
+  <div class="card-body p-4">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="candidate-list-images">
+          <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-6">
+        <div class="candidate-list-content mt-3 mt-lg-0">
+          <h5 class="fs-19 mb-1"><a href="{% url 'site-details' pk=doc.id %}" class="primary-link">{{ doc.title }}</a> </h5>
+          <p class="text-muted mb-2"> {{ doc.writer.company }} | {{ doc.writer.dept }} </p>
+          <ul class="list-inline mb-0 text-muted">
+            <li class="list-inline-item">
+              <i class="mdi mdi-map-marker"></i> 등록일자: {{ doc.regist_date|date:'Y-m-d' }}
+            </li>
+            <li class="list-inline-item">
+              <i class="uil uil-wallet"></i> 조회수: {{ doc.views }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4">
+        <div class="mt-2 mt-lg-0">
+
+          {% for k in doc.keywords.all %}
+          <span class="badge {% if tag == t.tag_content %}bg-soft-primary{% else %}bg-soft-muted{% endif %} fs-14 mt-1"><a onclick="searchTag('{{ k.key_content }}')">#{{ k.key_content }}</a></span>
+          {% endfor %}
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+</div>
+<!--end card-->

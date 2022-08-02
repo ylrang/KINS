@@ -1,6 +1,6 @@
 import django_filters
 from django_filters import DateFilter
-from .models import Docs
+from .models import Docs, Site
 from django import forms
 from django_filters import DateRangeFilter, DateFilter
 
@@ -21,4 +21,17 @@ class DocsFilter(django_filters.FilterSet):
             'title'         :['icontains'],
             'regist_date'   :['year'],
             'tags__tag_content'          :['icontains'],
+        }
+
+class SiteFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Site
+
+        fields = {
+            'title'         :['icontains'],
+            'category'      :['icontains'],
+            'group'         :['icontains'],
+            'site'          :['icontains'],
+
         }
