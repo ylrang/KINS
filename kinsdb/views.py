@@ -34,13 +34,13 @@ def database(request, company, institution):
     elif company == 'UNIST':
         docs = Site.objects.filter(writer__company=company).filter(country=institution)
         search = request.POST.get('search','')
-        tag = request.POST.get('tag','')
+        key = request.POST.get('key','')
         field = request.POST.get('field')
 
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
-        elif field == 'tag':
-            docs = docs.filter(Q(keywords__key_content__icontains=tag))
+        elif field == 'key':
+            docs = docs.filter(Q(keywords__key_content__icontains=key))
 
         siteFilter = SiteFilter(request.POST, queryset=docs)
         docs = siteFilter.qs
@@ -49,7 +49,7 @@ def database(request, company, institution):
         page_number = request.POST.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'tag': tag }
+        context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'key': key }
         return render(request, "kinsdb/%s_database.html" %company, context)
 
 

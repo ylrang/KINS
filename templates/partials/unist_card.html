@@ -31,7 +31,7 @@
         <div class="mt-2 mt-lg-0">
 
           {% for k in doc.keywords.all %}
-          <span class="badge {% if tag == t.tag_content %}bg-soft-primary{% else %}bg-soft-muted{% endif %} fs-14 mt-1"><a onclick="searchTag('{{ k.key_content }}')">#{{ k.key_content }}</a></span>
+          <span class="badge {% if key == k.key_content %}bg-soft-primary{% else %}bg-soft-muted{% endif %} fs-14 mt-1"><a onclick="searchKey('{{ k.key_content }}')">#{{ k.key_content }}</a></span>
           {% endfor %}
         </div>
       </div>

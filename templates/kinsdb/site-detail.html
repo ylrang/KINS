@@ -134,8 +134,8 @@
             <h6 class="fs-17 fw-semibold mb-3">연관 태그</h6>
             <ul class="list-unstyled mb-0">
               <!-- TAGS -->
-              {% for tag in doc.tags.all %}
-              <span class="badge bg-soft-muted fs-14 mt-1">#{{ tag.tag_content }}</span>
+              {% for key in doc.keywords.all %}
+              <span class="badge bg-soft-muted fs-14 mt-1">#{{ key.key_content }}</span>
               {% endfor %}
             </ul>
           </div>
@@ -150,9 +150,11 @@
           <div class="card-body p-4 candidate-personal-detail">
 
             <div class="candidate-education-details mt-4 pt-3">
-              <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title }}</h6>
+              {% if doc.preference %}
+              <h6 class="fs-17 fw-bold mb-0"> [선호] {{ doc.preference }}</h6>
+              {% endif %}
               <div class="candidate-education-content mt-4">
-                <p class="text-muted">{{ doc.content }}</p>
+                <p class="text-muted">{{ doc.description }}</p>
               </div>
             </div>
             <!--end candidate-education-details-->
@@ -166,7 +168,7 @@
           <div class="col-lg-10">
           </div>
           <div class="col-lg-2 mt-4">
-            <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="#">목록</button>
+            <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'database' company='UNIST' institution=doc.country %}">목록</button>
           </div>
         </div>
       </div>

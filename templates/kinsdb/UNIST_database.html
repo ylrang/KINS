@@ -103,12 +103,12 @@
               </div>
               <!--end col-->
 
-              <div class="col-lg-4">
+              <div class="col-lg-8">
                 <div class="filler-job-form">
                   <i class="uil uil-search"></i>
 
                   <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }} " onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
-                  <input type="hidden" class="form-control filter-job-input-box" id="tagInput" name="tag" value="{{ tag }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
+                  <input type="hidden" class="form-control filter-job-input-box" id="keyInput" name="key" value="{{ key }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
 
                   <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
                 </div>
@@ -117,25 +117,8 @@
               <!--end col-->
 
 
-              <div class="col-lg-2">
-                <div class="filler-job-form">
-                  <i class="uil uil-check"></i>
-                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput2" placeholder="검색어 입력">
-                </div>
-              </div>
-
-              <p style="display:inline;width:auto;margin-top:auto;margin-bottom:auto;">~</p>
-
-              <!--end col-->
-              <div class="col-lg-2">
-                <div class="filler-job-form">
-                  <i class="uil uil-check"></i>
-                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput3" placeholder="검색어 입력">
-                </div>
-              </div>
-              <!--end col-->
-              <div class="col-lg-3">
-                  <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</button>
+              <div class="col-lg-4">
+                  <button type="submit" href="javascript:void(0)" class="btn btn-primary w-50"><i class="uil uil-filter"></i> Filter</button>
                   <a href="{% url 'database' company='UNIST' institution='스웨덴' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
 
               </div>
@@ -161,7 +144,7 @@
                       <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
                         <b>{{ page_obj.paginator.count }} results</b>
 
-                        {% if field == "tag" %} for #{{ search }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
+                        {% if field == "key" %} for #{{ search }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
                       </h6>
                     </div>
                   </div>
@@ -207,11 +190,11 @@
                       {% endfor %}
 
                       <script>
-                        function searchTag(tag_content) {
+                        function searchKey(key_content) {
                           var form = document.getElementById('search_filter');
 
-                          document.getElementById('exampleFormControlInput1').value = tag_content;
-                          document.getElementById('fieldFormControlInput').value = 'tag';
+                          document.getElementById('exampleFormControlInput1').value = key_content;
+                          document.getElementById('fieldFormControlInput').value = 'key';
                           form.submit();
                         }
                       </script>

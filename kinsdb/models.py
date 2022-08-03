@@ -67,9 +67,11 @@ class Site(models.Model):
     last_updated = models.DateTimeField()
     writer = models.ForeignKey(myUser, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return self.title
 
 class Keyword(models.Model):
-    key_content = models.CharField(max_length=100)
+    key_content = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.key_content
