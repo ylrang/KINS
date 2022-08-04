@@ -44,20 +44,81 @@
       <div class="col-lg-12">
 
         <div class="job-list-header">
-          <form method="post" name="search_filter" id="search_filter">
+          <form method="get" name="search_filter" id="search_filter">
             {% csrf_token %}
 
             <div class="row g-2">
 
+
+              <select name="category__icontains" class="" title="" id="id_category__icontains" style="display:none">
+                <option value="">----</option>
+                <option value="모암">모암</option>
+                <option value="산업시설">산업시설</option>
+                <option value="사회적 관점">사회적 관점</option>
+                <option value="사회적 관념">사회적 관념</option>
+              </select>
+
+              <select name="group__icontains" class="" title="" id="id_group__icontains" style="display:none">
+                <option value="">----</option>
+                <option value="안전성">안전성</option>
+                <option value="기술">기술</option>
+                <option value="토지와 환경">토지와 환경</option>
+                <option value="사회">사회</option>
+              </select>
+
+              <select name="site__icontains" class="" title="" id="id_site__icontains" style="display:none">
+                <option value="">부지인자</option>
+                <option value="YE">지하수 조성</option>
+                <option value="ZM">암반을 통한 핵종이동</option>
+                <option value="ZW">조사가능성</option>
+                <option value="ZW">암석의 구성과 구조</option>
+                <option value="ZW">암석 건설 및 작업환경</option>
+                <option value="ZW">운송</option>
+                <option value="ZW">산업설비</option>
+                <option value="ZW">지연사회자원</option>
+                <option value="ZW">사회적 관점</option>
+                <option value="ZW">모암의 격납 및 격리 특성</option>
+                <option value="ZW">부지의 장기적 안전성</option>
+                <option value="ZW">처분장 구성, 운영 및 폐쇄</option>
+                <option value="ZW">부지특성</option>
+                <option value="ZW">인간침입</option>
+              </select>
+
+
+              <script>
+                function changeCategory() {
+                  var val = document.getElementById("choices-single-categories");
+                  var value = val.options[val.selectedIndex].value;
+
+                  const $select = document.querySelector('#id_category__icontains');
+                  $select.value = value;
+                }
+
+                function changeGroup() {
+                  var val = document.getElementById("choices-single-groups");
+                  var value = val.options[val.selectedIndex].value;
+
+                  const $select = document.querySelector('#id_group__icontains');
+                  $select.value = value;
+                }
+
+                function changeSite() {
+                  var val = document.getElementById("choices-single-site");
+                  var value = val.options[val.selectedIndex].value;
+
+                  const $select = document.querySelector('#id_site__icontains');
+                  $select.value = value;
+                }
+              </script>
               <div class="col-lg-4 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
-                  <select class="form-select " data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
+                  <select class="form-select" data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example" onchange="changeCategory()">
                     <option value="">분류</option>
-                    <option value="1">모암</option>
-                    <option value="2">산업시설</option>
-                    <option value="3">사회적 관점</option>
-                    <option value="4">사회적 관념</option>
+                    <option value="모암">모암</option>
+                    <option value="산업시설">산업시설</option>
+                    <option value="사회적 관점">사회적 관점</option>
+                    <option value="사회적 관념">사회적 관념</option>
                   </select>
                 </div>
               </div>
@@ -67,7 +128,6 @@
                 <div class="filler-job-form">
                   <i class="uil uil-layer-group"></i>
                   <select class="form-select" data-trigger name="choices-single-groups" id="choices-single-groups" aria-label="Default select example">
-
                     <option value="">그룹</option>
                     <option value="1">안전성</option>
                     <option value="EH">기술</option>
@@ -97,7 +157,6 @@
                     <option value="ZW">처분장 구성, 운영 및 폐쇄</option>
                     <option value="ZW">부지특성</option>
                     <option value="ZW">인간침입</option>
-                    <option value="ZW">운송</option>
                   </select>
                 </div>
               </div>
@@ -118,8 +177,8 @@
 
 
               <div class="col-lg-4">
-                  <button type="submit" href="javascript:void(0)" class="btn btn-primary w-50"><i class="uil uil-filter"></i> Filter</button>
-                  <a href="{% url 'database' company='UNIST' institution='스웨덴' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
+                <button type="submit" class="btn btn-primary w-50"><i class="uil uil-filter"></i> Filter</button>
+                <a href="{% url 'database' company='UNIST' institution='스웨덴' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
 
               </div>
 
@@ -131,140 +190,140 @@
     </div>
     <!--end row-->
     <div class=" row justify-content-center">
-                      <div class="col-lg-12">
-                        <div class="candidate-list-widgets mb-4">
-                        </div>
-                      </div>
-                </div>
-                <!--end row-->
-
-                <div class=" row align-items-center">
-                  <div class="col-lg-8">
-                    <div class="mb-3 mb-lg-0">
-                      <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
-                        <b>{{ page_obj.paginator.count }} results</b>
-
-                        {% if field == "key" %} for #{{ search }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
-                      </h6>
-                    </div>
-                  </div>
-
-                  <!--end col-->
-                  <div class="col-lg-4">
-                    <div class="candidate-list-widgets">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div class="selection-widget">
-                            <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
-                              <option value="df">Default</option>
-                              <option value="ne">Newest</option>
-                              <option value="od">Oldest</option>
-                              <option value="rd">Random</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="selection-widget mt-2 mt-lg-0">
-                            <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
-                              <option value="df">All</option>
-                              <option value="ne">8 per Page</option>
-                              <option value="ne">12 per Page</option>
-                            </select>
-                          </div>
-                        </div>
+                    <div class="col-lg-12">
+                      <div class="candidate-list-widgets mb-4">
                       </div>
                     </div>
-                    <!--end candidate-list-widgets-->
+              </div>
+              <!--end row-->
+
+              <div class=" row align-items-center">
+                <div class="col-lg-8">
+                  <div class="mb-3 mb-lg-0">
+                    <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
+                      <b>{{ page_obj.paginator.count }} results</b>
+
+                      {% if field == "key" %} for #{{ search }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
+                    </h6>
                   </div>
-                  <!--end col-->
                 </div>
-                <!--end row-->
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="candidate-list">
 
-                      {% for doc in page_obj %}
-                      <!-- start card -->
-                      {% include 'partials/unist_card.html' %}
-                      <!--end card-->
-                      {% endfor %}
-
-                      <script>
-                        function searchKey(key_content) {
-                          var form = document.getElementById('search_filter');
-
-                          document.getElementById('exampleFormControlInput1').value = key_content;
-                          document.getElementById('fieldFormControlInput').value = 'key';
-                          form.submit();
-                        }
-                      </script>
-
-
+                <!--end col-->
+                <div class="col-lg-4">
+                  <div class="candidate-list-widgets">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="selection-widget">
+                          <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
+                            <option value="df">Default</option>
+                            <option value="ne">Newest</option>
+                            <option value="od">Oldest</option>
+                            <option value="rd">Random</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="selection-widget mt-2 mt-lg-0">
+                          <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
+                            <option value="df">All</option>
+                            <option value="ne">8 per Page</option>
+                            <option value="ne">12 per Page</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-                    <!--end candidate-list-->
                   </div>
-                  <!--end col-->
-
+                  <!--end candidate-list-widgets-->
                 </div>
-                <!--end row-->
+                <!--end col-->
+              </div>
+              <!--end row-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="candidate-list">
 
-                <div class="row">
-                  <div class="col-lg-12 mt-5">
-                    <nav>
-                      <ul class="pagination job-pagination mb-0 justify-content-center">
+                    {% for doc in page_obj %}
+                    <!-- start card -->
+                    {% include 'partials/unist_card.html' %}
+                    <!--end card-->
+                    {% endfor %}
 
-                        {% if page_obj.has_previous %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
+                    <script>
+                      function searchKey(key_content) {
+                        var form = document.getElementById('search_filter');
 
-                            <i class="mdi mdi-chevron-double-left fs-15"></i>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                          <a class="page-link" href="javascript:void(0)">
-
-                            <i class="mdi mdi-chevron-double-left fs-15"></i>
-                          </a>
-                        </li>
-                        {% endif %}
-
-
-                        {% for page_number in page_obj.paginator.page_range %}
-                        {% if page_number == page_obj.number %}
-                        <li class="page-item active" aria-current="page">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
+                        document.getElementById('keyInput').value = key_content;
+                        document.getElementById('fieldFormControlInput').value = 'key';
+                        form.submit();
+                      }
+                    </script>
 
 
-                        {% if page_obj.has_next %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
-                            <i class="mdi mdi-chevron-double-right fs-15"></i>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                            <i class="mdi mdi-chevron-double-right fs-15"></i>
-                          </a>
-                        </li>
-                        {% endif %}
-
-                      </ul>
-                    </nav>
                   </div>
-                  <!--end col-->
-                </div><!-- end row -->
+                  <!--end candidate-list-->
+                </div>
+                <!--end col-->
 
               </div>
-              <!--end container-->
+              <!--end row-->
+
+              <div class="row">
+                <div class="col-lg-12 mt-5">
+                  <nav>
+                    <ul class="pagination job-pagination mb-0 justify-content-center">
+
+                      {% if page_obj.has_previous %}
+                      <li class="page-item">
+                        <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.POST.urlencode %}" tabindex="-1">
+
+                          <i class="mdi mdi-chevron-double-left fs-15"></i>
+                        </a>
+                      </li>
+                      {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link" href="javascript:void(0)">
+
+                          <i class="mdi mdi-chevron-double-left fs-15"></i>
+                        </a>
+                      </li>
+                      {% endif %}
+
+
+                      {% for page_number in page_obj.paginator.page_range %}
+                      {% if page_number == page_obj.number %}
+                      <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                      </li>
+                      {% else %}
+                      <li class="page-item">
+                        <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                      </li>
+                      {% endif %}
+                      {% endfor %}
+
+
+                      {% if page_obj.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
+                          <i class="mdi mdi-chevron-double-right fs-15"></i>
+                        </a>
+                      </li>
+                      {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                          <i class="mdi mdi-chevron-double-right fs-15"></i>
+                        </a>
+                      </li>
+                      {% endif %}
+
+                    </ul>
+                  </nav>
+                </div>
+                <!--end col-->
+              </div><!-- end row -->
+
+            </div>
+            <!--end container-->
 </section>
 <!-- END JOB-LIST -->
 {% endblock content %}

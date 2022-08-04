@@ -25,7 +25,7 @@ def database(request, company, institution):
         docs = docsFilter.qs
 
         paginator = Paginator(docs, 5)
-        page_number = request.POST.get('page', '1')
+        page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
         context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'tag': tag }
@@ -46,11 +46,35 @@ def database(request, company, institution):
         docs = siteFilter.qs
 
         paginator = Paginator(docs, 5)
-        page_number = request.POST.get('page', '1')
+        page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'key': key }
+        context = { 'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'key': key, 'siteFilter': siteFilter }
         return render(request, "kinsdb/%s_database.html" %company, context)
+
+
+def db(request, company, institution):
+    docs = Site.objects.filter(writer__company=company).filter(country=institution)
+    search = request.GET.get('search','')
+    key = request.GET.get('key','')
+    field = request.GET.get('field')
+
+    if field == 'title':
+        docs = docs.filter(Q(title__icontains=search))
+    elif field == 'key':
+        docs = docs.filter(Q(keywords__key_content__icontains=key))
+
+    siteFilter = SiteFilter(request.GET, queryset=docs)
+    docs = siteFilter.qs
+
+    paginator = Paginator(docs, 5)
+    page_number = request.GET.get('page', '1')
+    page_obj = paginator.page(page_number)
+
+    context = { 'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'key': key, 'siteFilter': siteFilter }
+    return render(request, "kinsdb/%s_database.html" %company, context)
+
+
 
 
 def institution(request):
