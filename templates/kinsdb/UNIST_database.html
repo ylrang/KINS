@@ -46,6 +46,7 @@
         <div class="job-list-header">
           <form method="get" name="search_filter" id="search_filter">
             {% csrf_token %}
+            {{ form }}
 
             <div class="row g-2">
 
@@ -67,21 +68,21 @@
               </select>
 
               <select name="site__icontains" class="" title="" id="id_site__icontains" style="display:none">
-                <option value="">부지인자</option>
-                <option value="YE">지하수 조성</option>
-                <option value="ZM">암반을 통한 핵종이동</option>
-                <option value="ZW">조사가능성</option>
-                <option value="ZW">암석의 구성과 구조</option>
-                <option value="ZW">암석 건설 및 작업환경</option>
-                <option value="ZW">운송</option>
-                <option value="ZW">산업설비</option>
-                <option value="ZW">지연사회자원</option>
-                <option value="ZW">사회적 관점</option>
-                <option value="ZW">모암의 격납 및 격리 특성</option>
-                <option value="ZW">부지의 장기적 안전성</option>
-                <option value="ZW">처분장 구성, 운영 및 폐쇄</option>
-                <option value="ZW">부지특성</option>
-                <option value="ZW">인간침입</option>
+                <option value="">----</option>
+                <option value="지하수 조성">지하수 조성</option>
+                <option value="암반을 통한 핵종이동">암반을 통한 핵종이동</option>
+                <option value="조사가능성">조사가능성</option>
+                <option value="암석의 구성과 구조">암석의 구성과 구조</option>
+                <option value="암석 건설 및 작업환경">암석 건설 및 작업환경</option>
+                <option value="운송">운송</option>
+                <option value="산업설비">산업설비</option>
+                <option value="지연사회자원">지연사회자원</option>
+                <option value="사회적 관점">사회적 관점</option>
+                <option value="모암의 격납 및 격리 특성">모암의 격납 및 격리 특성</option>
+                <option value="부지의 장기적 안전성">부지의 장기적 안전성</option>
+                <option value="처분장 구성, 운영 및 폐쇄">처분장 구성, 운영 및 폐쇄</option>
+                <option value="부지특성">부지특성</option>
+                <option value="인간침입">인간침입</option>
               </select>
 
 
@@ -110,6 +111,11 @@
                   $select.value = value;
                 }
               </script>
+
+              {{ siteFilter.FilterSet }}
+              {{ siteFilter.FilterSet.form }}
+              11{{ category__icontains }}11
+              11{{ id_category__icontains }}11
               <div class="col-lg-4 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
@@ -127,12 +133,12 @@
               <div class="col-lg-4 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-layer-group"></i>
-                  <select class="form-select" data-trigger name="choices-single-groups" id="choices-single-groups" aria-label="Default select example">
+                  <select class="form-select" data-trigger name="choices-single-groups" id="choices-single-groups" aria-label="Default select example" onchange="changeGroup()">
                     <option value="">그룹</option>
-                    <option value="1">안전성</option>
-                    <option value="EH">기술</option>
-                    <option value="YE">토지와 환경</option>
-                    <option value="ZM">사회</option>
+                    <option value="안전성">안전성</option>
+                    <option value="기술">기술</option>
+                    <option value="토지와 환경">토지와 환경</option>
+                    <option value="사회">사회</option>
                   </select>
                 </div>
               </div>
@@ -140,23 +146,23 @@
               <div class="col-lg-4 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-create-dashboard"></i>
-                  <select class="form-select" data-trigger name="choices-single-site" id="choices-single-site" aria-label="Default select example">
+                  <select class="form-select" data-trigger name="choices-single-site" id="choices-single-site" aria-label="Default select example" onchange="changeSite()">
 
                     <option value="">부지인자</option>
-                    <option value="YE">지하수 조성</option>
-                    <option value="ZM">암반을 통한 핵종이동</option>
-                    <option value="ZW">조사가능성</option>
-                    <option value="ZW">암석의 구성과 구조</option>
-                    <option value="ZW">암석 건설 및 작업환경</option>
-                    <option value="ZW">운송</option>
-                    <option value="ZW">산업설비</option>
-                    <option value="ZW">지연사회자원</option>
-                    <option value="ZW">사회적 관점</option>
-                    <option value="ZW">모암의 격납 및 격리 특성</option>
-                    <option value="ZW">부지의 장기적 안전성</option>
-                    <option value="ZW">처분장 구성, 운영 및 폐쇄</option>
-                    <option value="ZW">부지특성</option>
-                    <option value="ZW">인간침입</option>
+                    <option value="지하수 조성">지하수 조성</option>
+                    <option value="암반을 통한 핵종이동">암반을 통한 핵종이동</option>
+                    <option value="조사가능성">조사가능성</option>
+                    <option value="암석의 구성과 구조">암석의 구성과 구조</option>
+                    <option value="암석 건설 및 작업환경">암석 건설 및 작업환경</option>
+                    <option value="운송">운송</option>
+                    <option value="산업설비">산업설비</option>
+                    <option value="지연사회자원">지연사회자원</option>
+                    <option value="사회적 관점">사회적 관점</option>
+                    <option value="모암의 격납 및 격리 특성">모암의 격납 및 격리 특성</option>
+                    <option value="부지의 장기적 안전성">부지의 장기적 안전성</option>
+                    <option value="처분장 구성, 운영 및 폐쇄">처분장 구성, 운영 및 폐쇄</option>
+                    <option value="부지특성">부지특성</option>
+                    <option value="인간침입">인간침입</option>
                   </select>
                 </div>
               </div>
