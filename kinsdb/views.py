@@ -21,35 +21,35 @@ def database(request, company, institution):
             docs = docs.filter(Q(tags__tag_content__icontains=tag))
 
 
-        docsFilter = DocsFilter(request.POST, queryset=docs)
+        docsFilter = DocsFilter(request.GET, queryset=docs)
         docs = docsFilter.qs
 
         paginator = Paginator(docs, 5)
         page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = {'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'tag': tag }
+        context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter }
         return render(request, "kinsdb/%s_database.html" %company, context)
 
     elif company == 'UNIST':
         docs = Site.objects.filter(writer__company=company).filter(country=institution)
-        search = request.POST.get('search','')
-        key = request.POST.get('key','')
-        field = request.POST.get('field')
+        search = request.GET.get('search','')
+        key = request.GET.get('key','')
+        field = request.GET.get('field')
 
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
         elif field == 'key':
             docs = docs.filter(Q(keywords__key_content__icontains=key))
 
-        siteFilter = SiteFilter(request.POST, queryset=docs)
+        siteFilter = SiteFilter(request.GET, queryset=docs)
         docs = siteFilter.qs
 
         paginator = Paginator(docs, 5)
         page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = { 'docs': docs, 'page_obj': page_obj, 'field': field, 'search': search, 'key': key, 'siteFilter': siteFilter }
+        context = { 'page_obj': page_obj, 'field': field, 'key': key, 'siteFilter': siteFilter }
         return render(request, "kinsdb/%s_database.html" %company, context)
 
 

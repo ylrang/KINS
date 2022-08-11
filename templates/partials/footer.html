@@ -16,10 +16,10 @@
                                 <div class="footer-item mt-4 mt-lg-0">
                                     <p class="fs-16 text-white mb-4">Homepage</p>
                                     <ul class="list-unstyled footer-list mb-0">
-                                        <li><a href="#"><i class="mdi mdi-chevron-right"></i>R&D 지원제도 안내</a></li>
-                                        <li><a href="#"><i class="mdi mdi-chevron-right"></i>R&D 지원검토 사례</a></li>
-                                        <li><a href="#"><i class="mdi mdi-chevron-right"></i>심층처분 데이터베이스</a></li>
-                                        <li><a href="#"><i class="mdi mdi-chevron-right"></i>기관 안내</a></li>
+                                        <li><a href="{% url 'rnd:about' %}"><i class="mdi mdi-chevron-right"></i>R&D 지원제도 안내</a></li>
+                                        <li><a href="{% url 'rnd:case' %}"><i class="mdi mdi-chevron-right"></i>R&D 지원검토 사례</a></li>
+                                        <li><a href="{% url 'database-index' %}"><i class="mdi mdi-chevron-right"></i>심층처분 데이터베이스</a></li>
+                                        <li><a href="{% url 'rnd:institute' %}"><i class="mdi mdi-chevron-right"></i>기관 안내</a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->
@@ -27,9 +27,9 @@
                                 <div class="footer-item mt-4 mt-lg-0">
                                     <p class="text-white fs-16 mb-4">Database</p>
                                     <ul class="list-unstyled footer-list mb-0">
-                                      <li><a href="#"><i class="mdi mdi-chevron-right"></i>데이터베이스 개요</a></li>
-                                      <li><a href="#"><i class="mdi mdi-chevron-right"></i>규제 사례</a></li>
-                                      <li><a href="#"><i class="mdi mdi-chevron-right"></i>규제 기준</a></li>
+                                      <li><a href="{% url 'database-index' %}"><i class="mdi mdi-chevron-right"></i>데이터베이스 개요</a></li>
+                                      <li><a href="{% url 'institution' %}"><i class="mdi mdi-chevron-right"></i>규제 사례</a></li>
+                                      <li><a href="{% url 'site' %}"><i class="mdi mdi-chevron-right"></i>규제 기준</a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->
@@ -37,8 +37,8 @@
                                 <div class="footer-item mt-4 mt-lg-0">
                                     <p class="text-white fs-16 mb-4">File Cloud</p>
                                     <ul class="list-unstyled footer-list mb-0">
-                                        <li><a href="{% url 'candidate-list' %}"><i class="mdi mdi-chevron-right"></i> 파일 공유 게시판 </a></li>
-                                        <li><a href="{% url 'candidate-grid' %}"><i class="mdi mdi-chevron-right"></i> 알림 관리 </a></li>
+                                        <li><a href="{% url 'index' %}"><i class="mdi mdi-chevron-right"></i> 파일 공유 게시판 </a></li>
+                                        <li><a href="{% url 'notice' %}"><i class="mdi mdi-chevron-right"></i> 알림 관리 </a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->
