@@ -3,6 +3,7 @@ from kinsdb.models import Docs, Site
 from .filters import DocsFilter, SiteFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.models import Count
 
 def index(request):
     return render(request, "kinsdb/database-index.html")
@@ -11,14 +12,14 @@ def index(request):
 def database(request, company, institution):
     if company == 'BRNC':
         docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)
-        search = request.POST.get('search','')
-        tag = request.POST.get('tag','')
-        field = request.POST.get('field')
+        search = request.GET.get('search','')
+        tag = request.GET.get('tag','')
+        field = request.GET.get('field')
 
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
         elif field == 'tag':
-            docs = docs.filter(Q(tags__tag_content__icontains=tag))
+            docs = docs.filter(Q(tags__tag_content__icontains=search))
 
 
         docsFilter = DocsFilter(request.GET, queryset=docs)
@@ -28,7 +29,7 @@ def database(request, company, institution):
         page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter }
+        context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter, 'search': search }
         return render(request, "kinsdb/%s_database.html" %company, context)
 
     elif company == 'UNIST':
@@ -40,7 +41,7 @@ def database(request, company, institution):
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
         elif field == 'key':
-            docs = docs.filter(Q(keywords__key_content__icontains=key))
+            docs = docs.filter(Q(keywords__key_content__icontains=search))
 
         siteFilter = SiteFilter(request.GET, queryset=docs)
         docs = siteFilter.qs
@@ -49,40 +50,39 @@ def database(request, company, institution):
         page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = { 'page_obj': page_obj, 'field': field, 'key': key, 'siteFilter': siteFilter }
+        context = { 'page_obj': page_obj, 'field': field, 'key': key, 'siteFilter': siteFilter, 'search':search }
         return render(request, "kinsdb/%s_database.html" %company, context)
-
-
-def db(request, company, institution):
-    docs = Site.objects.filter(writer__company=company).filter(country=institution)
-    search = request.GET.get('search','')
-    key = request.GET.get('key','')
-    field = request.GET.get('field')
-
-    if field == 'title':
-        docs = docs.filter(Q(title__icontains=search))
-    elif field == 'key':
-        docs = docs.filter(Q(keywords__key_content__icontains=key))
-
-    siteFilter = SiteFilter(request.GET, queryset=docs)
-    docs = siteFilter.qs
-
-    paginator = Paginator(docs, 5)
-    page_number = request.GET.get('page', '1')
-    page_obj = paginator.page(page_number)
-
-    context = { 'page_obj': page_obj, 'field': field, 'key': key, 'siteFilter': siteFilter }
-    return render(request, "kinsdb/%s_database.html" %company, context)
 
 
 
 
 def institution(request):
-    return render(request, "kinsdb/institution.html")
+    # countries = Document.objects.all().values_list('institution', flat=True)
+    ie = Docs.objects.filter(document__institution='IAEA').count()
+    am = Docs.objects.filter(document__institution='미국').count()
+    sw = Docs.objects.filter(document__institution='스웨덴').count()
+    fn = Docs.objects.filter(document__institution='핀란드').count()
+    fr = Docs.objects.filter(document__institution='프랑스').count()
+    gm = Docs.objects.filter(document__institution='독일').count()
+    ca = Docs.objects.filter(document__institution='캐나다').count()
+    ja = Docs.objects.filter(document__institution='일본').count()
+    counts = [ie, am, sw, fn, fr, gm, ca, ja]
+    context = { 'counts': counts }
+    return render(request, "kinsdb/institution.html", context)
 
 
 def site(request):
-    return render(request, "kinsdb/site.html")
+    ie = Site.objects.filter(country='IAEA').count()
+    am = Site.objects.filter(country='미국').count()
+    sw = Site.objects.filter(country='스웨덴').count()
+    fn = Site.objects.filter(country='핀란드').count()
+    fr = Site.objects.filter(country='프랑스').count()
+    gm = Site.objects.filter(country='독일').count()
+    ca = Site.objects.filter(country='캐나다').count()
+    ja = Site.objects.filter(country='일본').count()
+    counts = [ie, am, sw, fn, fr, gm, ca, ja]
+    context = { 'counts': counts }
+    return render(request, "kinsdb/site.html", context)
 
 
 def docs_detail(request, pk):

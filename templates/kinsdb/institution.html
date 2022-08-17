@@ -1,5 +1,6 @@
 {% extends 'partials/rnd_base.html' %}
 {% load static %}
+{% load setvar %}
 {% block title %}Database{% endblock title %}
 {% block extra_css %}
 <!-- Choise Css -->
@@ -19,7 +20,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4"> 규제기준 국가별 데이터 </h3>
+          <h3 class="mb-4"> 규제기준 데이터베이스 </h3>
 
         </div>
       </div>
@@ -50,6 +51,18 @@
     <!--end row-->
     <div class="row">
 
+
+      {% with count="1"|add:"0" %}
+      {% setvar 1 as am %}
+      {% for i in countries %}
+
+      {% if i == '미국' %}
+      {% setvar count|add:1 as count %}
+      {% endif %}
+      {% setvar count as aa %}
+      {% endfor %}
+
+      {% endwith %}
       <div class="col-lg-3 col-md-6">
         <div class="card text-center mb-4">
           <div class="card-body px-4 py-5">
@@ -58,11 +71,12 @@
                 <h6 class="fs-18 mb-2">IAEA</h6>
               </a>
               <p class="text-muted mb-4">국제 원자력 기구</p>
-              <a href="{% url 'database' company='BRNC' institution='IAEA' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='IAEA' %}" class="btn btn-primary">{{ counts.0|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
       </div>
+
       <!-- end col -->
       <div class="col-lg-3 col-md-6">
         <div class="card text-center mb-4">
@@ -72,7 +86,7 @@
                 <h6 class="fs-18 mb-2">미국</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='미국' %}" class="btn btn-primary">{{ counts.1|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -86,7 +100,7 @@
                 <h6 class="fs-18 mb-2">스웨덴</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='스웨덴' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='스웨덴' %}" class="btn btn-primary">{{ counts.2|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -100,7 +114,7 @@
                 <h6 class="fs-18 mb-2">핀란드</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='핀란드' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='핀란드' %}" class="btn btn-primary">{{ counts.3|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -114,7 +128,7 @@
                 <h6 class="fs-18 mb-2">프랑스</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='프랑스' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='프랑스' %}" class="btn btn-primary">{{ counts.4|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -128,7 +142,7 @@
                 <h6 class="fs-18 mb-2">독일</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='독일' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='독일' %}" class="btn btn-primary">{{ counts.5|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -142,7 +156,7 @@
                 <h6 class="fs-18 mb-2">캐나다</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='캐나다' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='캐나다' %}" class="btn btn-primary">{{ counts.6|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>
@@ -156,7 +170,7 @@
                 <h6 class="fs-18 mb-2">일본</h6>
               </a>
               <p class="text-muted mb-4">해외 선도국</p>
-              <a href="{% url 'database' company='BRNC' institution='일본' %}" class="btn btn-primary">12개의 문서</a>
+              <a href="{% url 'database' company='BRNC' institution='일본' %}" class="btn btn-primary">{{ counts.7|default:0 }}개의 문서</a>
             </div>
           </div>
         </div>

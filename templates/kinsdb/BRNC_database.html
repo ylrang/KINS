@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h2 class="mb-4">BRNC</h2>
+          <h2 class="mb-4">규제기준 데이터</h2>
         </div>
       </div>
       <!--end col-->
@@ -44,39 +44,49 @@
       <div class="col-lg-12">
 
         <div class="candidate-list-widgets mb-4">
-          <form method="post" name="search_filter" id="search_filter">
+          <form method="get" name="search_filter" id="search_filter">
             {% csrf_token %}
 
             <div class="row g-2">
+              <div class="col-lg-2">
+                <div class="filler-job-form">
+                  <i class="uil uil-clipboard-notes"></i>
+                  <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" aria-label="Default select example">
+                    <option value="">문서번호</option>
+                    <option value="10CFR60">10CFR60</option>
+                    <option value="10CFR63">10CFR63</option>
+                    <option value="40CFR191">40CFR191</option>
+                    <option value="40CFR197">40CFR197</option>
 
-              <div class="col-lg-8">
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-2">
+                <div class="filler-job-form">
+                  <i class="uil uil-clipboard-notes"></i>
+                  <select class="form-select" data-trigger name="choices-single-cate" id="choices-single-cate" aria-label="Default select example" onchange="document.getElementById('fieldFormControlInput').value=this.value">
+                    <option value="">분류</option>
+                    <option value="title">제목</option>
+                    <option value="tag">태그</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="col-lg-3">
                 <div class="filler-job-form">
                   <i class="uil uil-search"></i>
 
-                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }} " onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
+                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="" onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
                   <input type="hidden" class="form-control filter-job-input-box" id="tagInput" name="tag" value="{{ tag }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
 
                   <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
+
                 </div>
               </div>
               <!--end col-->
 
-              <div class="col-lg-2"></div>
-
-              <div class="col-lg-3">
-                <div class="filler-job-form">
-                  <i class="uil uil-check"></i>
-                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput2" placeholder="검색어 입력">
-                </div>
-              </div>
-              <!--end col-->
-              <p style="display:inline;width:auto;margin-top:auto;margin-bottom:auto;">~</p>
-              <div class="col-lg-3">
-                <div class="filler-job-form">
-                  <i class="uil uil-check"></i>
-                  <input type="date" class="form-control filter-job-input-box" id="exampleFormControlInput3" placeholder="검색어 입력">
-                </div>
-              </div>
               <!--end col-->
               <div class="col-lg-4">
                 <div>
@@ -158,6 +168,7 @@
                           var form = document.getElementById('search_filter');
 
                           document.getElementById('tagInput').value = tag_content;
+                          document.getElementById('exampleFormControlInput1').value = tag_content;
                           document.getElementById('fieldFormControlInput').value = 'tag';
                           form.submit();
                         }
@@ -322,6 +333,7 @@
 <!-- Candidate Init Js -->
 <script src="{% static 'js/cloud/candidate.init.js' %}"></script>
 
+<script src="{% static 'js/data-filter-brnc.init.js' %}"></script>
 
 <!-- Job-list Init Js -->
 <script src="{% static 'js/cloud/job-list.init.js' %}"></script>

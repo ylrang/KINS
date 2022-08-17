@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h2 class="mb-4">규제사례 데이터베이스</h2>
+          <h2 class="mb-4">규제사례 데이터</h2>
         </div>
       </div>
       <!--end col-->
@@ -112,9 +112,7 @@
                 }
               </script>
 
-              {{ siteFilter.FilterSet }}
-              
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-3 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
                   <select class="form-select" data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example" onchange="changeCategory()">
@@ -128,7 +126,7 @@
               </div>
               <!--end col-->
 
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-3 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-layer-group"></i>
                   <select class="form-select" data-trigger name="choices-single-groups" id="choices-single-groups" aria-label="Default select example" onchange="changeGroup()">
@@ -141,7 +139,7 @@
                 </div>
               </div>
               <!--end col-->
-              <div class="col-lg-4 col-md-6">
+              <div class="col-lg-3 col-md-6">
                 <div class="filler-job-form">
                   <i class="uil uil-create-dashboard"></i>
                   <select class="form-select" data-trigger name="choices-single-site" id="choices-single-site" aria-label="Default select example" onchange="changeSite()">
@@ -165,20 +163,30 @@
                 </div>
               </div>
               <!--end col-->
+              <div class="col-lg-2"></div>
+              <div class="col-lg-2">
+                <div class="filler-job-form">
+                  <i class="uil uil-clipboard-notes"></i>
+                  <select class="form-select" data-trigger name="choices-single-cate" id="choices-single-cate" aria-label="Default select example" onchange="document.getElementById('fieldFormControlInput').value=this.value">
+                    <option value="">분류</option>
+                    <option value="title">제목</option>
+                    <option value="key">태그</option>
+                  </select>
+                </div>
+              </div>
 
-              <div class="col-lg-8">
+              <div class="col-lg-6">
                 <div class="filler-job-form">
                   <i class="uil uil-search"></i>
 
-                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }} " onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
+                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="" onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
                   <input type="hidden" class="form-control filter-job-input-box" id="keyInput" name="key" value="{{ key }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
 
-                  <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
+                  <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''">
                 </div>
               </div>
 
               <!--end col-->
-
 
               <div class="col-lg-4">
                 <button type="submit" class="btn btn-primary w-50"><i class="uil uil-filter"></i> Filter</button>
@@ -257,9 +265,11 @@
                         var form = document.getElementById('search_filter');
 
                         document.getElementById('keyInput').value = key_content;
+                        document.getElementById('exampleFormControlInput1').value = key_content;
                         document.getElementById('fieldFormControlInput').value = 'key';
                         form.submit();
                       }
+
                     </script>
 
 
