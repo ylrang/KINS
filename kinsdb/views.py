@@ -9,6 +9,11 @@ def index(request):
     return render(request, "kinsdb/database-index.html")
 
 
+def unist(request):
+    return render(request, "kinsdb/unist.html");
+
+
+
 def database(request, company, institution):
     if company == 'BRNC':
         docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)

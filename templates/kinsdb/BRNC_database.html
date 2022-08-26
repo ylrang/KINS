@@ -5,7 +5,12 @@
 {% block extra_css %}
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
-
+<style>
+  .form-check {
+    display: inline-block !important;
+    padding-left: 2.5em !important;
+  }
+</style>
 {% endblock extra_css %}
 {% block content %}
 <!-- Start home -->
@@ -41,13 +46,91 @@
   <div class="container">
 
     <div class="row justify-content-center">
-      <div class="col-lg-12">
+      <script>
+        function selectAll(selectAll) {
+          const checkboxes = document.getElementsByName('country');
+
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+          })
+        }
+
+        function checkSelectAll() {
+          // 전체 체크박스
+          const checkboxes = document.querySelectorAll('input[name="country"]');
+          // 선택된 체크박스
+          const checked = document.querySelectorAll('input[name="country"]:checked');
+          // select all 체크박스
+          const selectAll = document.querySelector('input[name="selectall"]');
+
+          if (checkboxes.length === checked.length) {
+            selectAll.checked = true;
+          } else {
+            selectAll.checked = false;
+          }
+
+        }
+      </script>
+
+      <div class="col-lg-10">
+        <div class="accordion-item mt-4">
+          <h2 class="accordion-header" id="experienceOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
+              국가
+            </button>
+          </h2>
+          <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
+            <div class="accordion-body">
+              <div class="side-title">
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked name="selectall" onclick="selectAll(this)" />
+                  <label class="form-check-label text-muted" for="flexCheckChecked1">전체</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked2">미국</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked3">스웨덴</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">프랑스</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">독일</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">캐나다</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">일본</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">IAEA</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end accordion-item -->
+
+      </div>
+      <div class="col-lg-10">
 
         <div class="candidate-list-widgets mb-4">
           <form method="get" name="search_filter" id="search_filter">
             {% csrf_token %}
 
-            <div class="row g-2">
+            <div class="row g-2 mt-3 mb-3">
               <div class="col-lg-2">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
@@ -104,8 +187,8 @@
     </div>
     <!--end row-->
 
-                <div class=" row">
-                      <div class="col-lg-12">
+    <div class=" row justify-content-center">
+                      <div class="col-lg-10">
                         <div class=" row align-items-center">
                           <div class="col-lg-8">
                             <div class="mb-3 mb-lg-0">
@@ -152,8 +235,8 @@
                       </div>
                 </div>
 
-                <div class=" row">
-                  <div class="col-lg-9">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
                     <div class="candidate-list">
 
                       {% for doc in page_obj %}
@@ -178,85 +261,6 @@
                   </div>
                   <!--end col-->
 
-                  <div class="col-lg-3">
-                    <div class="accordion-item mt-3">
-                      <h2 class="accordion-header" id="jobType">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
-                          회사
-                        </button>
-                      </h2>
-                      <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
-                        <div class="accordion-body">
-                          <div class="side-title">
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
-                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
-                                전체
-                              </label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
-                                KINS
-                              </label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
-                                NCS
-                              </label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
-                                UNIST
-                              </label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                              <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
-                                BRNC
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div><!-- end accordion-item -->
-                    <div class="accordion-item mt-4">
-                      <h2 class="accordion-header" id="experienceOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
-                          분류
-                        </button>
-                      </h2>
-                      <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
-                        <div class="accordion-body">
-                          <div class="side-title">
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">전체</label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">N/Star</label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">논문</label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">보고서</label>
-                            </div>
-                            <div class="form-check mt-2">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                              <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">일정</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div><!-- end accordion-item -->
-
-                  </div>
                 </div>
                 <!--end row-->
 
