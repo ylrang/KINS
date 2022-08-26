@@ -14,17 +14,22 @@ def unist(request):
 
 
 
-def database(request, company, institution):
+def database(request, company, institution, _tag=''):
     if company == 'BRNC':
         docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)
         search = request.GET.get('search','')
-        tag = request.GET.get('tag','')
         field = request.GET.get('field')
 
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
         elif field == 'tag':
             docs = docs.filter(Q(tags__tag_content__icontains=search))
+
+        if _tag == '':
+            tag = request.GET.get('tag','')
+        else:
+            tag = _tag
+            docs = docs.filter(Q(tags__tag_content__icontains=tag))
 
 
         docsFilter = DocsFilter(request.GET, queryset=docs)
