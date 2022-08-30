@@ -11,4 +11,7 @@ urlpatterns = [
     path('site-details<int:pk>', views.site_detail, name='site-details'),
     path('download/<path:filename>', views.download_file, name='download_file'),
     path('unist', views.unist, name='unist'),
+    path('safety', views.safety, name='safety'),
+    path('kbs-3', views.kbs, name='kbs-3'),
+    path('component<str:cmp>', views.component, name='component'),
 ]

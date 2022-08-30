@@ -5,10 +5,12 @@
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
-  .img-fluid {
-    object-fit: scale-down;
-    height: 100px !important;
-    max-width: 80% !important;
+  .col {
+    flex: 1;
+  }
+
+  .card {
+    height: 100%;
   }
 </style>
 {% endblock extra_css %}
@@ -19,7 +21,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4"> 규제사례 데이터베이스 </h3>
+          <h3 class="mb-4"> 국가별 Safety Case </h3>
 
         </div>
       </div>
@@ -46,53 +48,22 @@
 <section class="section">
   <div class="container">
 
-    <div class="row">
-
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">개발단계 및 Safety Case 별 규제사례</h6>
-              </a>
-              <p class="text-muted mb-4">(주)비알엔씨</p>
-
-              <a href="{% url 'institution' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
-          </div>
+    <div class="row" style="display:flex">
+      <div class="col col-lg-2">
+        <div class="card text-center p-4">
+          <h6>예비 부지 선정 단계</h6>
         </div>
       </div>
-      <!--end col-->
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">KBS-3 구성요소별 요건</h6>
-              </a>
-              <p class="text-muted mb-4">울산과학기술원</p>
-              <a href="{% url 'site' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
-          </div>
+      <div class="col col-lg-8">
+        <div class="card text-center p-4">
+          <h6>목적</h6>
         </div>
       </div>
-      <!--end col-->
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">부지선정인자</h6>
-              </a>
-              <p class="text-muted mb-4">울산과학기술원</p>
-              <a href="{% url 'site' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
-          </div>
+      <div class="col col-lg-2">
+        <div class="card text-center p-4">
+          <h6>SKI</h6>
         </div>
       </div>
-      <!--end col-->
-
-
     </div>
     <!--end row-->
   </div>
