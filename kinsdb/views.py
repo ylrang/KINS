@@ -23,13 +23,22 @@ def kbs(request):
 
 def component(request, cmp):
     context = { 'cmp': cmp }
-    return render(request, "kinsdb/UNIST/component-list.html", context)
+    return render(request, "kinsdb/UNIST/component-list.html", context);
+
+
+def ss(request):
+    return render(request, "kinsdb/UNIST/safety-case.html");
+
+
 
 # 3
 def siting(request, country):
     context = { 'country': country }
-    return render(request, "kinsdb/UNIST/siting.html", context)
+    return render(request, "kinsdb/UNIST/siting.html", context);
 
+
+def siting_detail(request):
+    return render(request, "kinsdb/UNIST/kbs-3.html");
 
 
 def database(request, company, institution, _tag=''):
