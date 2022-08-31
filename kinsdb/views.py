@@ -12,11 +12,11 @@ def index(request):
 def unist(request):
     return render(request, "kinsdb/UNIST/unist.html");
 
-
+# 1
 def safety(request):
     return render(request, "kinsdb/UNIST/safety-case.html");
 
-
+# 2
 def kbs(request):
     return render(request, "kinsdb/UNIST/kbs-3.html");
 
@@ -25,6 +25,10 @@ def component(request, cmp):
     context = { 'cmp': cmp }
     return render(request, "kinsdb/UNIST/component-list.html", context)
 
+# 3
+def siting(request, country):
+    context = { 'country': country }
+    return render(request, "kinsdb/UNIST/siting.html", context)
 
 
 

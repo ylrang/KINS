@@ -14,4 +14,5 @@ urlpatterns = [
     path('safety', views.safety, name='safety'),
     path('kbs-3', views.kbs, name='kbs-3'),
     path('component<str:cmp>', views.component, name='component'),
+    path('siting<str:country>', views.siting, name='siting'),
 ]
