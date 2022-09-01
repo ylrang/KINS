@@ -26,8 +26,13 @@ def component(request, cmp):
     return render(request, "kinsdb/UNIST/component-list.html", context);
 
 
-def ss(request):
-    return render(request, "kinsdb/UNIST/safety-case.html");
+def detail_component(request, title):
+    context = { 'title': title }
+    return render(request, "kinsdb/UNIST/component-detail.html", context);
+
+
+def details(request):
+    return render(request, "kinsdb/UNIST/siting-detail.html");
 
 
 

@@ -5,12 +5,15 @@
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
-  .col {
-    flex: 1;
-  }
-
   .card {
     height: 100%;
+  }
+
+  .link {
+    font-size: 14px;
+    text-decoration: underline;
+    white-space: nowrap;
+    overflow: auto;
   }
 </style>
 {% endblock extra_css %}
@@ -22,7 +25,15 @@
       <div class="col-md-6">
         <div class="text-center text-white">
           <h3 class="mb-4"> 국가별 Safety Case </h3>
-
+          <div class="page-next">
+            <nav class="d-inline-block" aria-label="breadcrumb text-center">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'safety' %}">Safety Case</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> 스웨덴 </li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </div>
       <!--end col-->
@@ -48,22 +59,207 @@
 <section class="section">
   <div class="container">
 
-    <div class="row" style="display:flex">
-      <div class="col col-lg-2">
-        <div class="card text-center p-4">
-          <h6>예비 부지 선정 단계</h6>
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="d-none d-lg-block card" style="padding: 12px; position:sticky; top:90px;">
+          <ul class="nav nav-pills flex-column" id="elementsBar">
+            <li class="nav-item">
+              <a href="#intro" class="nav-link">스웨덴</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">프랑스</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">미국</a>
+            </li>
+            <li class="nav-item">
+              <a href="#location" class="nav-link">일본</a>
+            </li>
+          </ul>
         </div>
+        <!--end ui-elements-->
       </div>
-      <div class="col col-lg-8">
-        <div class="card text-center p-4">
-          <h6>목적</h6>
+
+      <div class="col-lg-9 m-4">
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>예비 부지 조사</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: 문헌조사 및 지질 조사</li>
+                <li>주요검토 항목: KBS-3 처분 개념 및 부지 조사 작업</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI RD&D 92</a></p>
+              <p class="link"><a href="#">SKI RD&D 95</a></p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col col-lg-2">
-        <div class="card text-center p-4">
-          <h6>SKI</h6>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>실현 가능성</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: 후보 부지 식별</li>
+                <li>주요검토 항목: 기존 데이터 처리, 부지 확인 작업</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI RD&D 98</a></p>
+            </div>
+          </div>
         </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>현장조사 계획단계</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: 현장조사 방법론 및 목표설명</li>
+                <li>주요검토 항목: SR-97 안전성 평가, KBS-3 처분시설 요건 및 기준, URL 연구 데이터</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI RD&D 2001</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>초기 현장조사</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: 후보부지 중 우선 부지 선정, 예비 모델링</li>
+                <li>주요검토 항목: 지구 물리학적 조사 및 표층영역 시추공</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI RD&D 2004</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>Interim SR-Can and SR-Can</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: 예비 안전성 평가</li>
+                <li>주요검토 항목: SDB 1.2 model, Interim SR-Can, SR-Can </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI</a></p>
+              <p class="link"><a href="#">SSI</a></p>
+              <p class="link"><a href="#">INSITE</a></p>
+              <p class="link"><a href="#">OVERISTE</a></p>
+              <p class="link"><a href="#">NEA/IRT</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>상세 부지조사</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <ul style="margin-bottom:0">
+                <li>목표: SDM version 2</li>
+                <li>주요검토 항목: 추가 조사 데이터</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SKI RD&D 2007</a></p>
+              <p class="link"><a href="#">SKI RD&D 2010</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>부지 선정</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card text-center pt-2">
+              <ul style="margin-bottom:0">
+                <li>목표: 처분시설 부지선정</li>
+                <li>주요검토 항목: SDM 2.1</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <p>(없음)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-lg-2">
+            <div class="card text-center p-4">
+              <h6>인허가 신청서</h6>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card text-center pt-2">
+              <ul style="margin-bottom:0">
+                <li>목표: SR-Site, EIA(환경 영향평가), 처분시설 설계</li>
+                <li>주요검토 항목: SDM-site</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="card text-center pt-2">
+              <p class="link"><a href="#">SSM</a></p>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
     </div>
     <!--end row-->
   </div>

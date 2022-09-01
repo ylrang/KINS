@@ -1,0 +1,78 @@
+{% extends 'partials/rnd_base.html' %}
+{% load static %}
+{% block title %}Database{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+<style>
+  .card {
+    height: 100%;
+  }
+</style>
+{% endblock extra_css %}
+{% block content %}
+<!-- Start home -->
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h3 class="mb-4"> 국가별 Safety Case </h3>
+          <div class="page-next">
+            <nav class="d-inline-block" aria-label="breadcrumb text-center">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'safety' %}">Safety Case</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> 스웨덴 </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- end home -->
+
+<!-- START SHAPE -->
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
+<!-- END SHAPE -->
+
+
+
+<section class="section">
+  <div class="container">
+
+
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}

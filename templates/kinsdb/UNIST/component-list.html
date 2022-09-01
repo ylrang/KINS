@@ -44,11 +44,8 @@
         <div class="filler-job-form">
           <i class="uil uil-clipboard-notes"></i>
           <select class="form-select" data-trigger name="choices-single-cate" id="choices-single-cate" aria-label="Default select example" onchange="changeCategory()">
-            <option value="">분류</option>
-            <option value="모암">모암</option>
-            <option value="산업시설">산업시설</option>
-            <option value="사회적 관점">사회적 관점</option>
-            <option value="사회적 관념">사회적 관념</option>
+            <option value="제목">제목</option>
+            <option value="태그">태그</option>
           </select>
         </div>
       </div>
@@ -102,7 +99,7 @@
 
                           <div class="col-lg-6">
                             <div class="candidate-list-content mt-3 mt-lg-0">
-                              <h5 class="fs-19 mb-1"><a href="#" class="primary-link">부식 저항성<span style="font-weight:400"></span></a> </h5>
+                              <h5 class="fs-19 mb-1"><a href="{% url 'details-component' title='부식 저항성' %}" class="primary-link">부식 저항성<span style="font-weight:400"></span></a> </h5>
                               <p class="text-muted mb-2"> </p>
                               <ul class="list-inline mb-0 text-muted">
                                 <li class="list-inline-item">

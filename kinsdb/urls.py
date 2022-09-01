@@ -15,6 +15,7 @@ urlpatterns = [
     path('kbs-3', views.kbs, name='kbs-3'),
     path('component<str:cmp>', views.component, name='component'),
     path('siting<str:country>', views.siting, name='siting'),
-    path('sitings_details', views.ss, name='sitings_details'),
+    path('details', views.details, name='details'),
+    path('details-component<str:title>', views.detail_component, name='details-component'),
 
 ]
