@@ -22,12 +22,12 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">지하수 조성</h3>
+          <h3 class="mb-4">{{ title }}</h3>
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'database-index' %}">Database</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> 문서 </li>
+                <li class="breadcrumb-item"><a href="{% url 'database-index' %}">부지선정인자</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> {{ country }} </li>
               </ol>
             </nav>
           </div>
@@ -79,9 +79,12 @@
 
               <div class="candidate-education-content">
                 <p class="text-muted">{{ doc.description }}</p>
+
                 <h6>요구사항</h6>
                 <ul>
-                  <li>지하수의 총 염도(TDS)는 저장소 수준에서 100g/l 미만이어야 한다.</li>
+                  {% for factor in factors %}
+                  {{ factor.factor }} <li>{{ factor.requirement }}</li>
+                  {% endfor %}
                 </ul>
                 <h6>선호사항</h6>
                 <ul>

@@ -42,24 +42,26 @@
 
     <div class="row">
       <div class="col-lg-3">
-          <div class="d-none d-lg-block card" style="padding: 12px; position:sticky; top:90px;">
-              <ul class="nav nav-pills flex-column" id="elementsBar">
-                  <li class="nav-item">
-                      <a href="#intro" class="nav-link">스웨덴</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#about" class="nav-link">프랑스</a>
-                  </li>
+        <div class="d-none d-lg-block card" style="padding: 12px; position:sticky; top:90px;">
+          <ul class="nav nav-pills flex-column" id="elementsBar">
+            <li class="nav-item">
+              <a href="#intro" class="nav-link">스웨덴</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">프랑스</a>
+            </li>
 
-                  <li class="nav-item">
-                      <a href="#contact" class="nav-link">미국</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#location" class="nav-link">일본</a>
-                  </li>
-              </ul>
-          </div><!--end ui-elements-->
-      </div><!--end col-->
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">미국</a>
+            </li>
+            <li class="nav-item">
+              <a href="#location" class="nav-link">일본</a>
+            </li>
+          </ul>
+        </div>
+        <!--end ui-elements-->
+      </div>
+      <!--end col-->
 
       <div class="col-lg-9">
 
@@ -70,13 +72,11 @@
 
             <div class="row g-2">
 
-
               <select name="category__icontains" class="" title="" id="id_category__icontains" style="display:none">
                 <option value="">----</option>
                 <option value="모암">모암</option>
                 <option value="산업시설">산업시설</option>
                 <option value="사회적 관점">사회적 관점</option>
-                <option value="사회적 관념">사회적 관념</option>
               </select>
 
               <select name="group__icontains" class="" title="" id="id_group__icontains" style="display:none">
@@ -86,7 +86,6 @@
                 <option value="토지와 환경">토지와 환경</option>
                 <option value="사회">사회</option>
               </select>
-
 
 
               <script>
@@ -105,7 +104,6 @@
                   const $select = document.querySelector('#id_group__icontains');
                   $select.value = value;
                 }
-
               </script>
 
               <div class="col-lg-2 col-md-6">
@@ -161,208 +159,122 @@
         </div>
         <!--end job-list-header-->
 
-        <div class="candidate-list">
+        <div class=" candidate-list">
 
 
-            <div class="candidate-list-box card mt-4">
-              <div class="card-body p-4">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <div class="candidate-list-images">
-                      <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                    {% for site in sites %}
+                    <div class="candidate-list-box card mt-4">
+                      <div class="card-body p-4">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <div class="candidate-list-images">
+                              <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                            </div>
+                          </div>
+                          <!--end col-->
+
+                          <div class="col-lg-6">
+                            <div class="candidate-list-content mt-3 mt-lg-0">
+                              <h5 class="fs-19 mb-1"><a href="{% url 'details' country=site.country title=site.title %}" class="primary-link">{{ site.title }}<span style="font-weight:400"></span></a> </h5>
+                              <p class="text-muted mb-2"> </p>
+                              <ul class="list-inline mb-0 text-muted">
+                                <li class="list-inline-item">
+                                  <i class="mdi mdi-map-marker"></i> 등록일자:
+                                </li>
+                                <li class="list-inline-item">
+                                  <i class="uil uil-wallet"></i> 조회수:
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--end col-->
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <!--end col-->
+                    {% endfor %}
 
-                  <div class="col-lg-6">
-                    <div class="candidate-list-content mt-3 mt-lg-0">
-                      <h5 class="fs-19 mb-1"><a href="{% url 'details' %}" class="primary-link">지하수 조성<span style="font-weight:400"></span></a> </h5>
-                      <p class="text-muted mb-2"> </p>
-                      <ul class="list-inline mb-0 text-muted">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-map-marker"></i> 등록일자:
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="uil uil-wallet"></i> 조회수:
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!--end col-->
-                </div>
+
+
+
+                    <script>
+                      function searchKey(key_content) {
+                        var form = document.getElementById('search_filter');
+
+                        document.getElementById('keyInput').value = key_content;
+                        document.getElementById('exampleFormControlInput1').value = key_content;
+                        document.getElementById('fieldFormControlInput').value = 'key';
+                        form.submit();
+                      }
+                    </script>
+
+
               </div>
+
+
+
             </div>
-
-            <div class="candidate-list-box card mt-4">
-              <div class="card-body p-4">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <div class="candidate-list-images">
-                      <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
-                    </div>
-                  </div>
-                  <!--end col-->
-
-                  <div class="col-lg-6">
-                    <div class="candidate-list-content mt-3 mt-lg-0">
-                      <h5 class="fs-19 mb-1"><a href="#" class="primary-link">암반을 통한 핵종의 이동<span style="font-weight:400"></span></a> </h5>
-                      <p class="text-muted mb-2"> </p>
-                      <ul class="list-inline mb-0 text-muted">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-map-marker"></i> 등록일자:
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="uil uil-wallet"></i> 조회수:
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!--end col-->
-                </div>
-              </div>
-            </div>
-
-
-            <div class="candidate-list-box card mt-4">
-              <div class="card-body p-4">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <div class="candidate-list-images">
-                      <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
-                    </div>
-                  </div>
-                  <!--end col-->
-
-                  <div class="col-lg-6">
-                    <div class="candidate-list-content mt-3 mt-lg-0">
-                      <h5 class="fs-19 mb-1"><a href="#" class="primary-link">조사 가능성<span style="font-weight:400"></span></a> </h5>
-                      <p class="text-muted mb-2"> </p>
-                      <ul class="list-inline mb-0 text-muted">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-map-marker"></i> 등록일자:
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="uil uil-wallet"></i> 조회수:
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!--end col-->
-                </div>
-              </div>
-            </div>
-
-
-            <div class="candidate-list-box card mt-4">
-              <div class="card-body p-4">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <div class="candidate-list-images">
-                      <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
-                    </div>
-                  </div>
-                  <!--end col-->
-
-                  <div class="col-lg-6">
-                    <div class="candidate-list-content mt-3 mt-lg-0">
-                      <h5 class="fs-19 mb-1"><a href="#" class="primary-link">암석의 구성과 구조<span style="font-weight:400"></span></a> </h5>
-                      <p class="text-muted mb-2"> </p>
-                      <ul class="list-inline mb-0 text-muted">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-map-marker"></i> 등록일자:
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="uil uil-wallet"></i> 조회수:
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!--end col-->
-                </div>
-              </div>
-            </div>
-
-
-          <script>
-            function searchKey(key_content) {
-              var form = document.getElementById('search_filter');
-
-              document.getElementById('keyInput').value = key_content;
-              document.getElementById('exampleFormControlInput1').value = key_content;
-              document.getElementById('fieldFormControlInput').value = 'key';
-              form.submit();
-            }
-
-          </script>
 
 
         </div>
+        <!--end row-->
+
+        <div class="row">
+          <div class="col-lg-12 mt-5">
+            <nav>
+              <ul class="pagination job-pagination mb-0 justify-content-center">
+
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.POST.urlencode %}" tabindex="-1">
+
+                    <i class="mdi mdi-chevron-double-left fs-15"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="javascript:void(0)">
+
+                    <i class="mdi mdi-chevron-double-left fs-15"></i>
+                  </a>
+                </li>
+                {% endif %}
 
 
+                {% for page_number in page_obj.paginator.page_range %}
+                {% if page_number == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
+                    <i class="mdi mdi-chevron-double-right fs-15"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                    <i class="mdi mdi-chevron-double-right fs-15"></i>
+                  </a>
+                </li>
+                {% endif %}
+
+              </ul>
+            </nav>
+          </div>
+          <!--end col-->
+        </div><!-- end row -->
 
       </div>
-
-
-    </div>
-    <!--end row-->
-
-              <div class="row">
-                <div class="col-lg-12 mt-5">
-                  <nav>
-                    <ul class="pagination job-pagination mb-0 justify-content-center">
-
-                      {% if page_obj.has_previous %}
-                      <li class="page-item">
-                        <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.POST.urlencode %}" tabindex="-1">
-
-                          <i class="mdi mdi-chevron-double-left fs-15"></i>
-                        </a>
-                      </li>
-                      {% else %}
-                      <li class="page-item disabled">
-                        <a class="page-link" href="javascript:void(0)">
-
-                          <i class="mdi mdi-chevron-double-left fs-15"></i>
-                        </a>
-                      </li>
-                      {% endif %}
-
-
-                      {% for page_number in page_obj.paginator.page_range %}
-                      {% if page_number == page_obj.number %}
-                      <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                      </li>
-                      {% else %}
-                      <li class="page-item">
-                        <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                      </li>
-                      {% endif %}
-                      {% endfor %}
-
-
-                      {% if page_obj.has_next %}
-                      <li class="page-item">
-                        <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
-                          <i class="mdi mdi-chevron-double-right fs-15"></i>
-                        </a>
-                      </li>
-                      {% else %}
-                      <li class="page-item disabled">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                          <i class="mdi mdi-chevron-double-right fs-15"></i>
-                        </a>
-                      </li>
-                      {% endif %}
-
-                    </ul>
-                  </nav>
-                </div>
-                <!--end col-->
-              </div><!-- end row -->
-
-            </div>
-            <!--end container-->
+      <!--end container-->
 </section>
 <!-- END JOB-LIST -->
 {% endblock content %}
@@ -381,7 +293,7 @@
 
 <!-- Job-list Init Js -->
 <script src="{% static 'js/data-filter.init.js' %}"></script>
-<script src="{% static 'js/data-filter-brnc.init.js' %}"></script>
+<script src="{% static 'js/data-filter-unist.init.js' %}"></script>
 
 <!-- Switcher Js -->
 <script src="{% static 'js/cloud/switcher.init.js' %}"></script>

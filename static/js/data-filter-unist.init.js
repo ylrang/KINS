@@ -1,1 +1,1 @@
-var singleiCate=new Choices("#choices-single-cate");
+var singleGroups, singleiCategories=new Choices("#choices-single-categories"),singleGroup=document.getElementById("choices-single-groups");singleGroup&&(singleGroups=new Choices("#choices-single-groups"));

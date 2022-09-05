@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from kinsdb.models import Docs, Site
+from kinsdb.models import Docs, Site, SWFactor
 from .filters import DocsFilter, SiteFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -31,19 +31,24 @@ def detail_component(request, title):
     return render(request, "kinsdb/UNIST/component-detail.html", context);
 
 
-def details(request):
-    return render(request, "kinsdb/UNIST/siting-detail.html");
-
-
-
 # 3
 def siting(request, country):
-    context = { 'country': country }
+    sites = Site.objects.filter(country=country)
+
+    context = { 'country': country, 'sites': sites }
     return render(request, "kinsdb/UNIST/siting.html", context);
 
 
-def siting_detail(request):
-    return render(request, "kinsdb/UNIST/kbs-3.html");
+def details(request, country, title):
+    # if site.country = '스웨덴':
+    #     factor = SWFactor.objects.filter(title=title)
+    # else:
+    # factors = SWFactor.objects.filter(title='지하수 조성')
+    factors = SWFactor.objects.filter(title=title);
+    context = { 'site': site, 'country': country, 'factors': factors }
+
+    return render(request, "kinsdb/UNIST/siting-detail.html", context);
+
 
 
 def database(request, company, institution, _tag=''):
@@ -73,6 +78,7 @@ def database(request, company, institution, _tag=''):
 
         context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter, 'search': search }
         return render(request, "kinsdb/%s_database.html" %company, context)
+
 
     elif company == 'UNIST':
         docs = Site.objects.filter(writer__company=company).filter(country=institution)

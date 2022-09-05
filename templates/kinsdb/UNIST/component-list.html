@@ -13,7 +13,15 @@
       <div class="col-md-6">
         <div class="text-center text-white">
           <h3 class="mb-4"> {{ cmp }} </h3>
-
+          <div class="page-next">
+            <nav class="d-inline-block" aria-label="breadcrumb text-center">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'kbs-3' %}">KBS-3</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> {{ cmp }} </li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </div>
       <!--end col-->

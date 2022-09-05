@@ -5,6 +5,11 @@
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
+  .img-fluid {
+    object-fit: scale-down;
+    height: 70px !important;
+    max-width: 80% !important;
+  }
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -15,7 +20,14 @@
       <div class="col-md-6">
         <div class="text-center text-white">
           <h3 class="mb-4"> KBS-3 구성요소별 조건 </h3>
-
+          <div class="page-next">
+            <nav class="d-inline-block" aria-label="breadcrumb text-center">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'kbs-3' %}">KBS-3</a></li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </div>
       <!--end col-->
@@ -41,10 +53,83 @@
 <section class="section">
   <div class="container">
 
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+
+            <img src="{% static 'images/logo/kins-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='캐니스터' %}" class="btn btn-soft-primary">캐니스터</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <img src="{% static 'images/logo/kigam-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='완충재' %}" class="btn btn-soft-primary">완충재</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <img src="{% static 'images/logo/kigam-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='뒤채움재' %}" class="btn btn-soft-primary">뒤채움재</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <img src="{% static 'images/logo/kigam-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='플러그' %}" class="btn btn-soft-primary">플러그</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <img src="{% static 'images/logo/kigam-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='마감재' %}" class="btn btn-soft-primary">마감재</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-center mb-4">
+          <div class="card-body px-4 py-5">
+            <img src="{% static 'images/logo/kigam-logo.png' %}" alt="" class="img-fluid rounded-3">
+            <div class="mt-4">
+              <a href="{% url 'component' cmp='천연방벽 및 지하공동' %}" class="btn btn-soft-primary">천연방벽 및 지하공동</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+
   <div>
-    <h6><a href="{% url 'component' cmp='모암' %}">모암</a></h6>
     <h6><a href="{% url 'component' cmp='캐니스터' %}">캐니스터</a></h6>
     <h6><a href="{% url 'component' cmp='완충재' %}">완충재</a></h6>
+    <h6><a href="{% url 'component' cmp='뒤채움재' %}">뒤채움재</a></h6>
+    <h6><a href="{% url 'component' cmp='플러그' %}">플러그</a></h6>
+    <h6><a href="{% url 'component' cmp='마감재' %}">마감재</a></h6>
+    <h6><a href="{% url 'component' cmp='천연방벽 및 지하공동' %}">천연방벽 및 지하공동</a></h6>
   </div>
   </div>
   <!--end container-->

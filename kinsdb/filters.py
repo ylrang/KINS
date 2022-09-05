@@ -32,6 +32,4 @@ class SiteFilter(django_filters.FilterSet):
             'title'         :['icontains'],
             'category'      :['icontains'],
             'group'         :['icontains'],
-            'site'          :['icontains'],
-
         }
