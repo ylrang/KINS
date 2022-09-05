@@ -15,6 +15,14 @@
       <div class="col-md-6">
         <div class="text-center text-white">
           <h2 class="mb-4">규제사례 데이터</h2>
+          <div class="page-next">
+            <nav class="d-inline-block" aria-label="breadcrumb text-center">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'siting' country='스웨덴' %}">부지선정인자</a></li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </div>
       <!--end col-->
@@ -150,7 +158,7 @@
 
               <div class="col-lg-4">
                 <button type="submit" class="btn btn-primary w-50"><i class="uil uil-filter"></i> Filter</button>
-                <a href="{% url 'database' company='UNIST' institution='스웨덴' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
+                <a href="{% url 'siting' country='스웨덴' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
 
               </div>
 

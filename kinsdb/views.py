@@ -16,6 +16,17 @@ def unist(request):
 def safety(request):
     return render(request, "kinsdb/UNIST/safety-case.html");
 
+
+def detail_safety(request, doc):
+    context = { 'doc': doc }
+    return render(request, "kinsdb/UNIST/safety-detail.html", context);
+
+
+def temp_safety(request, doc):
+    context = { 'doc': doc }
+    return render(request, "kinsdb/UNIST/safety-temp.html", context);
+
+
 # 2
 def kbs(request):
     return render(request, "kinsdb/UNIST/kbs-3.html");
@@ -45,7 +56,7 @@ def details(request, country, title):
     # else:
     # factors = SWFactor.objects.filter(title='지하수 조성')
     factors = SWFactor.objects.filter(title=title);
-    context = { 'site': site, 'country': country, 'factors': factors }
+    context = { 'site': site, 'country': country, 'factors': factors, 'title': title }
 
     return render(request, "kinsdb/UNIST/siting-detail.html", context);
 

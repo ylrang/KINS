@@ -26,8 +26,9 @@
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'database-index' %}">부지선정인자</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> {{ country }} </li>
+                <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'siting' country='스웨덴' %}">부지선정인자({{ country }})</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> {{ title }} </li>
               </ol>
             </nav>
           </div>
@@ -82,9 +83,7 @@
 
                 <h6>요구사항</h6>
                 <ul>
-                  {% for factor in factors %}
-                  {{ factor.factor }} <li>{{ factor.requirement }}</li>
-                  {% endfor %}
+                  <li>지하수의 총 염도(TDS)는 저장소 수준에서 100g/l 미만이어야 한다.</li>
                 </ul>
                 <h6>선호사항</h6>
                 <ul>

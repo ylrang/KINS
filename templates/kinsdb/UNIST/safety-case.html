@@ -29,8 +29,7 @@
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><a href="{% url 'unist' %}">규제사례 DB</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'safety' %}">Safety Case</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> 스웨덴 </li>
+                <li class="breadcrumb-item active" aria-current="page"> Safety Case </li>
               </ol>
             </nav>
           </div>
@@ -99,7 +98,7 @@
           </div>
           <div class="col-lg-2">
             <div class="card text-center pt-2">
-              <p class="link"><a href="#">SKI RD&D 92</a></p>
+              <p class="link"><a href="{% url 'detail-safety' doc='SKI RD&D 92' %}">SKI RD&D 92</a></p>
               <p class="link"><a href="#">SKI RD&D 95</a></p>
             </div>
           </div>
@@ -184,7 +183,7 @@
           </div>
           <div class="col-lg-2">
             <div class="card text-center pt-2">
-              <p class="link"><a href="#">SKI</a></p>
+              <p class="link"><a href="{% url 'temp-safety' doc='SKI' %}">SKI</a></p>
               <p class="link"><a href="#">SSI</a></p>
               <p class="link"><a href="#">INSITE</a></p>
               <p class="link"><a href="#">OVERISTE</a></p>
