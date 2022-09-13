@@ -72,6 +72,8 @@
         }
       </script>
 
+
+
       <div class="col-lg-10">
         <div class="accordion-item mt-4">
           <h2 class="accordion-header" id="experienceOne">
@@ -99,23 +101,23 @@
                   <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
                 </div>
                 <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked name="country" onclick="checkSelectAll()"/>
                   <label class="form-check-label text-muted" for="flexCheckChecked5">프랑스</label>
                 </div>
                 <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" checked name="country" onclick="checkSelectAll()"/>
                   <label class="form-check-label text-muted" for="flexCheckChecked6">독일</label>
                 </div>
                 <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked7" checked name="country" onclick="checkSelectAll()"/>
                   <label class="form-check-label text-muted" for="flexCheckChecked7">캐나다</label>
                 </div>
                 <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked8" checked name="country" onclick="checkSelectAll()"/>
                   <label class="form-check-label text-muted" for="flexCheckChecked8">일본</label>
                 </div>
                 <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked9" checked name="country" onclick="checkSelectAll()"/>
                   <label class="form-check-label text-muted" for="flexCheckChecked9">IAEA</label>
                 </div>
               </div>
@@ -125,6 +127,8 @@
 
       </div>
       <div class="col-lg-10">
+        {{ document }}
+        {{ field }}
 
         <div class="candidate-list-widgets mb-4">
           <form method="get" name="search_filter" id="search_filter">
@@ -134,16 +138,17 @@
               <div class="col-lg-2">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
-                  <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" aria-label="Default select example">
-                    <option value="">문서번호</option>
-                    <option value="10CFR60">10CFR60</option>
-                    <option value="10CFR63">10CFR63</option>
-                    <option value="40CFR191">40CFR191</option>
-                    <option value="40CFR197">40CFR197</option>
-
+                  <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" aria-label="Default select example" onchange="document.getElementById('documentInput').value=this.value">
+                    <option value="all">문서번호</option>
+                    {% for d in documents %}
+                      <option value="{{ d.serial_num }}">{{ d.serial_num }}</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
+
+              <input type="hidden" id="documentInput" name="document" value="" onfocus="this.value=''" placeholder="태그 입력">
+
 
               <div class="col-lg-2">
                 <div class="filler-job-form">

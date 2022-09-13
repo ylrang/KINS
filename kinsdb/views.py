@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from kinsdb.models import Docs, Site, SWFactor
+from kinsdb.models import Docs, Site, SWFactor, Document
 from .filters import DocsFilter, SiteFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -67,6 +67,8 @@ def database(request, company, institution, _tag=''):
         docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)
         search = request.GET.get('search','')
         field = request.GET.get('field')
+        document = request.GET.get('document')
+        documents = Document.objects.all()
 
         if field == 'title':
             docs = docs.filter(Q(title__icontains=search))
@@ -87,7 +89,7 @@ def database(request, company, institution, _tag=''):
         page_number = request.GET.get('page', '1')
         page_obj = paginator.page(page_number)
 
-        context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter, 'search': search }
+        context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter, 'search': search, 'documents': documents, 'document': document }
         return render(request, "kinsdb/%s_database.html" %company, context)
 
 

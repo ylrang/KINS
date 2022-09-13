@@ -48,7 +48,7 @@ class Document(models.Model):
         verbose_name_plural = 'Documents'
 
     def __str__(self):
-        return self.title
+        return self.serial_num
 
 
 class Site(models.Model):

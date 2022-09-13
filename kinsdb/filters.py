@@ -18,8 +18,8 @@ class DocsFilter(django_filters.FilterSet):
         model = Docs
 
         fields = {
-            'title'         :['icontains'],
-            'regist_date'   :['year'],
+            'title'                      :['icontains'],
+            'regist_date'                :['year'],
             'tags__tag_content'          :['icontains'],
         }
 
