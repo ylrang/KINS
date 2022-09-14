@@ -74,61 +74,8 @@
 
 
 
-      <div class="col-lg-10">
-        <div class="accordion-item mt-4">
-          <h2 class="accordion-header" id="experienceOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
-              국가
-            </button>
-          </h2>
-          <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
-            <div class="accordion-body">
-              <div class="side-title">
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked name="selectall" onclick="selectAll(this)" />
-                  <label class="form-check-label text-muted" for="flexCheckChecked1">전체</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked2">미국</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked3">스웨덴</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked5">프랑스</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked6">독일</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked7" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked7">캐나다</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked8" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked8">일본</label>
-                </div>
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked9" checked name="country" onclick="checkSelectAll()"/>
-                  <label class="form-check-label text-muted" for="flexCheckChecked9">IAEA</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- end accordion-item -->
 
-      </div>
       <div class="col-lg-10">
-        {{ document }}
-        {{ field }}
 
         <div class="candidate-list-widgets mb-4">
           <form method="get" name="search_filter" id="search_filter">
@@ -181,6 +128,7 @@
 
                   <input type="hidden" id="documentInput" name="document" value="">
                   <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
+                  <input type="hidden" id="countryInput" name="country" value="">
 
                 </div>
               </div>
@@ -191,7 +139,7 @@
                 <div>
                   <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</button>
 
-                  <a href="{% url 'database' company='BRNC' institution='미국' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
+                  <a href="{% url 'database' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply""></i></a>
                 </div>
               </div>
             </div>
@@ -201,6 +149,77 @@
         </div>
       </div>
       <!--end col-->
+
+      <script>
+        function countryFilter(country) {
+          var form = document.getElementById('search_filter');
+
+          document.getElementById('fieldFormControlInput').value = "{{ field }}";
+
+          document.getElementById('exampleFormControlInput1').value = "{{ search }}";
+
+          document.getElementById('countryInput').value = country;
+
+          form.submit();
+        }
+
+      </script>
+
+      <button type="button" name="button" onclick="countryFilter('IAEA')">CLICK FILTRER</button>
+
+
+      <div class="col-lg-10">
+        <div class="accordion-item mb-4">
+          <h2 class="accordion-header" id="experienceOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#country" aria-expanded="true" aria-controls="country">
+              국가
+            </button>
+          </h2>
+          <div id="country" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
+            <div class="accordion-body">
+              <div class="side-title">
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked name="selectall" onclick="selectAll(this)" />
+                  <label class="form-check-label text-muted" for="flexCheckChecked1">전체</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="미국" id="flexCheckChecked2" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked2">미국</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked3">스웨덴</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked5">프랑스</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked6">독일</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked7" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked7">캐나다</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked8" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked8">일본</label>
+                </div>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked9" checked name="country" onclick="checkSelectAll()"/>
+                  <label class="form-check-label text-muted" for="flexCheckChecked9">IAEA</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end accordion-item -->
+
+      </div>
     </div>
     <!--end row-->
 
@@ -215,34 +234,6 @@
                                 {% if field == "tag" %} for #{{ tag }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
                               </h6>
                             </div>
-                          </div>
-                          <!--end col-->
-
-                          <div class="col-lg-4">
-                            <div class="candidate-list-widgets">
-                              <div class="row">
-                                <div class="col-lg-6">
-                                  <div class="selection-widget">
-                                    <select class="form-select" data-trigger name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
-                                      <option value="df">Default</option>
-                                      <option value="ne">Newest</option>
-                                      <option value="od">Oldest</option>
-                                      <option value="rd">Random</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="selection-widget mt-2 mt-lg-0">
-                                    <select class="form-select" data-trigger name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
-                                      <option value="df">All</option>
-                                      <option value="ne">8 per Page</option>
-                                      <option value="ne">12 per Page</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!--end candidate-list-widgets-->
                           </div>
                           <!--end col-->
 
@@ -266,7 +257,6 @@
                         function searchTag(tag_content) {
                           var form = document.getElementById('search_filter');
 
-                          document.getElementById('tagInput').value = tag_content;
                           document.getElementById('exampleFormControlInput1').value = tag_content;
                           document.getElementById('fieldFormControlInput').value = 'tag';
                           form.submit();

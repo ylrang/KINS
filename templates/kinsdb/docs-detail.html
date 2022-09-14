@@ -27,7 +27,7 @@
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><a href="{% url 'database-index' %}">Database</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'database' company='BRNC' institution='미국' %}">BRNC</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'database' %}">BRNC</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> 문서 </li>
               </ol>
             </nav>
@@ -119,7 +119,7 @@
             <ul class="list-unstyled mb-0">
               <!-- TAGS -->
               {% for tag in doc.tags.all %}
-              <span class="badge bg-soft-muted fs-14 mt-1" onclick=location.href="{% url 'database' company='BRNC' institution='미국' _tag=tag.tag_content %}">#{{ tag.tag_content }}</span>
+              <span class="badge bg-soft-muted fs-14 mt-1" onclick=location.href="{% url 'database' _tag=tag.tag_content %}">#{{ tag.tag_content }}</span>
               {% endfor %}
             </ul>
           </div>
@@ -174,7 +174,7 @@
           <div class="col-lg-10">
           </div>
           <div class="col-lg-2 mt-4">
-            <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'database' company='BRNC' institution=doc.document.institution %}">목록</button>
+            <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'database' %}">목록</button>
           </div>
         </div>
       </div>
