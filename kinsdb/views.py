@@ -67,13 +67,13 @@ def database(request, company, institution, _tag=''):
         docs = Docs.objects.filter(writer__company=company).filter(document__institution=institution)
         search = request.GET.get('search','')
         field = request.GET.get('field')
-        document = request.GET.get('document')
+        document = request.GET.get('document','')
         documents = Document.objects.all()
 
         if field == 'title':
-            docs = docs.filter(Q(title__icontains=search))
+            docs = docs.filter(Q(title__icontains=search)).filter(Q(document__serial_num__icontains=document))
         elif field == 'tag':
-            docs = docs.filter(Q(tags__tag_content__icontains=search))
+            docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(Q(document__serial_num__icontains=document))
 
         if _tag == '':
             tag = request.GET.get('tag','')
