@@ -69,12 +69,13 @@ def details(request, country, title):
 
 
 def database(request, _tag=''):
+    country_list = ['all','미국','스웨덴','핀란드','프랑스','독일','캐나다','일본','IAEA']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
     field = request.GET.get('field')
     document = request.GET.get('document', '')
     documents = Document.objects.all()
-    country = request.GET.get('country', '')
+    country = request.GET.getlist('country', country_list)
 
     if field == 'title':
         docs = docs.filter(Q(title__icontains=search)).filter(
@@ -97,7 +98,7 @@ def database(request, _tag=''):
     page_obj = paginator.page(page_number)
 
     context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter,
-               'search': search, 'documents': documents, 'document': document}
+               'search': search, 'documents': documents, 'document': document, 'country': country }
     return render(request, "kinsdb/BRNC_database.html", context)
 
 
