@@ -10,6 +10,10 @@
     display: inline-block !important;
     padding-left: 3em !important;
   }
+
+  .choices__list--dropdown .choices__item--selectable {
+    white-space: nowrap;
+  }
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -83,25 +87,28 @@
 
 
             <script>
-              function changeDoc(str){
-                document.getElementById('documentInput').value= str;
+              function changeDoc(str) {
+                document.getElementById('documentInput').value = str;
               }
 
-              function changeField(str){
-                document.getElementById('fieldFormControlInput').value= str;
+              function changeField(str) {
+                document.getElementById('fieldFormControlInput').value = str;
               }
             </script>
 
 
             <div class="row g-2 mt-3 mb-3">
-              <div class="col-lg-2">
+              <div class="col-lg-3">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
                   <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" onchange="changeDoc(this.value)">
                     <option value="">문서번호</option>
                     {% for d in documents %}
-                      <option value="{{ d.serial_num }}">{{ d.serial_num }}</option>
+                    <option {% if document == d.serial_num %}selected{% endif %} value="{{ d.serial_num }}">
+                      {{ d.serial_num }}
+                    </option>
                     {% endfor %}
+
                   </select>
                 </div>
               </div>
@@ -112,8 +119,8 @@
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
                   <select class="form-select" data-trigger name="choices-single-cate" id="choices-single-cate" onchange="changeField(this.value)">
-                    <option value="title">제목</option>
-                    <option value="tag">태그</option>
+                    <option {% if field == 'title' %}selected{% endif %}value="title">제목</option>
+                    <option {% if field == 'tag' %}selected{% endif %} value="tag">태그</option>
                   </select>
                 </div>
               </div>
@@ -123,19 +130,18 @@
                 <div class="filler-job-form">
                   <i class="uil uil-search"></i>
 
-                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="" onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
+                  <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }}" onfocus="this.value=''" placeholder="검색어 입력" onblur="this.value=this.value.trim();">
                   <input type="hidden" class="form-control filter-job-input-box" id="tagInput" name="tag" value="{{ tag }} " onfocus="this.value=''" onblur="this.value=this.value.trim();">
 
-                  <input type="hidden" id="documentInput" name="document" value="">
+                  <input type="hidden" id="documentInput" name="document" onfocus="this.value=''" value="10CRF63">
                   <input type="hidden" id="fieldFormControlInput" name="field" value="title" onfocus="this.value=''" placeholder="태그 입력">
-                  <input type="hidden" id="countryInput" name="country" value="">
 
                 </div>
               </div>
               <!--end col-->
 
               <!--end col-->
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <div>
                   <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i> Filter</button>
 
@@ -144,55 +150,55 @@
               </div>
             </div>
             <!--end row-->
-              <div class="accordion-item mb-4">
-                <h2 class="accordion-header" id="experienceOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#country" aria-expanded="true" aria-controls="country">
-                    국가
-                  </button>
-                </h2>
-                <div id="country" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
-                  <div class="accordion-body">
-                    <div class="side-title">
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="전체" id="flexCheckChecked1" {% if 'all' in country %}checked{% endif %} name="selectall" onclick="selectAll(this)" />
-                        <label class="form-check-label text-muted" for="flexCheckChecked1">전체</label>
+              <div class=" accordion-item mb-4">
+                      <h2 class="accordion-header" id="experienceOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#country" aria-expanded="true" aria-controls="country">
+                          국가
+                        </button>
+                      </h2>
+                      <div id="country" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
+                        <div class="accordion-body">
+                          <div class="side-title">
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="전체" id="flexCheckChecked1" checked name="selectall" onclick="selectAll(this)" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked1">전체</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="미국" id="flexCheckChecked2" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked2">미국</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="스웨덴" id="flexCheckChecked3" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked3">스웨덴</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="핀란드" id="flexCheckChecked4" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="프랑스" id="flexCheckChecked5" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked5">프랑스</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="독일" id="flexCheckChecked6" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked6">독일</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="캐나다" id="flexCheckChecked7" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked7">캐나다</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="일본" id="flexCheckChecked8" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked8">일본</label>
+                            </div>
+                            <div class="form-check mt-2">
+                              <input class="form-check-input" type="checkbox" value="IAEA" id="flexCheckChecked9" checked name="country" onclick="checkSelectAll()" />
+                              <label class="form-check-label text-muted" for="flexCheckChecked9">IAEA</label>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="미국" id="flexCheckChecked2" {% if '미국' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked2">미국</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="스웨덴" id="flexCheckChecked3" {% if '스웨덴' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked3">스웨덴</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="핀란드" id="flexCheckChecked4" {% if '핀란드' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked4">핀란드</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="프랑스" id="flexCheckChecked5" {% if '프랑스' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked5">프랑스</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="독일" id="flexCheckChecked6" {% if '독일' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked6">독일</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="캐나다" id="flexCheckChecked7" {% if '캐나다' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked7">캐나다</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="일본" id="flexCheckChecked8" {% if '일본' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked8">일본</label>
-                      </div>
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" value="IAEA" id="flexCheckChecked9" {% if 'IAEA' in country %}checked{% endif %} name="country" onclick="checkSelectAll()"/>
-                        <label class="form-check-label text-muted" for="flexCheckChecked9">IAEA</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- end accordion-item -->
+                </div><!-- end accordion-item -->
 
           </form>
           <!--end form-->
@@ -204,7 +210,7 @@
         function countryFilter(country) {
           var form = document.getElementById('search_filter');
 
-          if(country == 'all'){
+          if (country == 'all') {
             form.submit();
             return;
           }
@@ -212,7 +218,7 @@
           var field = "{{ field }}"
           var search = "{{ search }}"
 
-          if(field != 'None')
+          if (field != 'None')
             document.getElementById('fieldFormControlInput').value = field;
 
 
@@ -222,124 +228,118 @@
 
           form.submit();
         }
-
       </script>
-      <button type="button" name="button" onclick="countryFilter('all')">전체</button>
-      <button type="button" name="button" onclick="countryFilter('미국')">미국</button>
-      <button type="button" name="button" onclick="countryFilter('IAEA')">IAEA</button>
-      <button type="button" name="button" onclick="countryFilter('스웨덴')">스웨덴</button>
 
-      {{ country|length}}: {{ country }}<br>
 
 
     </div>
     <!--end row-->
 
     <div class=" row justify-content-center">
-                      <div class="col-lg-10">
-                        <div class=" row align-items-center">
-                          <div class="col-lg-8">
-                            <div class="mb-3 mb-lg-0">
-                              <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
-                                <b>{{ page_obj.paginator.count }} results</b>
+      <div class="col-lg-10">
+        <div class=" row align-items-center">
+          <div class="col-lg-8">
+            <div class="mb-3 mb-lg-0">
+              <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
+                <b>{{ page_obj.paginator.count }} results</b>
 
-                                {% if field == "tag" %} for #{{ tag }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
-                              </h6>
-                            </div>
-                          </div>
-                          <!--end col-->
+                {% if field == "tag" %} for #{{ tag }} {% elif field == "title" and search %} for "{{ search }}" {% else %} - {% endif %}
+              </h6>
+            </div>
+          </div>
+          <!--end col-->
 
-                        </div>
-                        <!--end row-->
+        </div>
+        <!--end row-->
 
-                      </div>
-                </div>
+      </div>
+    </div>
 
-                <div class="row justify-content-center">
-                  <div class="col-lg-10">
-                    <div class="candidate-list">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="candidate-list">
 
-                      {% for doc in page_obj %}
-                      <!-- start card -->
-                      {% include 'partials/brnc_card.html' %}
-                      <!--end card-->
-                      {% endfor %}
+          {% for doc in page_obj %}
+          <!-- start card -->
+          {% include 'partials/brnc_card.html' %}
+          <!--end card-->
+          {% endfor %}
 
-                      <script>
-                        function searchTag(tag_content) {
-                          var form = document.getElementById('search_filter');
+          <script>
+            function searchTag(tag_content) {
+              var form = document.getElementById('search_filter');
 
-                          document.getElementById('exampleFormControlInput1').value = tag_content;
-                          document.getElementById('fieldFormControlInput').value = 'tag';
-                          form.submit();
-                        }
-                      </script>
+              document.getElementById('exampleFormControlInput1').value = tag_content;
+              document.getElementById('fieldFormControlInput').value = 'tag';
+              form.submit();
+            }
+          </script>
 
-                    </div>
-                    <!--end candidate-list-->
-                  </div>
-                  <!--end col-->
+        </div>
+        <!--end candidate-list-->
+      </div>
+      <!--end col-->
 
-                </div>
-                <!--end row-->
+    </div>
+    <!--end row-->
 
-                <div class="row">
-                  <div class="col-lg-12 mt-5">
-                    <nav>
-                      <ul class="pagination job-pagination mb-0 justify-content-center">
+    <div class="row">
+      <div class="col-lg-12 mt-5">
+        <nav>
+          <ul class="pagination job-pagination mb-0 justify-content-center">
 
-                        {% if page_obj.has_previous %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
 
-                            <i class="mdi mdi-chevron-double-left fs-15"></i>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                          <a class="page-link" href="javascript:void(0)">
+                <i class="mdi mdi-chevron-double-left fs-15"></i>
+              </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="javascript:void(0)">
 
-                            <i class="mdi mdi-chevron-double-left fs-15"></i>
-                          </a>
-                        </li>
-                        {% endif %}
-
-
-                        {% for page_number in page_obj.paginator.page_range %}
-                        {% if page_number == page_obj.number %}
-                        <li class="page-item active" aria-current="page">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
+                <i class="mdi mdi-chevron-double-left fs-15"></i>
+              </a>
+            </li>
+            {% endif %}
 
 
-                        {% if page_obj.has_next %}
-                        <li class="page-item">
-                          <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
-                            <i class="mdi mdi-chevron-double-right fs-15"></i>
-                          </a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                            <i class="mdi mdi-chevron-double-right fs-15"></i>
-                          </a>
-                        </li>
-                        {% endif %}
+            {% for page_number in page_obj.paginator.page_range %}
+            {% if page_number == page_obj.number %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
 
-                      </ul>
-                    </nav>
-                  </div>
-                  <!--end col-->
-                </div><!-- end row -->
 
-              </div>
-              <!--end container-->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
+                <i class="mdi mdi-chevron-double-right fs-15"></i>
+              </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                <i class="mdi mdi-chevron-double-right fs-15"></i>
+              </a>
+            </li>
+            {% endif %}
+
+          </ul>
+        </nav>
+      </div>
+      <!--end col-->
+    </div><!-- end row -->
+
+  </div>
+  <!--end container-->
 </section>
 <!-- END JOB-LIST -->
 {% endblock content %}

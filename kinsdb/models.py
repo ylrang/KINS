@@ -3,18 +3,18 @@ from account.models import myUser
 
 
 class Docs(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    regist_date = models.DateTimeField()
-    last_updated = models.DateTimeField()
-    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)
-    tags = models.ManyToManyField('kinsdb.Tag', related_name='tags')
-    views = models.IntegerField(verbose_name='VIEWS', default=0)
+    title = models.CharField(max_length=200)    #제목
+    content = models.TextField() # 상세내용
+    regist_date = models.DateTimeField(auto_now_add=True, blank=True)   #등록일자
+    last_updated = models.DateTimeField(auto_now_add=True, blank=True)     #최근 수정일
+    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)    #작성자
+    tags = models.ManyToManyField('kinsdb.Tag', related_name='tags', blank=True)    #태그
+    views = models.IntegerField(verbose_name='VIEWS', default=0)       #조회
 
-    index_title = models.CharField(max_length=100, default='')
-    index_num = models.FloatField(default=0)
+    index_title = models.CharField(max_length=100, default='')      #목차
+    index_num = models.FloatField(default=0)        #항목번호
 
-    document = models.ForeignKey('kinsdb.Document', on_delete=models.CASCADE)
+    document = models.ForeignKey('kinsdb.Document', on_delete=models.CASCADE)   #문서     #국가 포함
 
 
     class Meta:

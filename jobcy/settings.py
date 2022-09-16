@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'kinsdb',
     'django_filters',
     'django_rename_app',
+    'import_export',
 ]
 
 MIDDLEWARE = [

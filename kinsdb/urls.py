@@ -19,5 +19,5 @@ urlpatterns = [
     path('siting<str:country>', views.siting, name='siting'),
     path('details<str:country>_<str:title>', views.details, name='details'),
     path('details-component<str:title>', views.detail_component, name='details-component'),
-
+    # path('upload', views.simple_upload, name='upload'),
 ]

@@ -8,6 +8,34 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Count
 
+from .resource import DocsResource
+from django.contrib import messages
+from tablib import Dataset
+from django.http import HttpResponse
+
+def simple_upload(request):
+    if request.method == 'POST':
+        docs_resource = DocsResource()
+        dataset = Dataset()
+        new_docs = request.FILES['myfile']
+
+        if not new_docs.name.endswith('xlsx'):
+            messages.info(request, 'wrong format')
+            return render(request, 'kinsdb/upload.html')
+
+        imported_data = dataset.load(new_docs.read(), format='xlsx')
+        for data in imported_data:
+            value = Docs(
+                data[0],
+                data[1],
+                data[2],
+                data[3],
+            )
+            value.save()
+
+    return render(request, 'kinsdb/upload.html')
+
+
 
 def index(request):
     return render(request, "kinsdb/database-index.html")
@@ -75,7 +103,7 @@ def database(request, _tag=''):
     field = request.GET.get('field')
     document = request.GET.get('document', '')
     documents = Document.objects.all()
-    country = request.GET.getlist('country', country_list)
+    country = ''
 
     if field == 'title':
         docs = docs.filter(Q(title__icontains=search)).filter(
