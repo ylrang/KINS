@@ -103,14 +103,13 @@ def database(request, _tag=''):
     field = request.GET.get('field')
     document = request.GET.get('document', '')
     documents = Document.objects.all()
-    country = ''
+    country = request.GET.getlist('country', country_list)
 
     if field == 'title':
         docs = docs.filter(Q(title__icontains=search)).filter(
-            Q(document__serial_num__icontains=document)).filter(Q(document__institution__icontains=country))
+            Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
     elif field == 'tag':
-        docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(
-            Q(document__serial_num__icontains=document)).filter(Q(document__institution__icontains=country))
+        docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
 
     if _tag == '':
         tag = request.GET.get('tag', '')

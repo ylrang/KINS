@@ -22,6 +22,7 @@ class DocsFilter(django_filters.FilterSet):
             'document__serial_num'       :['icontains'],
             'regist_date'                :['year'],
             'tags__tag_content'          :['icontains'],
+            'document__institution'       :['in'],
         }
 
 class SiteFilter(django_filters.FilterSet):
