@@ -19,7 +19,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">R&D 지원 검토 사례</h3>
+          <h3 class="mb-4">검토 내용 작성</h3>
 
         </div>
       </div>
@@ -29,7 +29,7 @@
   </div>
   <!--end container-->
 </section>
-<!-- end home -->
+
 
 <!-- START SHAPE -->
 <div class="position-relative" style="z-index: 1">
@@ -41,34 +41,36 @@
 </div>
 <!-- END SHAPE -->
 
+
+
 <section>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div id="tabs">
-          <div class="card-body p-4">
-            <div>
-              <h6 class="card-title">검토 진행 사항</h6>
-              <button type="button" class="btn btn-primary" onclick=location.href="{% url 'rnd:create_case' %}">글 작성</button>
+        <form>
 
-              <div class="p-4 border-bottom"></div>
-              <p class="text-muted">검토 진행 사항에 관한 내용 또는 페이지</p>
-              <p class="text-muted">검토 진행 사항에 관한 내용 또는 페이지</p>
-
-
-            </div>
-            <!--end basic-tabs-->
-
-            <!--end nav-pills-->
+          <div class="mb-3">
+            <label for="dateControlInput" class="form-label">일시</label>
+            <input type="date" class="form-control" id="dateControlInput">
           </div>
-          <!--end card-body-->
-        </div>
-        <!--end tabs-->
+          <div class="mb-3">
+            <label for="messageControlTextarea" class="form-label">피드백 요약</label>
+            <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="내용"></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="inputGroupFile01">참고문서</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div>
+          <div class="mb-3">
+            <label for="emailControlInput2" class="form-label">담당자</label>
+            <input type="text" class="form-control" id="emailControlInput2" placeholder="홍길동">
+          </div>
+          <button type="submit" class="btn btn-primary w-100 right">저장</button>
+        </form>
       </div>
     </div>
   </div>
 </section>
-
 
 {% endblock content %}
 {% block javascript %}

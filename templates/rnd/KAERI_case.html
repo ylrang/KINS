@@ -45,25 +45,44 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div id="tabs">
-          <div class="card-body p-4">
-            <div>
-              <h6 class="card-title">검토 진행 사항</h6>
-              <button type="button" class="btn btn-primary" onclick=location.href="{% url 'rnd:create_case' %}">글 작성</button>
+        <h6>검토 진행 사항</h6>
+        <p class="text-muted">검토 진행 사항에 관한 내용 또는 페이지</p>
+        <div class="border-bottom"></div>
 
-              <div class="p-4 border-bottom"></div>
-              <p class="text-muted">검토 진행 사항에 관한 내용 또는 페이지</p>
-              <p class="text-muted">검토 진행 사항에 관한 내용 또는 페이지</p>
+      </div>
 
+      <div class="col-lg-10">
+        <div class="candidate-list">
 
+          <div class="candidate-list-box card mt-4">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="candidate-list-images">
+                    <a href="javascript:void(0)"><img src="{% static 'images/profile.jpg' %}" alt="" class="avatar-md img-thumbnail rounded-circle"></a>
+                  </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-6">
+                  <div class="candidate-list-content mt-3 mt-lg-0">
+                    <h5 class="fs-19 mb-1"><a href="#" class="primary-link"> KAERI 1차 보고서 </a></h5>
+                    <p class="text-muted mb-2"> {{ doc.writer.name }} </p>
+                    <ul class="list-inline mb-0 text-muted">
+                      <li class="list-inline-item">
+                        <i class="mdi mdi-map-marker"></i> 접수일자: {{ doc.regist_date|date:'Y-m-d' }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!--end col-->
+
+                <!--end col-->
+              </div>
+              <!--end row-->
             </div>
-            <!--end basic-tabs-->
-
-            <!--end nav-pills-->
           </div>
-          <!--end card-body-->
         </div>
-        <!--end tabs-->
       </div>
     </div>
   </div>
