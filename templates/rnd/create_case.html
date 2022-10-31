@@ -45,20 +45,23 @@
 
 <section>
   <div class="container">
+
+
     <div class="row justify-content-center">
+
       <div class="col-lg-10">
         <form>
-
           <div class="mb-3">
             <label for="dateControlInput" class="form-label">일시</label>
-            <input type="date" class="form-control" id="dateControlInput">
+            <input type="date" class="form-control" id="dateControlInput" readonly>
+
           </div>
           <div class="mb-3">
             <label for="messageControlTextarea" class="form-label">피드백 요약</label>
             <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="내용"></textarea>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="inputGroupFile01">참고문서</label>
+            <label class="form-label" for="inputGroupFile01">검토 보고서</label>
             <input type="file" class="form-control" id="inputGroupFile01">
           </div>
           <div class="mb-3">
@@ -72,6 +75,9 @@
   </div>
 </section>
 
+<script>
+  document.getElementById('dateControlInput').value = new Date().toISOString().substring(0, 10);;
+</script>
 {% endblock content %}
 {% block javascript %}
 <!-- JAVASCRIPT -->
