@@ -5,19 +5,27 @@
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
-  .img-fluid {
-    object-fit: scale-down;
-    height: 100px !important;
-    max-width: 80% !important;
+  table {
+    width: 85%;
+    border: 1px solid black;
   }
-  .custom-card {
-    align-items: center;
-    height: 8em;
-    display: flex;
-    align-content: stretch;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+
+  .tb-col {
+    width: 10%;
+  }
+
+  td {
+    width: 20%;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  td, th {
+    vertical-align: middle;
+  }
+
+  .data {
+    text-decoration: underline;
   }
 </style>
 {% endblock extra_css %}
@@ -56,48 +64,222 @@
   <div class="container">
 
     <div class="row">
+      <div class="col-lg-12">
 
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4 custom-card">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">개발단계 및 Safety Case 별<br> 규제사례</h6>
-              </a>
 
-              <a href="{% url 'safety' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
+        <div class="card-body p-4">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0">
+              <thead>
+                <tr>
+                  <td colspan="6">전체 메뉴</td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center" bgcolor="lightblue"></td>
+                  <th scope="col" class="text-center">
+                    개념화 단계<br>
+                    <span class="fw-normal"></span>
+                  </th>
+                  <th scope="col" class="text-center">
+                    조사/선정 단계<br>
+                    <span class="fw-normal"></span>
+                  </th>
+                  <th scope="col" class="text-center">
+                    기준 설계/인허가<br>신청단계
+
+                  </th>
+                  <th scope="col" class="text-center">
+                    건설 단계<br>
+                    <span class="fw-normal"></span>
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">Safety Context</td>
+                  <td class="data" onclick=location.href="{% url 'document' %}">SR-97 검토 (SKI/SSI, 2001, 스웨덴)</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">안전전략</td>
+                  <td class="data">SR-Can (EBS Group, 2008, 스웨덴)</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" rowspan="3" align="center">평가 베이시스</td>
+                  <td class="tb-col" bgcolor="#E1F3FE">부지 특성</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col">폐기물 특성</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col">처분장 설계</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="tb-col" rowspan="2" align="center">안전성 평가</td>
+                  <td class="tb-col">운영 중 안전성 평가</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col">폐쇄 후 안전성 평가</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">관리 시스템/이해관계자 및 규제기관 참여</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">증거들의 종합</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">불확실성 관리</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col" colspan="2" align="center">한계점, 통제 및 조건</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+              </tbody>
+            </table>
+            <!--end table-->
           </div>
         </div>
       </div>
-      <!--end col-->
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4 custom-card">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">KBS-3 구성요소별 요건</h6>
-              </a>
-              <a href="{% url 'kbs-3' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-      <div class="col-lg-4 col-md-6">
-        <div class="card text-center mb-4">
-          <div class="card-body px-4 py-5">
-            <div class="mt-4 custom-card">
-              <a href="#" class="primary-link">
-                <h6 class="fs-18 mb-2">부지선정인자</h6>
-              </a>
-              <a href="{% url 'siting' country='스웨덴' %}" class="btn btn-primary">국가별 문서</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
+      <div class="col-lg-12">
+        <table border="1" bordercolor="lightgray" align="center">
+          <tr bgcolor="skyblue" align="center">
+            <p>
+              <td colspan="6" span style="color:white">전체 메뉴</td>
+            </p>
+          </tr>
+          <tr align="center" bgcolor="lightblue">
+            <td colspan="2" align="center" bgcolor="lightblue"></td>
+            <td>개념화 단계</td>
+            <td>조사/선정 단계</td>
+            <td>기준 설계/인허가<br>신청 단계</td>
+            <td>건설 단계</td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">Safety Context</td>
+            <td class="data">SR-97 검토 (SKI/SSI, 2001, 스웨덴)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">안전전략</td>
+            <td class="data">SR-Can (EBS Group, 2008, 스웨덴)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" rowspan="3" align="center" bgcolor="lightblue">평가 베이시스</td>
+            <td class="tb-col" bgcolor="#E1F3FE">부지 특성</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" bgcolor="#E1F3FE">폐기물 특성</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" bgcolor="#E1F3FE">처분장 설계</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
 
+          <tr>
+            <td class="tb-col" rowspan="2" align="center" bgcolor="lightblue">안전성 평가</td>
+            <td class="tb-col" bgcolor="#E1F3FE">운영 중 안전성 평가</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" bgcolor="#E1F3FE">폐쇄 후 안전성 평가</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">관리 시스템/이해관계자 및 규제기관 참여</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">증거들의 종합</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">불확실성 관리</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">한계점, 통제 및 조건</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+        </table>
+      </div>
 
     </div>
     <!--end row-->

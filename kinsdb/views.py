@@ -44,6 +44,13 @@ def index(request):
 def unist(request):
     return render(request, "kinsdb/UNIST/unist.html")
 
+
+def document(request):
+    return render(request, "kinsdb/UNIST/document.html")
+
+def document_detail(request):
+    return render(request, "kinsdb/UNIST/document-detail.html")
+
 # 1
 
 
