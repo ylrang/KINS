@@ -96,11 +96,21 @@
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
                   <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" onchange="changeDoc(this.value)">
-                    <option value="">문서번호</option>
-                    {% for d in documents %}
+                    <option value="">국가</option>
+                    <option value="미국">미국</option>
+                    <option value="스웨덴">스웨덴</option>
+                    <option value="스위스">스위스</option>
+                    <option value="영국">영국</option>
+                    <option value="일본">일본</option>
+                    <option value=캐나다"">캐나다</option>
+                    <option value="핀란드">핀란드</option>
+                    <option value="프랑스">프랑스</option>
+
+                    <!-- {% for d in documents %}
                     <option {% if document == d.serial_num %}selected{% endif %} value="{{ d.serial_num }}">
                       {{ d.serial_num }}
-                    </option> {% endfor %}
+                    </option>
+                    {% endfor %} -->
                   </select>
                 </div>
               </div>

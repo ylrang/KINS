@@ -24,8 +24,9 @@
     vertical-align: middle;
   }
 
-  .data {
+  .data:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 </style>
 {% endblock extra_css %}
@@ -81,15 +82,22 @@
                     <span class="fw-normal"></span>
                   </th>
                   <th scope="col" class="text-center">
-                    조사/선정 단계<br>
+                    부지조사/선정 단계<br>
                     <span class="fw-normal"></span>
                   </th>
                   <th scope="col" class="text-center">
                     기준 설계/인허가<br>신청단계
-
                   </th>
                   <th scope="col" class="text-center">
                     건설 단계<br>
+                    <span class="fw-normal"></span>
+                  </th>
+                  <th scope="col" class="text-center">
+                    운영 단계<br>
+                    <span class="fw-normal"></span>
+                  </th>
+                  <th scope="col" class="text-center">
+                    폐쇄 단계<br>
                     <span class="fw-normal"></span>
                   </th>
 
@@ -98,37 +106,50 @@
               <tbody>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">Safety Context</td>
-                  <td class="data" onclick=location.href="{% url 'document' %}">SR-97 검토 (SKI/SSI, 2001, 스웨덴)</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">안전전략</td>
-                  <td class="data">SR-Can (EBS Group, 2008, 스웨덴)</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
                 <tr>
                   <td class="tb-col" rowspan="3" align="center">평가 베이시스</td>
                   <td class="tb-col" bgcolor="#E1F3FE">부지 특성</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="tb-col">폐기물 특성</td>
-                  <td></td>
-                  <td></td>
+                  <td class="data" onclick=location.href="{% url 'document' %}">An international peer review of the post-closure
+                    radiological safety assessment for disposal in the Opalinus Clay of the Zürcher Weinland (스위스, 2004, NEA)</td>
+                  <td>International Expert Review of SRCan: Site Investigation Aspects External review contribution in support of SKI’s and SSI’s review of SR-Can (스웨덴, 2008, SKI/SSI)</td>
+                  <td>SR-Site initial review (스웨덴, 2011~2013, SSM)</td>
+                  <td>EPG<br> SITEX-II Project</td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td class="tb-col">처분장 설계</td>
+                  <td>Report of the Special Review Committee on the NUMO safety case (일본, 2019, AESJ)</td>
+                  <td>International Expert Review of SRCan: Engineered Barrier Issues (스웨덴, 2008, SKI)</td>
+                  <td>SR-Site Main review (스웨덴, 2013~2015, SSM)</td>
+                  <td>EPG<br> SITEX-II Project</td>
                   <td></td>
                   <td></td>
+                </tr>
+                <tr>
+                  <td class="tb-col">안전성 평가 방법론</td>
+                  <td>Pre-application advice and scrutiny of Radioactive Waste Management Limited: Joint regulators'
+                    assessment of the 2016 generic Disposal System Safety Case (UK, 2018, ONR/EA)</td>
+                  <td>Review of SKB’s interim report of SR-Can: SKI’s and SSI’s evaluation of SKB’s up-dated methodology for safety assessment (스웨덴, 2005, SSI)
+                    International Expert Review of Sr-Can: Safety Assessment Methodology (스웨덴, 2008, SSI)</td>
+                  <td>STUK's review on the construction license stage post closure safety case of the spent nuclear fuel disposal in Olkiluoto (핀란드, 2015, STUK)</td>
+                  <td>EPG<br> SITEX-II Project</td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -136,8 +157,10 @@
                 <tr>
                   <td class="tb-col" rowspan="2" align="center">안전성 평가</td>
                   <td class="tb-col">운영 중 안전성 평가</td>
-                  <td></td>
-                  <td></td>
+                  <td rowspan="2">EPG</td>
+                  <td rowspan="2">EPG<br> SITEX-II Project</td>
+                  <td rowspan="2">EPG<br> SITEX-II Project</td>
+                  <td rowspan="2">EPG<br> SITEX-II Project</td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -145,36 +168,42 @@
                   <td class="tb-col">폐쇄 후 안전성 평가</td>
                   <td></td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">관리 시스템/이해관계자 및 규제기관 참여</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG<br> SITEX-II Project</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">증거들의 종합</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG<br> SITEX-II Project</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">불확실성 관리</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
                 <tr>
                   <td class="tb-col" colspan="2" align="center">한계점, 통제 및 조건</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>EPG</td>
+                  <td>EPG<br> SITEX-II Project</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
+                  <td>EPG</td>
                 </tr>
 
               </tbody>
@@ -183,103 +212,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12">
-        <table border="1" bordercolor="lightgray" align="center">
-          <tr bgcolor="skyblue" align="center">
-            <p>
-              <td colspan="6" span style="color:white">전체 메뉴</td>
-            </p>
-          </tr>
-          <tr align="center" bgcolor="lightblue">
-            <td colspan="2" align="center" bgcolor="lightblue"></td>
-            <td>개념화 단계</td>
-            <td>조사/선정 단계</td>
-            <td>기준 설계/인허가<br>신청 단계</td>
-            <td>건설 단계</td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">Safety Context</td>
-            <td class="data">SR-97 검토 (SKI/SSI, 2001, 스웨덴)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">안전전략</td>
-            <td class="data">SR-Can (EBS Group, 2008, 스웨덴)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" rowspan="3" align="center" bgcolor="lightblue">평가 베이시스</td>
-            <td class="tb-col" bgcolor="#E1F3FE">부지 특성</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" bgcolor="#E1F3FE">폐기물 특성</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" bgcolor="#E1F3FE">처분장 설계</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
 
-          <tr>
-            <td class="tb-col" rowspan="2" align="center" bgcolor="lightblue">안전성 평가</td>
-            <td class="tb-col" bgcolor="#E1F3FE">운영 중 안전성 평가</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" bgcolor="#E1F3FE">폐쇄 후 안전성 평가</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">관리 시스템/이해관계자 및 규제기관 참여</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">증거들의 종합</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">불확실성 관리</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="tb-col" colspan="2" align="center" bgcolor="lightblue">한계점, 통제 및 조건</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-
-        </table>
-      </div>
 
     </div>
     <!--end row-->
