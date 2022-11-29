@@ -104,25 +104,27 @@ def details(request, country, title):
 
 
 def database(request, _tag=''):
-    country_list = ['all','미국','스웨덴','핀란드','프랑스','독일','캐나다','일본','IAEA']
+    regulation_list = ['all','법률', '규정', '규제지침']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
     field = request.GET.get('field', '')
-    document = request.GET.get('document', '')
+    country = request.GET.get('country', '')
     documents = Document.objects.all()
-    country = request.GET.getlist('country', country_list)
+    regulation = request.GET.getlist('regulation', regulation_list)
 
-    if field == 'title':
-        docs = docs.filter(Q(title__icontains=search)).filter(
-            Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
-    elif field == 'tag':
-        docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
+    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country)).filter(Q(keyword__icontains=field))
 
-    if _tag == '':
-        tag = request.GET.get('tag', '')
-    else:
-        tag = _tag
-        docs = docs.filter(Q(tags__tag_content__icontains=tag))
+    # if field == 'title':
+    #     docs = docs.filter(Q(title__icontains=search)).filter(
+    #         Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
+    # elif field == 'tag':
+    #     docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
+
+    # if _tag == '':
+    #     tag = request.GET.get('tag', '')
+    # else:
+    #     tag = _tag
+    #     docs = docs.filter(Q(tags__tag_content__icontains=tag))
 
     docsFilter = DocsFilter(request.GET, queryset=docs)
     docs = docsFilter.qs
@@ -131,8 +133,8 @@ def database(request, _tag=''):
     page_number = request.GET.get('page', '1')
     page_obj = paginator.page(page_number)
 
-    context = {'page_obj': page_obj, 'field': field, 'tag': tag, 'docsFilter': docsFilter,
-               'search': search, 'documents': documents, 'document': document, 'country': country }
+    context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter,
+               'search': search, 'documents': documents, 'country': country, 'regulation': regulation }
     return render(request, "kinsdb/BRNC_database.html", context)
 
 

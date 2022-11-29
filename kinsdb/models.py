@@ -5,6 +5,7 @@ from account.models import myUser
 class Docs(models.Model):
     title = models.CharField(max_length=200)    #제목
     content = models.TextField() # 상세내용
+    keyword = models.TextField()
     regist_date = models.DateTimeField(auto_now_add=True, blank=True)   #등록일자
     last_updated = models.DateTimeField(auto_now_add=True, blank=True)     #최근 수정일
     writer = models.ForeignKey(myUser, on_delete=models.PROTECT)    #작성자

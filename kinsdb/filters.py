@@ -19,9 +19,6 @@ class DocsFilter(django_filters.FilterSet):
 
         fields = {
             'title'                      :['icontains'],
-            'document__serial_num'       :['icontains'],
-            'regist_date'                :['year'],
-            'tags__tag_content'          :['icontains'],
             'document__institution'       :['in'],
         }
 
