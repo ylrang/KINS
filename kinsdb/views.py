@@ -112,7 +112,8 @@ def database(request, _tag=''):
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
 
-    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country)).filter(Q(keyword__icontains=field))
+    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country))
+    # .filter(Q(field__in=field))
 
     # if field == 'title':
     #     docs = docs.filter(Q(title__icontains=search)).filter(

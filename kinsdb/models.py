@@ -5,7 +5,9 @@ from account.models import myUser
 class Docs(models.Model):
     title = models.CharField(max_length=200)    #제목
     content = models.TextField() # 상세내용
-    keyword = models.TextField()
+
+    field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
+
     regist_date = models.DateTimeField(auto_now_add=True, blank=True)   #등록일자
     last_updated = models.DateTimeField(auto_now_add=True, blank=True)     #최근 수정일
     writer = models.ForeignKey(myUser, on_delete=models.PROTECT)    #작성자
@@ -84,6 +86,14 @@ class Keyword(models.Model):
 
     def __str__(self):
         return self.key_content
+
+
+
+class Field(models.Model):
+    field = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.field
 
 
 ####
