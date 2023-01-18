@@ -1,15 +1,7 @@
 from django.urls import path
 # urls.py
 from cloud import views
-
 urlpatterns = [
-
-    #Cloud
-    path('', views.CloudIndex.as_view(),name='index'),
-    path('calendar', views.CalendarView.as_view(), name='calendar'),
-    path('notice', views.notice, name='notice'),
-
-
     # Jobs
     path('job-list', views.JobList.as_view(),name="job-list"),
     path('job-list-2', views.JobList2.as_view(),name="job-list-2"),
@@ -18,13 +10,12 @@ urlpatterns = [
     path('job-details', views.JobDetails.as_view(),name="job-details"),
     path('job-categories', views.JobCategories.as_view(),name="job-categories"),
 
-    # Document Board
+    # Candidates/Company
     path('shared-documents', views.SharedDocumentList.as_view(),name="shared-documents"),
     path('candidate-grid', views.CandidateGrid.as_view(),name="candidate-grid"),
     path('candidate-details', views.CandidateDetails.as_view(),name="candidate-details"),
     path('company-list', views.CompanyList.as_view(),name="company-list"),
     path('company-details', views.CompanyDetails.as_view(),name="company-details"),
-    path('create-document', views.CreateDocument, name='create-document'),
 
     # Extra-Pages
     path('sign-up', views.SignUp.as_view(),name="sign-up"),
@@ -34,5 +25,9 @@ urlpatterns = [
     path('comingsoon', views.ComingSoon.as_view(),name="comingsoon"),
     path('404-error', views.Error404.as_view(),name="404-error"),
     path('components', views.Components.as_view(),name="components"),
+
+
+    path('calendar', views.CalendarView.as_view(), name='calendar'),
+    path('notice', views.notice, name='notice'),
 
 ]

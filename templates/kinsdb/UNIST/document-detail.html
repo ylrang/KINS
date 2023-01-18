@@ -39,7 +39,7 @@
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><a href="{% url 'database-index' %}">Database</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'database' %}">SafetyCase</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'brnc' %}">SafetyCase</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> 구리부식 </li>
               </ol>
             </nav>
@@ -129,7 +129,7 @@
             <h6 class="fs-17 fw-semibold mb-3">연관 태그</h6>
             <ul class="list-unstyled mb-0">
               <!-- TAGS -->
-              
+
               {% for tag in doc.tags.all %}
               <span class="badge bg-soft-muted fs-14 mt-1" onclick=location.href="#">#{{ tag.tag_content }}</span>
               {% endfor %}

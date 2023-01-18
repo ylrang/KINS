@@ -103,7 +103,7 @@ def details(request, country, title):
     return render(request, "kinsdb/UNIST/siting-detail.html", context)
 
 
-def database(request, _tag=''):
+def brnc(request, _tag=''):
     regulation_list = ['all','법률', '규정', '규제지침']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')

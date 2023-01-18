@@ -20,17 +20,17 @@ class JobDetails(TemplateView):
 class JobCategories(TemplateView):
     template_name = "cloud/jobs/job-categories.html"
 
-# Candidates-Company
-class CandidateList(TemplateView):
-    template_name = "cloud/candidates-company/candidate-list.html"
+# document-board
+class SharedDocumentList(TemplateView):
+    template_name = "cloud/document-board/shared-documents.html"
 class CandidateGrid(TemplateView):
-    template_name = "cloud/candidates-company/candidate-grid.html"
+    template_name = "cloud/document-board/candidate-grid.html"
 class CandidateDetails(TemplateView):
-    template_name = "cloud/candidates-company/candidate-details.html"
+    template_name = "cloud/document-board/candidate-details.html"
 class CompanyList(TemplateView):
-    template_name = "cloud/candidates-company/company-list.html"
+    template_name = "cloud/document-board/company-list.html"
 class CompanyDetails(TemplateView):
-    template_name = "cloud/candidates-company/company-details.html"
+    template_name = "cloud/document-board/company-details.html"
 
 # Extra-Pages
 class SignUp(TemplateView):
@@ -54,6 +54,8 @@ from django.shortcuts import render
 def notice(request):
     return render(request, "index/notice.html")
 
+def CreateDocument(request):
+    return render(request, "cloud/document-board/create_document.html")
 
 
 from .models import *
