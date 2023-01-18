@@ -109,10 +109,11 @@ def brnc(request, _tag=''):
     search = request.GET.get('search', '')
     field = request.GET.get('field', '')
     country = request.GET.get('country', '')
+    # sector = re/quest.GET.get('sector', '')
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
 
-    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country))
+    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country)).filter(Q(sector__icontains=field))
     # .filter(Q(field__in=field))
 
     # if field == 'title':

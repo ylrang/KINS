@@ -6,7 +6,7 @@ class Docs(models.Model):
     title = models.CharField(max_length=200)    #제목
     content = models.TextField() # 상세내용
 
-    field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
+    # field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
 
     regist_date = models.DateTimeField(auto_now_add=True, blank=True)   #등록일자
     last_updated = models.DateTimeField(auto_now_add=True, blank=True)     #최근 수정일
@@ -16,6 +16,8 @@ class Docs(models.Model):
 
     index_title = models.CharField(max_length=100, default='')      #목차
     index_num = models.FloatField(default=0)        #항목번호
+
+    sector = models.CharField(max_length=40, default='-')
 
     document = models.ForeignKey('kinsdb.Document', on_delete=models.CASCADE)   #문서     #국가 포함
 
@@ -89,11 +91,11 @@ class Keyword(models.Model):
 
 
 
-class Field(models.Model):
-    field = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.field
+# class Field(models.Model):
+#     field = models.CharField(max_length=100)
+#
+#     def __str__(self):
+#         return self.field
 
 
 ####
