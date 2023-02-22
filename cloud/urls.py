@@ -35,4 +35,12 @@ urlpatterns = [
     path('404-error', views.Error404.as_view(),name="404-error"),
     path('components', views.Components.as_view(),name="components"),
 
+    path('Import_Excel_pandas/', views.Import_Excel_pandas, name='Import_Excel_pandas'),
+    path('Import_excel', views.Import_excel, name='Import_excel'),
+
 ]
+
+from jobcy import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

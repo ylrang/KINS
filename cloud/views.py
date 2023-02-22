@@ -101,3 +101,48 @@ def next_month(d):
     next_month = last + timedelta(days=1)
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
+
+
+
+
+
+from http.client import HTTPResponse
+from django.shortcuts import render
+import pandas as pd
+import os
+from django.core.files.storage import FileSystemStorage
+from .models import Person
+
+
+def Import_Excel_pandas(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        empexceldata = pd.read_excel(filename)
+        dbframe = empexceldata
+        for dbframe in dbframe.itertuples():
+            obj = Person.objects.create(code=dbframe.code, name=dbframe.name, phone=dbframe.phone, age=dbframe.age, grade=dbframe.grade)
+            obj.save()
+
+        return render(request, 'cloud/import_excel_db.html', {'uploaded_file_url': uploaded_file_url})
+
+    return render(request, 'cloud/import_excel_db.html', {})
+
+
+from tablib import Dataset
+from .resource import PersonResource
+
+def Import_excel(request):
+    if request.method == 'POST' :
+        Person =PersonResource()
+        dataset = Dataset()
+        new_person = request.FILES['myfile']
+        data_import = dataset.load(new_person.read())
+
+        result = PersonResource.import_data(dataset,dry_run=True)
+        if not result.has_errors():
+            PersonResource.import_data(dataset,dry_run=False)
+
+        return render(request, 'cloud/import_excel_db.html', {} )

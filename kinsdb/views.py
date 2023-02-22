@@ -102,6 +102,9 @@ def details(request, country, title):
 
     return render(request, "kinsdb/UNIST/siting-detail.html", context)
 
+def test_brnc(request):
+    return render(request, "kinsdb/BRNC/brnc.html")
+
 
 def brnc(request, _tag=''):
     regulation_list = ['all','법률', '규정', '규제지침']

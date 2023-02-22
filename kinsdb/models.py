@@ -4,7 +4,8 @@ from account.models import myUser
 
 class Docs(models.Model):
     title = models.CharField(max_length=200)    #제목
-    content = models.TextField() # 상세내용
+    content_kor = models.TextField() # 상세내용
+    content_eng = models.TextField()
 
     # field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
 

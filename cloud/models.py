@@ -17,6 +17,19 @@ class Event(models.Model):
         return self.title
 
 
+
+class Person(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=12, null=True)
+    age = models.IntegerField(default=0)
+    grade = models.FloatField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.name
+
+    objects = models.Manager()
+
+
 #
 # from django.db import models
 # from django.utils import timezone

@@ -6,6 +6,9 @@ urlpatterns = [
     path('institution', views.institution, name='institution'),
     path('site', views.site, name='site'),
     path('brnc<str:_tag>', views.brnc, name='brnc'),
+
+    path('test_brnc', views.test_brnc, name='test_brnc'),
+
     path('brnc', views.brnc, name='brnc'),
     path('docs-details<int:pk>', views.docs_detail, name='docs-details'),
     path('site-details<int:pk>', views.site_detail, name='site-details'),

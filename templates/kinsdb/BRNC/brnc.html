@@ -1,0 +1,198 @@
+{% extends 'partials/rnd_base.html' %}
+{% load static %}
+{% block title %}Database{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+<style>
+
+  table {
+    width: 85%;
+    border: 1px solid black;
+  }
+
+  .tb-col {
+    width: 10%;
+  }
+
+  td {
+    width: 20%;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  td, th {
+    vertical-align: middle;
+  }
+
+  .data:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .custom li {
+    flex: 1;
+    text-align: center;
+    border: 1px solid lightgray;
+  }
+
+ .nav-pills .nav-link {
+   border-radius: 0 !important;
+ }
+
+</style>
+{% endblock extra_css %}
+{% block content %}
+<!-- Start home -->
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h3 class="mb-4"> 규제기준 데이터베이스 </h3>
+
+
+
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- end home -->
+
+<!-- START SHAPE -->
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
+<!-- END SHAPE -->
+
+
+
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="mt-5">
+            <h6 class="card-title">데이터베이스 보기</h6>
+            <p class="text-muted">규제기준 데이터베이스 바로가기</p>
+
+
+            <ul class="nav nav-pills custom" role="tablist">
+              <li class="nav-item waves-effect waves-light">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#ALL" role="tab">
+                      <span>전체</span>
+                  </a>
+              </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#USA" role="tab">
+                        <span>미국</span>
+                    </a>
+                </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#SWE" role="tab">
+                        <span>스웨덴</span>
+                    </a>
+                </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#CHE" role="tab">
+                        <span>스위스</span>
+                    </a>
+                </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#GBR" role="tab">
+                        <span>영국</span>
+                    </a>
+                </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#JPN" role="tab">
+                        <span>일본</span>
+                    </a>
+                </li>
+
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-bs-toggle="tab" href="#CAN" role="tab">
+                        <span>캐나다</span>
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="tab-content p-3 text-muted">
+              <div class="tab-pane active" id="ALL" role="tabpanel">
+                  <p class="mb-0">
+                      DB
+                  </p>
+              </div>
+                <div class="tab-pane" id="USA" role="tabpanel">
+                    <p class="mb-0">
+                        미국
+                    </p>
+                </div>
+                <div class="tab-pane" id="SWE" role="tabpanel">
+                    <p class="mb-0">
+                        스웨덴의 안전규제
+                    </p>
+                </div>
+                <div class="tab-pane" id="CHE" role="tabpanel">
+                    <p class="mb-0">
+                      스위스
+                    </p>
+                </div>
+                <div class="tab-pane" id="GBR" role="tabpanel">
+                    <p class="mb-0">
+                      영국
+                    </p>
+                </div>
+                <div class="tab-pane" id="JPN" role="tabpanel">
+                    <p class="mb-0">
+                      일본
+                    </p>
+                </div>
+                <div class="tab-pane" id="CAN" role="tabpanel">
+                    <p class="mb-0">
+                      캐나다
+                    </p>
+                </div>
+            </div>
+        </div><!--end nav-pills-->
+      </div>
+
+
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}
