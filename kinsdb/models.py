@@ -50,11 +50,24 @@ class Document(models.Model):
     institution = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name = 'Documents'
-        verbose_name_plural = 'Documents'
+        verbose_name = 'BRNC_Documents'
+        verbose_name_plural = 'BRNC_Documents'
 
     def __str__(self):
         return self.serial_num
+
+
+class Report(models.Model):
+    title = models.CharField(max_length=200)
+    serial_num = models.IntegerField()
+    summary = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = 'UNIST_Reports'
+        verbose_name_plural = 'UNIST_Reports'
+
+    def __str__(self):
+        return self.title
 
 
 class Site(models.Model):

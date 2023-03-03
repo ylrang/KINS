@@ -5,25 +5,30 @@
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
-  .tb-col {
-    width: 10%;
-  }
 
-  td {
-    width: 20%;
-    text-align: center;
-    font-size: 13px;
+
+
+  th {
+    font-weight: 800 !important;
+    background-color: whitesmoke !important;
   }
 
   td,
   th {
     vertical-align: middle;
+    font-size: 11px;
+    text-align: center !important;
   }
 
   .data:hover {
     text-decoration: underline;
     cursor: pointer;
   }
+
+  td:nth-child(1) {
+    width: 10px;
+  }
+
 </style>
 {% endblock extra_css %}
 
@@ -68,10 +73,10 @@
             <table class="table table-bordered mb-0">
               <thead>
                 <tr>
-                  <td colspan="14">전체 메뉴</td>
+                  <th colspan="14">전체 메뉴</th>
                 </tr>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center"></td>
+                  <th class="tb-col" colspan="2" align="center"></th>
                   <th scope="col" colspan="2" class="text-center">
                     개념화 단계<br>
                     <span class="fw-normal"></span>
@@ -99,7 +104,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center">Safety Context</td>
+                  <th colspan="2">Safety Context</th>
                   <td>EPG</td>
                   <td></td>
                   <td>EPG</td>
@@ -114,7 +119,7 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center">안전전략</td>
+                  <th colspan="2">안전전략</th>
                   <td>EPG</td>
                   <td></td>
                   <td>EPG</td>
@@ -129,39 +134,49 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td class="tb-col" rowspan="3" align="center">평가 베이시스</td>
-                  <td class="tb-col">부지 특성</td>
+                  <th rowspan="3">평가 베이시스</th>
+                  <th>부지 특성</th>
                   <td rowspan="3">
                     <p>EPG</p>
-                    <p>1) An international peer review of the post-closure
-                      radiological safety assessment for disposal in the Opalinus Clay of the Zürcher Weinland (스위스, 2004, NEA)
-                    </p>
-                    <p>2) Report of the Special Review Committee on the NUMO safety case (일본, 2019, AESJ)</p>
-                    <p>3) Pre-application advice and scrutiny of Radioactive Waste Management Limited: Joint regulators' assessment of the 2016 generic Disposal System Safety Case (UK, 2018, ONR/EA)</p>
-                  </td>
-                  <td>
-                    <p>4) An International Peer Review of the "Dossier 2005 Argile" concerning Disposal in the Callovo-Oxfordian Formation (프랑스, 2006, NEA)</p>
-                    <p>5) Japan’s Siting Process for the Geological Disposal of High-level Radioactive Waste (일본, 2016, NEA)</p>
                   </td>
                   <td rowspan="3">
-                    <p class="data" onclick=location.href="{% url 'document' %}">EPG</p>
+                    <p>1) 「Dossier 2005 Argile」 규제 검토 사례(프랑스)</p>
+                    <p>2) 프랑스 부지조사단계 검토 사례 (URL 부지선정)</p>
+                    <p>3) 스위스 타당성 조사 규제 검토 사례</p>
+                  </td>
+
+                  <td rowspan="3">
+                    <p>EPG</p>
                     <p> SITEX-II Project</p>
                   </td>
+
                   <td>
-                    6) International Expert Review of SRCan: Site Investigation Aspects External review contribution in support of SKI’s and SSI’s review of SR-Can (스웨덴, 2008, SKI/SSI)
+                    <p>4) ZIRA 선정과정 규제 검토 사례 (프랑스)</p>
+                    <p>5) INSTIE 검토 그룹(지질관련) 이슈 리스트 (스웨덴)</p>
+                    <p>6) 스웨덴 부지 조사 단계(현장조사 3단계)</p>
+                    <p>7) SR-Can 외부 전문가 검토 사례 (스웨덴)</p>
+                    <p>8) 스위스의 부지조사 단계 규제 검토 사례</p>
+                  </td>
+
+
+                  <td rowspan="3">
+                    <p>EPG</p>
+                    <p>SITEX-Ⅱ Project</p>
+
+                    <p class="data" onclick=location.href="{% url 'document' doc_num=11 %}">11) SR-Site initial review (스웨덴, 2011~2013, SSM)</p>
+                    <p>12) SR-Site Main review (스웨덴, 2013~2015, SSM)</p>
+                    <p>13) STUK's review on the construction license stage<br>
+                      post closure safety case of the spent nuclear fuel disposal<br>
+                      in Olkiluoto (핀란드, 2015, STUK)</p>
+                  </td>
+
+                  <td>
+                    <p>14) SSM 건설 인허가 규제 검토 (초기 검토 단계, 스웨덴)</p>
+                    <p>15) SSM 건설 인허가 규제 검토 (주 검토 단계, 스웨덴)</p>
                   </td>
                   <td rowspan="3">
                     <p>EPG</p>
                     <p>SITEX-Ⅱ Project</p>
-                    <p>10) SR-Site initial review (스웨덴, 2011~2013, SSM)</p>
-                    <p>11) SR-Site Main review (스웨덴, 2013~2015, SSM)</p>
-                    <p>12) STUK's review on the construction license stage post closure safety case of the spent nuclear fuel disposal in Olkiluoto (핀란드, 2015, STUK)</p>
-                  </td>
-
-                  <td></td>
-                  <td rowspan="3">
-                    <p>EPG</p>
-                    <p>SITEX-Ⅱ Project</p>
                   </td>
                   <td></td>
                   <td></td>
@@ -171,27 +186,17 @@
 
                 </tr>
                 <tr>
-                  <td class="tb-col">처분장 설계</td>
-                  <td></td>
+                  <th>처분장 설계</th>
                   <td>
-                    7) International Expert Review of SRCan: Engineered Barrier Issues (스웨덴, 2008, SKI)
+                    <p>9) SR-Can 외부 전문가 검토 사례 (스웨덴)</p>
                   </td>
-                  <td>13) Review of Engineered Barrier System (EBS) topics in Posiva’s construction license application for a spent fuel repository at Olkiluoto, Finland (핀란드, 2015, STUK)</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td class="tb-col">안전성 평가 방법론</td>
-                  <td></td>
                   <td>
-                    <p>8) Review of SKB’s interim report of SR-Can: SKI’s and SSI’s evaluation of SKB’s up-dated methodology for safety assessment (스웨덴, 2005, SSI)</p>
-                    <p>9) International Expert Review of Sr-Can: Safety Assessment Methodology (스웨덴, 2008, SSI)</p>
+                    <p>16) 핀란드 ONKALO 건설 관련 규제 검토 사례</p>
+                    <p>17) 스웨덴 토지환경법원의 인허가 보고서 규제 검토 사례</p>
+                    <p>18) SSM 건설 인허가 규제 검토 (초기 검토 단계, 스웨덴)</p>
+                    <p>19) SSM 건설 인허가 규제 검토 (주 검토 단계, 스웨덴)</p>
+                    <p>20) STUK 건설 인허가 검토 사례 (핀란드, 공학적방벽)</p>
                   </td>
-                  <td>14) Review of safety assessment in Posiva’s construction license application for a repository at Olkiluoto (핀란드, 2015, STUK)</td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -200,8 +205,28 @@
                 </tr>
 
                 <tr>
-                  <td class="tb-col" rowspan="2" align="center">안전성 평가</td>
-                  <td class="tb-col">운영 중 안전성 평가</td>
+                  <th>안전성 평가 방법론</th>
+                  <td>
+                    <p>10) SR-Can 외부 전문가 검토 사례 (스웨덴)</p>
+                  </td>
+                  <td>
+
+                    <p>21) SSM 건설 인허가 규제 검토 (초기 검토 단계, 스웨덴)</p>
+                    <p>22) SSM 건설 인허가 규제 검토 (주 검토 단계, 스웨덴)</p>
+                    <p>23) STUK 건설 인허가 검토 사례 (핀란드)</p>
+
+                  </td>
+
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <th rowspan="2">안전성 평가</th>
+                  <th>운영 중 안전성 평가</th>
                   <td rowspan="2">EPG</td>
                   <td></td>
                   <td rowspan="2">
@@ -225,7 +250,7 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td class="tb-col">폐쇄 후 안전성 평가</td>
+                  <th>폐쇄 후 안전성 평가</th>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -237,7 +262,30 @@
 
                 </tr>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center">관리 시스템/이해관계자 및 규제기관 참여</td>
+                  <th colspan="2">관리 시스템/이해관계자 및 규제기관 참여</th>
+                  <td>EPG</td>
+                  <td></td>
+                  <td>
+                    <p>EPG</p>
+                    <p> SITEX-II Project</p>
+                  </td>
+                  <td></td>
+                  <td>EPG</td>
+                  <td>
+                    <p>24) SSM 건설 인허가 규제 검토 (초기 검토 단계, 스웨덴)</p>
+                    <p>25) SSM 건설 인허가 규제 검토 (주 검토 단계, 스웨덴)</p>
+
+                  </td>
+                  <td>EPG</td>
+                  <td></td>
+                  <td>EPG</td>
+                  <td></td>
+                  <td>EPG</td>
+                  <td></td>
+
+                </tr>
+                <tr>
+                  <th colspan="2">증거들의 종합</th>
                   <td>EPG</td>
                   <td></td>
                   <td>
@@ -256,32 +304,15 @@
 
                 </tr>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center">증거들의 종합</td>
+                  <th colspan="2">불확실성 관리</th>
                   <td>EPG</td>
                   <td></td>
+                  <td>EPG</td>
+                  <td></td>
+                  <td>EPG</td>
                   <td>
-                    <p>EPG</p>
-                    <p> SITEX-II Project</p>
+                    <p>26) SSM 건설 인허가 규제 검토 (주 검토 단계, 스웨덴)</p>
                   </td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
-
-                </tr>
-                <tr>
-                  <td class="tb-col" colspan="2" align="center">불확실성 관리</td>
-                  <td>EPG</td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
-                  <td>EPG</td>
-                  <td></td>
                   <td>EPG</td>
                   <td></td>
                   <td>EPG</td>
@@ -291,7 +322,7 @@
 
                 </tr>
                 <tr>
-                  <td class="tb-col" colspan="2" align="center">한계점, 통제 및 조건</td>
+                  <th colspan="2">한계점, 통제 및 조건</th>
                   <td>EPG</td>
                   <td></td>
                   <td>

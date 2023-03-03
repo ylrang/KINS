@@ -45,7 +45,7 @@ def unist(request):
     return render(request, "kinsdb/UNIST/unist.html")
 
 
-def document(request):
+def document(request, doc_num):
     return render(request, "kinsdb/UNIST/document.html")
 
 

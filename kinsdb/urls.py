@@ -14,7 +14,9 @@ urlpatterns = [
     path('site-details<int:pk>', views.site_detail, name='site-details'),
     path('download/<path:filename>', views.download_file, name='download_file'),
     path('unist', views.unist, name='unist'),
-    path('document', views.document, name='document'),
+
+    path('document<int:doc_num>', views.document, name='document'),
+
     path('document_detail', views.document_detail, name='document_detail'),
     path('safety', views.safety, name='safety'),
     path('detail-safety<str:doc>', views.detail_safety, name='detail-safety'),
