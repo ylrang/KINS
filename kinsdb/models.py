@@ -60,7 +60,8 @@ class Document(models.Model):
 class Report(models.Model):
     title = models.CharField(max_length=200)
     serial_num = models.IntegerField()
-    summary = models.TextField(blank=True)
+    background = models.TextField(blank=True)
+    image = models.ImageField(upload_to='kinsdb', blank=True, null=True)
 
     class Meta:
         verbose_name = 'UNIST_Reports'
@@ -68,6 +69,16 @@ class Report(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Issue(models.Model):
+    issue = models.CharField(max_length=200)
+    summary = models.TextField(blank=True)
+    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='issue')
+
+    def __str__(self):
+        return self.issue
+
 
 
 class Site(models.Model):

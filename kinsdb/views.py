@@ -2,7 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 import os
 from django.shortcuts import render
-from kinsdb.models import Docs, Site, SWFactor, Document
+from kinsdb.models import Docs, Site, SWFactor, Document, Report, Issue
 from .filters import DocsFilter, SiteFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -43,6 +43,19 @@ def index(request):
 
 def unist(request):
     return render(request, "kinsdb/UNIST/unist.html")
+
+
+
+def report(request, report_num):
+    rep = Report.objects.get(serial_num=report_num)
+    issues = Issue.objects.select_related('report')
+    context = {'rep': rep, 'issues': issues }
+    return render(request, "kinsdb/UNIST/report.html", context)
+
+
+def issue_detail(request, report_num):
+    context = { 'report_num': report_num }
+    return render(request, "kinsdb/UNIST/issue-detail.html", context)
 
 
 def document(request, doc_num):
@@ -103,11 +116,11 @@ def details(request, country, title):
 
     return render(request, "kinsdb/UNIST/siting-detail.html", context)
 
-def test_brnc(request):
+def brnc(request):
     return render(request, "kinsdb/BRNC/brnc.html")
 
 
-def brnc(request, _tag=''):
+def regulation_database(request):
     regulation_list = ['all','법률', '규정', '규제지침']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
@@ -141,7 +154,7 @@ def brnc(request, _tag=''):
 
     context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter,
                'search': search, 'documents': documents, 'country': country, 'regulation': regulation }
-    return render(request, "kinsdb/BRNC_database.html", context)
+    return render(request, "kinsdb/BRNC/BRNC_database.html", context)
 
 
 def institution(request):

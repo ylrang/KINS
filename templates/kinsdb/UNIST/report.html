@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4"> {{ title }} </h3>
+          <h3 class="mb-4"> {{ rep.title }} </h3>
 
         </div>
       </div>
@@ -45,9 +45,11 @@
 
       <div class="col-lg-12">
         <h4>Background</h4>
-        <img src="{% static 'images/bkg.jpg' %}" alt="" class="img-fluid">
+        {% if rep.image %}
+        <img src="{{ rep.image.url }}" alt="" class="img-fluid">
+        {% endif %}
 
-        <p>{{ summary }}</p>
+        <p>{{ rep.background }}</p>
       </div>
 
       <div class="p-4 mb-4 border-bottom"></div>
@@ -66,23 +68,22 @@
       <div class="col-lg-12">
         <button type="button" class="btn btn-primary">Database</button>
 
+        {% for issue in issues %}
+
         <div class="candidate-list-box card mt-4">
           <div class="card-body p-4">
             <div class="row align-items-center">
               <div class="col-lg-6">
                 <div class="candidate-list-content mt-lg-0">
-                  <h5 class="fs-19 mb-1"><a href="{% url 'document_detail' %}" class="primary-link">구리 부식</a> </h5>
+                  <h5 class="fs-19 mb-1"><a href="{% url 'issue_detail' report_num=rep.serial_num %}" class="primary-link">{{ issue.issue }}</a> </h5>
                   <p class="text-muted mb-2">[Technical Issue]</p>
-                  <ul class="list-inline mb-0 text-muted">
-                    <li class="list-inline-item">
-                      <i class="mdi mdi-map-marker"></i> 등록일자: 2022.11.01
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {% endfor %}
 
       </div>
 
