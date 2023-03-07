@@ -64,7 +64,10 @@
     table-layout: fixed;
   }
 
-
+  .data:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -115,7 +118,7 @@
           <ul class="nav nav-pills custom" role="tablist">
             <li class="nav-item waves-effect waves-light">
               <a class="nav-link active" data-bs-toggle="tab" href="#ALL" role="tab">
-                <span>전체</span>
+                <span>법령체계</span>
               </a>
             </li>
 
@@ -180,27 +183,15 @@
           </ul>
 
 
-          <div class="tab-content p-3 text-muted">
+          <div class="tab-content p-0 text-muted">
 
             <div class="tab-pane active" id="ALL" role="tabpanel">
               <table class="table table-bordered mb-0 entire" style="width:100%">
-                <tr>
-                  <th>수준</th>
-                  <th>국내</th>
-                  <th>미국</th>
-                  <th>스웨덴</th>
-                  <th>핀란드</th>
-                  <th>프랑스</th>
-                  <th>독일</th>
-                  <th>캐나다</th>
-                  <th>일본</th>
-                  <th>스위스</th>
-                </tr>
 
                 <tr>
                   <td>법률</td>
                   <td>
-                    <li><b>원안법 제63조</b></li>
+                    <li class="data" onclick=location.href="{% url 'brnc' %}"><b>원안법 제63조</b></li>
                     방사성페기물관리시설등의 건설, 운영허가
                     <li><b>원안법 시행령 제96조</b></li>
                     방사성폐기물관리시설등의 건설, 운영허가 신청

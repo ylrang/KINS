@@ -73,7 +73,6 @@
       </script>
 
 
-      <div class="col-lg-3"></div>
       <div class="col-lg-9">
         <div class="candidate-list-widgets mb-4">
           <form method="get" name="search_filter" id="search_filter">
@@ -163,9 +162,8 @@
 
 
     <div class=" row justify-content-center">
-      <div class="col-lg-3">
-      </div>
-      <div class="col-lg-9">
+
+      <div class="col-lg-10">
         <div class="mb-3 mb-lg-0">
           <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
             <b>{{ page_obj.paginator.count }} results</b>
@@ -181,7 +179,7 @@
 
 
     <div class="row justify-content-center">
-      <div class="col-lg-3 mt-4">
+      <!-- <div class="col-lg-3 mt-4">
         <div class="accordion-item mt-3">
           <h2 class="accordion-header" id="jobType">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#regulation" aria-expanded="false" aria-controls="regulation">
@@ -213,10 +211,10 @@
               </div>
             </div>
           </div>
-        </div><!-- end accordion-item -->
-      </div>
+        </div>
+      </div> -->
 
-      <div class="col-lg-9">
+      <div class="col-lg-10">
         <div class="candidate-list">
 
           {% for doc in page_obj %}
