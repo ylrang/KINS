@@ -53,8 +53,9 @@ def report(request, report_num):
     return render(request, "kinsdb/UNIST/report.html", context)
 
 
-def issue_detail(request, report_num):
-    context = { 'report_num': report_num }
+def issue_detail(request, pk, report_num):
+    issue = Issue.objects.get(id=pk)
+    context = { 'issue': issue, 'report_num': report_num }
     return render(request, "kinsdb/UNIST/issue-detail.html", context)
 
 

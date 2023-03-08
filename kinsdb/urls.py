@@ -16,7 +16,7 @@ urlpatterns = [
     path('unist', views.unist, name='unist'),
 
     path('report<int:report_num>', views.report, name='report'),
-    path('issue_detail<int:report_num>', views.issue_detail, name='issue_detail'),
+    path('issue_detail<int:pk><int:report_num>', views.issue_detail, name='issue_detail'),
 
     path('document<int:doc_num>', views.document, name='document'),
     path('document_detail', views.document_detail, name='document_detail'),

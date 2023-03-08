@@ -42,14 +42,17 @@
   <div class="container">
 
     <div class="row">
-
       <div class="col-lg-12">
+        <a href="{% url 'unist' %}" class="btn btn-primary" style="float:right">메인화면 돌아가기</a>
+      </div>
+      <div class="col-lg-12">
+
         <h4>Background</h4>
         {% if rep.image %}
-        <img src="{{ rep.image.url }}" alt="" class="img-fluid">
+        <img src="{{ rep.image.url }}" alt="" class="img-fluid" style="float:center">
         {% endif %}
 
-        <p>{{ rep.background }}</p>
+        <p>{{ rep.background|linebreaks }}</p>
       </div>
 
       <div class="p-4 mb-4 border-bottom"></div>
@@ -65,9 +68,11 @@
 
       <div class="p-4 mb-4 border-bottom"></div>
 
-      <div class="col-lg-12">
-        <button type="button" class="btn btn-primary">Database</button>
+      <br><br><br><br>
 
+      <button type="button" class="btn btn-primary">Database</button>
+
+      <div class="col-lg-12">
         {% for issue in issues %}
 
         <div class="candidate-list-box card mt-4">
@@ -75,7 +80,7 @@
             <div class="row align-items-center">
               <div class="col-lg-6">
                 <div class="candidate-list-content mt-lg-0">
-                  <h5 class="fs-19 mb-1"><a href="{% url 'issue_detail' report_num=rep.serial_num %}" class="primary-link">{{ issue.issue }}</a> </h5>
+                  <h5 class="fs-19 mb-1"><a href="{% url 'issue_detail' pk=forloop.counter report_num=rep.serial_num %}" class="primary-link">{{ issue.issue }}</a> </h5>
                   <p class="text-muted mb-2">[Technical Issue]</p>
                 </div>
               </div>
