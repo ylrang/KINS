@@ -3,25 +3,29 @@ from account.models import myUser
 
 
 class Docs(models.Model):
-    title = models.CharField(max_length=200)    #제목
-    content_kor = models.TextField() # 상세내용
+    title = models.CharField(max_length=200)  # 제목
+    content_kor = models.TextField()  # 상세내용
     content_eng = models.TextField()
 
     # field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
 
-    regist_date = models.DateTimeField(auto_now_add=True, blank=True)   #등록일자
-    last_updated = models.DateTimeField(auto_now_add=True, blank=True)     #최근 수정일
-    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)    #작성자
-    tags = models.ManyToManyField('kinsdb.Tag', related_name='tags', blank=True)    #태그
-    views = models.IntegerField(verbose_name='VIEWS', default=0)       #조회
+    regist_date = models.DateTimeField(auto_now_add=True, blank=True)  # 등록일자
+    last_updated = models.DateTimeField(
+        auto_now_add=True, blank=True)  # 최근 수정일
+    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)  # 작성자
+    tags = models.ManyToManyField(
+        'kinsdb.Tag', related_name='tags', blank=True)  # 태그
+    views = models.IntegerField(verbose_name='VIEWS', default=0)  # 조회
 
-    index_title = models.CharField(max_length=100, default='')      #목차
-    index_num = models.FloatField(default=0)        #항목번호
+    index_title_kor = models.CharField(max_length=100, default='')  # 목차
+    index_num = models.FloatField(default=0)  # 항목번호
+
+    index_title_eng = models.CharField(max_length=100, default='')  # 목차
 
     sector = models.CharField(max_length=40, default='-')
 
-    document = models.ForeignKey('kinsdb.Document', on_delete=models.CASCADE)   #문서     #국가 포함
-
+    document = models.ForeignKey(
+        'kinsdb.Document', on_delete=models.CASCADE)  # 문서     #국가 포함
 
     class Meta:
         verbose_name = 'Docs'
@@ -36,7 +40,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag_content
-
 
 
 def content_file_name(instance, filename):
@@ -74,11 +77,11 @@ class Report(models.Model):
 class Issue(models.Model):
     issue = models.CharField(max_length=200)
     summary = models.TextField(blank=True)
-    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='issue')
+    report = models.ForeignKey(
+        Report, on_delete=models.CASCADE, related_name='issue')
 
     def __str__(self):
         return self.issue
-
 
 
 class Site(models.Model):
@@ -107,13 +110,11 @@ class SWFactor(models.Model):
         return self.title
 
 
-
 class Keyword(models.Model):
     key_content = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.key_content
-
 
 
 # class Field(models.Model):

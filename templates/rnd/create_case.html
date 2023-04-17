@@ -50,9 +50,9 @@
     <div class="row justify-content-center">
 
       <div class="col-lg-10">
-        <form>
+        <form action="{% url 'rnd:case' %}">
           <div class="mb-3">
-            <label for="dateControlInput" class="form-label">일시</label>
+            <label for="dateControlInput" class="form-label">작성 일자</label>
             <input type="date" class="form-control" id="dateControlInput" readonly>
 
           </div>
@@ -66,15 +66,64 @@
           </div>
           <div class="mb-3">
             <label for="emailControlInput2" class="form-label">담당자</label>
-            <input type="text" class="form-control" id="emailControlInput2" placeholder="홍길동">
+            <input type="text" class="form-control" id="emailControlInput2" placeholder="담당자명">
           </div>
-          <button type="submit" class="btn btn-primary w-100 right">저장</button>
+          <div class="m-4" style="text-align:center">
+            <button type="button" class="btn btn-soft-primary" style="width:15%" onclick="temp_save()">임시저장</button>
+            <button type="button" class="btn btn-primary" style="width:15%" data-bs-toggle="modal" data-bs-target="#saveModal">저장</button>
+
+            <div id="saveModal" class="modal fade" tabindex="-1" aria-labelledby="saveModalLabel" style="display: none;" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="saveModalLabel">Modal Heading</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>저장하시겠습니까?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">확인</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- SIMPLE MODALS -->
+
+
+            <button type="button" class="btn btn-soft-dark" style="width:15%" data-bs-toggle="modal" data-bs-target="#toListModal">삭제</button>
+            <div id="toListModal" class="modal fade" tabindex="-1" aria-labelledby="toListModalLabel" style="display: none;" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="toListModalLabel">Modal Heading</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>작성 중인 게시글이 삭제됩니다.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">확인</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- SIMPLE MODALS -->
+
+
+          </div>
         </form>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  function temp_save() {
+    // 임시 데이터 -> 데이터베이스 업로드 코드
+    window.location.reload();
+  }
+</script>
 <script>
   document.getElementById('dateControlInput').value = new Date().toISOString().substring(0, 10);;
 </script>

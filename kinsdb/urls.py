@@ -8,8 +8,6 @@ urlpatterns = [
     path('regulation_database', views.regulation_database, name='regulation_database'),
 
     path('brnc', views.brnc, name='brnc'),
-
-    path('brnc', views.brnc, name='brnc'),
     path('docs-details<int:pk>', views.docs_detail, name='docs-details'),
     path('site-details<int:pk>', views.site_detail, name='site-details'),
     path('download/<path:filename>', views.download_file, name='download_file'),

@@ -35,7 +35,6 @@
           <div class="page-next">
             <nav class="d-inline-block" aria-label="breadcrumb text-center">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'database-index' %}">Database</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'brnc' %}">BRNC</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> 문서 </li>
               </ol>
@@ -169,15 +168,15 @@
             </div>
             <div class="candidate-education-details bisection mt-4 pt-3">
               <div class="eng">
-                <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title }}</h6>
+                <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title_eng }}</h6>
                 <div class="candidate-education-content mt-4">
-                  <p class="text-muted">{{ doc.content_eng }}</p>
+                  <p class="text-muted">{{ doc.content_eng|linebreaks }}</p>
                 </div>
               </div>
               <div class="kor">
-                <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title }}</h6>
+                <h6 class="fs-17 fw-bold mb-0"> [{{ doc.index_num }}] {{ doc.index_title_kor }}</h6>
                 <div class="candidate-education-content mt-4">
-                  <p class="text-muted">{{ doc.content_kor }}</p>
+                  <p class="text-muted">{{ doc.content_kor|linebreaks }}</p>
                 </div>
               </div>
 
