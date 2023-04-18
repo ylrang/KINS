@@ -3876,7 +3876,7 @@ textarea.form-control-lg {
       padding: 0;
       overflow-y: visible; } }
 
-@media (min-width: 992px) {
+@media (min-width: 1170px) {
   .navbar-expand-lg {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;

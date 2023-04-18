@@ -20,7 +20,10 @@ def KORAD(request):
 def create_case(request):
     return render(request, "rnd/create_case.html")
 
+def case_detail(request):
+    return render(request, "rnd/case_detail.html")
 
+    
 def about(request):
     return render(request, "rnd/about.html")
 
