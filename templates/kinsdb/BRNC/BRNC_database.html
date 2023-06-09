@@ -17,13 +17,35 @@
 <section class="page-title-box">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="text-center text-white">
           <h2 class="mb-4">규제기준 데이터베이스</h2>
           <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'brnc' %}">메인화면 돌아가기</button>
-
         </div>
       </div>
+
+      <div class="col-md-4" style="">
+        <fieldset style="background-color:white;height:235px;margin-top:6px;border:1px solid var(--primary);padding:5px">
+          <legend>키워드 선택</legend>
+          <button type="button" class="btn btn-primary rounded-pill" style="margin:2px">공학적 방벽</button>
+          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">방사성폐기물</button>
+          <button type="button" class="btn btn-primary rounded-pill" style="margin:2px">부지개발</button>
+          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">부지환경</button>
+          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">안전사례</button>
+          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">처분시설 개발</button>
+          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">처분안전</button>
+        </fieldset>
+      </div>
+
+      <div class="col-md-4">
+        <img src="{% static 'images/brnc/60.1_textmining.png' %}" alt="" style="width:100%;height:250px">
+      </div>
+
+      <div class="col-md-4">
+        <img src="{% static 'images/brnc/text_network.png' %}" alt="" style="width:100%;height:250px">
+      </div>
+
+
       <!--end col-->
     </div>
     <!--end row-->
@@ -44,7 +66,7 @@
 
 
 <!-- START JOB-LIST -->
-<section class="section">
+<section class="">
   <div class="container">
 
     <div class="row justify-content-center">
@@ -89,7 +111,6 @@
               function changeField(str) {
                 document.getElementById('fieldFormControlInput').value = str;
               }
-
             </script>
 
 

@@ -57,6 +57,12 @@ def notice(request):
 def CreateDocument(request):
     return render(request, "cloud/document-board/create_document.html")
 
+def folder_list(request):
+    return render(request, "cloud/bulletin/folder-list.html")
+
+def folder_detail(request):
+    return render(request, "cloud/bulletin/folder-detail.html")
+
 
 from .models import *
 # # from account.models import Folders

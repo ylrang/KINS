@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.CloudIndex.as_view(),name='index'),
     path('calendar', views.CalendarView.as_view(), name='calendar'),
     path('notice', views.notice, name='notice'),
+    path('folder-list', views.folder_list, name='folder_list'),
+    path('folder-detail', views.folder_detail, name='folder_detail'),
 
 
     # Jobs

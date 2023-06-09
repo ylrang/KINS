@@ -65,7 +65,7 @@
 <section class="section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <div class="card side-bar">
 
 
@@ -123,14 +123,21 @@
 
 
           <div class="candidate-contact-details card-body p-4 border-top">
-            <h6 class="fs-17 fw-semibold mb-3">연관 태그</h6>
-            <ul class="list-unstyled mb-0">
-              <!-- TAGS -->
+            <h6 class="fs-17 fw-semibold mb-3">연관 키워드</h6>
+            <img src="{% static 'images/brnc/60.1_textmining.png' %}" alt="" style="object-fit:cover;width:100%">
 
-              {% for tag in doc.tags.all %}
-              <span class="badge bg-soft-muted fs-14 mt-1">#{{ tag.tag_content }}</span>
-              {% endfor %}
-            </ul>
+
+
+            <!-- <h6 class="fs-17 fw-semibold mb-3">연관 태그</h6> -->
+            <!-- <ul class="list-unstyled mb-0"> -->
+            <!-- TAGS -->
+
+            <!-- {% for tag in doc.tags.all %} -->
+            <!-- <span class="badge bg-soft-muted fs-14 mt-1">#{{ tag.tag_content }}</span> -->
+            <!-- {% endfor %} -->
+            <!-- </ul> -->
+
+
           </div>
           <!--end candidate-overview-->
         </div>
@@ -138,7 +145,7 @@
       </div>
       <!--end col-->
 
-      <div class="col-lg-8">
+      <div class="col-lg-7">
         <div class="card candidate-details ms-lg-4 mt-4 mt-lg-0">
           <div class="card-body p-4 candidate-personal-detail">
 
