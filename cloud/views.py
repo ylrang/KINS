@@ -63,6 +63,12 @@ def folder_list(request):
 def folder_detail(request):
     return render(request, "cloud/bulletin/folder-detail.html")
 
+def file_list(request):
+    return render(request, "cloud/bulletin/file-list.html")
+
+def file_detail(request):
+    return render(request, "cloud/bulletin/file-detail.html")
+
 
 from .models import *
 # # from account.models import Folders
