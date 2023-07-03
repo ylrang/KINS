@@ -48,6 +48,7 @@
     &:hover {
         transform: translateY(-8px);
         border-color: $primary;
+        cursor: pointer;
 
         .bookmark-label {
             background-color: $primary;

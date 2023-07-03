@@ -12,6 +12,7 @@ urlpatterns = [
     path('folder-detail', views.folder_detail, name='folder_detail'),
     path('file-list', views.file_list, name='file_list'),
     path('file-detail', views.file_detail, name='file_detail'),
+    path('file-upload', views.file_upload, name='file_upload'),
 
 
     # Jobs

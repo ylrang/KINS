@@ -69,6 +69,9 @@ def file_list(request):
 def file_detail(request):
     return render(request, "cloud/bulletin/file-detail.html")
 
+def file_upload(request):
+    return render(request, "cloud/bulletin/file-upload.html")
+
 
 from .models import *
 # # from account.models import Folders
