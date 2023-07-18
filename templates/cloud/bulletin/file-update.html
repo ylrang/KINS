@@ -1,0 +1,264 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Candidate List{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+
+{% endblock extra_css %}
+{% block content %}
+<!-- Start home -->
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h3 class="mb-4">상세내용</h3>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- end home -->
+
+<!-- START SHAPE -->
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
+<!-- END SHAPE -->
+
+
+<!-- START JOBS-POST-EDIT -->
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12 mb-4">
+        <div class="text-end">
+          <a href="{% url 'file_list' %}" class="btn btn-success">뒤로가기</a>
+          <a href="javascript:void(0)" class="btn btn-primary">업로드 <i class="mdi mdi-send"></i></a>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bg-soft-primary p-3">
+          <h5 class="mb-0 fs-17">게시글 수정중!</h5>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+
+    <!--end row-->
+    <form action="#" class="job-post-form shadow mt-4">
+      <div class="job-post-content box-shadow-md rounded-3 p-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">제목</label>
+              <input type="text" class="form-control" id="jobtitle" value="제목명">
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">작성자</label>
+              <input type="text" class="form-control" id="jobtitle" value="작성자명">
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">작성일자</label>
+              <input type="date" class="form-control" id="jobtitle" value="2023-06-07" disabled>
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">최근 수정일</label>
+              <input type="date" class="form-control" id="jobtitle" value="2023-07-18" disabled>
+            </div>
+          </div>
+          <!--end col-->
+
+        </div>
+        <!--end row-->
+      </div>
+      <!--end job-post-content-->
+    </form>
+
+    <form action="#" class="job-post-form shadow mt-4">
+      <div class="job-post-content box-shadow-md rounded-3 p-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">수정내용</label>
+              <input type="text" class="form-control" id="jobtitle" placeholder="title">
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">상세설명</label>
+              <input type="text" class="form-control" id="jobtitle" placeholder="">
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <label for="jobtitle" class="form-label">파일 추가</label>
+              <input type="file" class="form-control" id="jobtitle" placeholder="파일 업로드">
+            </div>
+          </div>
+          <!--end col-->
+
+        </div>
+        <!--end row-->
+      </div>
+      <!--end job-post-content-->
+    </form>
+
+
+    <div class="row">
+      <div class="col-lg-12 mt-4">
+        <div class="card candidate-details mt-4 mt-lg-0">
+          <div class="card-body p-4 candidate-personal-detail">
+
+            <div class="">
+              <h6 class="fs-17 fw-bold mb-0">세부 내용</h6>
+
+
+              <div class="candidate-education-content mt-4 d-flex pb-4 border-bottom">
+                <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> 2 </div>
+
+                <div class="d-flex flex-column align-items-stretch w-100">
+                  <div class="ms-4">
+                    <div class="d-flex">
+                      <h6 class="fs-16 mb-1">필드 수정</h6>
+                      <p class="fs-12 text-muted mb-0 mx-2">23.06.28 00:00:00</p>
+                    </div>
+                    <p class="text-muted">데이터베이스 검색을 위한 제목 필드 수정 완료하였습니다.</p>
+                  </div>
+                  <ul class="profile-document list-unstyled mb-0">
+                    <li>
+                      <div class="profile-document-list document-list-colored ms-4 d-flex align-items-center mt-2">
+                        <div class="icon flex-shrink-0">
+                          <i class="uil uil-file"></i>
+                        </div>
+                        <div class="ms-3">
+                          <h6 class="fs-16 mb-0">filename3.pdf</h6>
+                          <p class="text-muted mb-0">1.25 MB</p>
+                        </div>
+
+                      </div>
+                    </li>
+                    <li>
+                      <div class="profile-document-list document-list-colored ms-4 d-flex align-items-center mt-2">
+                        <div class="icon flex-shrink-0">
+                          <i class="uil uil-file"></i>
+                        </div>
+                        <div class="ms-3">
+                          <h6 class="fs-16 mb-0">filename2s.pdf</h6>
+                          <p class="text-muted mb-0">1.25 MB</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+
+
+              <div class="candidate-education-content mt-4 d-flex pb-4 border-bottom">
+                <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> 1 </div>
+
+                <div class="d-flex flex-column align-items-stretch w-100">
+                  <div class="ms-4">
+                    <div class="d-flex">
+                      <h6 class="fs-16 mb-1">초안 업로드</h6>
+                      <p class="fs-12 text-muted mb-0 mx-2">23.06.07 12:41:00</p>
+                    </div>
+                    <p class="text-muted">6월 데이터 업데이트</p>
+                  </div>
+                  <ul class="profile-document list-unstyled mb-0">
+                    <li>
+                      <div class="profile-document-list document-list-colored ms-4 d-flex align-items-center mt-2">
+                        <div class="icon flex-shrink-0">
+                          <i class="uil uil-file"></i>
+                        </div>
+                        <div class="ms-3">
+                          <h6 class="fs-16 mb-0">filename1.pdf</h6>
+                          <p class="text-muted mb-0">1.25 MB</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="profile-document-list document-list-colored ms-4 d-flex align-items-center mt-2">
+                        <div class="icon flex-shrink-0">
+                          <i class="uil uil-file"></i>
+                        </div>
+                        <div class="ms-3">
+                          <h6 class="fs-16 mb-0">filename1.docx</h6>
+                          <p class="text-muted mb-0">1.25 MB</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="candidate-education-content mt-4 d-flex">
+                <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> 0 </div>
+
+                <div class="d-flex flex-column align-items-stretch w-100">
+                  <div class="ms-4">
+                    <div class="d-flex">
+                      <h6 class="fs-16 mb-1">생성</h6>
+                      <p class="fs-12 text-muted mb-0 mx-2">23.06.07 12:41:00</p>
+                    </div>
+                    <p class="text-muted">페이지 생성</p>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!--end candidate-educat`ion-details-->
+
+            </div>
+            <!--end card-body-->
+          </div>
+          <!--end card-->
+        </div>
+      </div>
+      </div>
+  </div>
+  <!--end container-->
+</section>
+<!-- END JOBS-POST-EDIT -->
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}
