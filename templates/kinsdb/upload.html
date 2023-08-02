@@ -8,10 +8,11 @@
 {% endfor %}
 {% endif %}
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
   {% csrf_token %}
-
-  <input type="file" name="myfile">
-  <button type="submit">Upload</button>
+{{ form.as_p }}
+  <!-- <input type="text" name="document">
+  <input type="file" name="myfile"> -->
+  <button type="submit" value="submit">Upload</button>
   <h2>Please Upload Excel File</h2>
 </form>

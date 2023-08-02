@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Docs, Document, Site, Keyword, SWFactor, Report, Issue
+from .models import Tag, Docs, Document, Site, Keyword, SWFactor, Report, Issue, Data
 from import_export.admin import ImportExportModelAdmin
 from .resource import DocsResource
 
@@ -11,6 +11,7 @@ admin.site.register(Site)
 admin.site.register(SWFactor)
 admin.site.register(Report)
 admin.site.register(Issue)
+admin.site.register(Data)
 
 # admin.site.register(Field)
 

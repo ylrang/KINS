@@ -49,6 +49,7 @@ class Components(TemplateView):
     template_name = "cloud/extra-pages/components.html"
 
 
+
 from django.shortcuts import render
 
 def notice(request):

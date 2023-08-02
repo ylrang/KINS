@@ -2,11 +2,61 @@ from django.db import models
 from account.models import myUser
 
 
+# class DocTest(models.Model):
+#     title = models.CharField(max_length=200)  # 제목
+#
+#     # field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
+#     index_num = models.FloatField(default=0)  # 항목번호
+#     index_title_eng = models.CharField(max_length=100, default='')  # 목차
+#     index_title_kor = models.CharField(max_length=100, default='')  # 목차
+#
+#     sector = models.CharField(max_length=40, default='-')
+#
+#     content_kor = models.TextField()  # 상세내용
+#     content_eng = models.TextField()
+#
+#     views = models.IntegerField(verbose_name='VIEWS', default=0)  # 조회
+#     regist_date = models.DateTimeField(auto_now_add=True, blank=True)  # 등록일자
+#     last_updated = models.DateTimeField(
+#         auto_now_add=True, blank=True)  # 최근 수정일
+#
+#
+#     writer = models.ForeignKey(myUser, on_delete=models.PROTECT)  # 작성자
+#     tags = models.ManyToManyField(
+#         'kinsdb.Tag', related_name='tags', blank=True)  # 태그
+#
+#     document = models.ForeignKey(
+#         'kinsdb.Document', on_delete=models.CASCADE)  # 문서     #국가 포함
+#
+
+
+# class Test(models.Model):
+#     # id = models.AutoField(primary_key=True)
+#
+#     no = models.CharField(max_length=100)
+#     constitution = models.CharField(max_length=100)
+#     index_no = models.CharField(max_length=10)
+#     category = models.CharField(max_length=100)
+#     content = models.TextField(default='')
+#
+#     def __str__(self):
+#         return '[' + self.no + '] ' + self.index_no
+#
+#     class Meta:
+#         db_table = 'Test'
+#
+#         constraints = [
+#             models.UniqueConstraint(
+#                 fields=["no", "index_no"],
+#                 name="unique doc",
+#             )
+#         ]
+
+
 class Docs(models.Model):
     title = models.CharField(max_length=200)  # 제목
     content_kor = models.TextField()  # 상세내용
     content_eng = models.TextField()
-
     # field = models.ForeignKey('kinsdb.Field', on_delete=models.SET_NULL, null=True)    #작성자
 
     regist_date = models.DateTimeField(auto_now_add=True, blank=True)  # 등록일자
@@ -18,7 +68,7 @@ class Docs(models.Model):
     views = models.IntegerField(verbose_name='VIEWS', default=0)  # 조회
 
     index_title_kor = models.CharField(max_length=100, default='')  # 목차
-    index_num = models.FloatField(default=0)  # 항목번호
+    index_num = models.CharField(max_length=100)  # 항목번호
 
     index_title_eng = models.CharField(max_length=100, default='')  # 목차
 
@@ -31,8 +81,15 @@ class Docs(models.Model):
         verbose_name = 'Docs'
         verbose_name_plural = 'Docs'
 
+        constraints = [
+            models.UniqueConstraint(
+                fields=["document", "index_num"],
+                name="unique document",
+            )
+        ]
+
     def __str__(self):
-        return self.title
+        return str(self.index_num) + ') ' + self.title
 
 
 class Tag(models.Model):
@@ -57,7 +114,14 @@ class Document(models.Model):
         verbose_name_plural = 'BRNC_Documents'
 
     def __str__(self):
-        return self.serial_num
+        return str(self.id) + ') ' + self.serial_num
+
+
+class Data(models.Model):
+    document = models.ForeignKey(
+        'kinsdb.Document', on_delete=models.CASCADE)
+    file = models.FileField(upload_to="data/%Y/%m/%d")
+    last_updated = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 class Report(models.Model):

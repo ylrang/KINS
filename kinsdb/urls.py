@@ -27,5 +27,10 @@ urlpatterns = [
     path('siting<str:country>', views.siting, name='siting'),
     path('details<str:country>_<str:title>', views.details, name='details'),
     path('details-component<str:title>', views.detail_component, name='details-component'),
-    # path('upload', views.simple_upload, name='upload'),
+
+    path('upload', views.simple_upload, name='upload'),
+
+    path('wordcloud', views.wordcloud, name='wordcloud'),
+    path('analysis', views.analysis, name='analysis'),
+    path('upload_data', views.upload_data, name='upload_data')
 ]

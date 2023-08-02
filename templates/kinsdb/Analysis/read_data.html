@@ -1,0 +1,27 @@
+{% extends 'partials/rnd_base.html' %}
+{% load static %}
+{% load split %}
+{% block title %}Data Upload{% endblock title %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <h1>DATA UPLOAD</h1>
+
+      중복항목 {{ count }}개를 제외한 데이터가 업로드 완료되었습니다.<br>
+
+      <li>{{ uploaded }}</li>
+      <li>{{ failed }}</li>
+      <di>
+      <button type="button" class="btn btn-primary float-end" onclick=location.href="{% url 'brnc' %}">홈으로</button>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}

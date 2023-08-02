@@ -2,7 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 import os
 from django.shortcuts import render
-from kinsdb.models import Docs, Site, SWFactor, Document, Report, Issue
+from kinsdb.models import Docs, Site, SWFactor, Document, Report, Issue, Data
 from .filters import DocsFilter, SiteFilter
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -13,27 +13,101 @@ from django.contrib import messages
 from tablib import Dataset
 from django.http import HttpResponse
 
+
+import pandas as pd
+
+def analysis(request):
+    qs = Docs.objects.all().values()
+    data = pd.DataFrame(qs)
+    context = {'df' : data.to_html() }
+
+    return render(request, "kinsdb/Analysis/test.html", context)
+
+
+# @api_view(['GET'])
+# def wordcloud(request, doc_id):
+#     doc = Docs.objects.get(id=doc_id)
+
+from .forms import DataForm
+
 def simple_upload(request):
     if request.method == 'POST':
-        docs_resource = DocsResource()
-        dataset = Dataset()
-        new_docs = request.FILES['myfile']
-
-        if not new_docs.name.endswith('xlsx'):
+        data = Data(
+            document_id = request.POST['document'],
+            file = request.FILES['file'],
+        )
+        # form.title =
+        # docs_resource = DocsResource()
+        # dataset = Dataset()
+        if not data.file.name.endswith('csv'):
             messages.info(request, 'wrong format')
+            return HttpResponse('잘못된 형식의 파일입니다.')
+        else:
+            data.save()
             return render(request, 'kinsdb/upload.html')
+    else:
+        form = DataForm
+        context = {
+            'form' : form,
+        }
+        return render(request, 'kinsdb/upload.html', context)
 
-        imported_data = dataset.load(new_docs.read(), format='xlsx')
-        for data in imported_data:
-            value = Docs(
-                data[0],
-                data[1],
-                data[2],
-                data[3],
-            )
-            value.save()
+
+        # fs = FileSystemStorage(location='data', base_url='media/')
+        # filename = fs.save(new_docs.name, new_docs)
+        # uploaded_file_url = fs.url(filename)
+
+
+
+        # imported_data = dataset.load(new_docs.read(), format='csv')
+        # for data in imported_data:
+        #     value = Docs(
+        #         data[0],
+        #         data[1],
+        #         data[2],
+        #         data[3],
+        #     )
+        #     value.save()
 
     return render(request, 'kinsdb/upload.html')
+
+
+
+import csv
+from django.db import IntegrityError
+
+data = None
+
+def upload_data(request):
+    with open ('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
+        count = 0
+        rows = csv.DictReader(csv_file)
+        uploaded = '업로드 완료 항목: '
+        failed = '중복된 항목: '
+        # next(rows, None)
+        for row in rows:
+            try:
+                Docs.objects.create(
+                    title = row['title'],
+                    content_kor = row['content_kor'],
+                    content_eng = row['content_eng'],
+                    writer_id = row['writer'],
+                    index_title_kor = row['index_title_kor'],
+                    index_title_eng = row['index_title_eng'],
+                    index_num = row['index_num'],
+                    sector = row['sector'],
+                    document_id = row['Document_ID'],
+                )
+                uploaded = uploaded + str(row['index_num']) + ', '
+            except IntegrityError:
+                count +=1
+                failed = failed + str(row['index_num']) + ', '
+
+            context = {'uploaded': uploaded, 'count': count , 'failed': failed}
+    return render(request, 'kinsdb/Analysis/read_data.html', context)
+    # return HttpResponse('중복인 데이터 ' + str(count) + '개를 제외한 항목이 업데이트 되었습니다.')/
+
+
 
 
 
@@ -208,3 +282,11 @@ def download_file(request, filename):
     response['Content-Disposition'] = 'attachment; filename=""'
 
     return response
+
+
+
+def wordcloud(request):
+    content = Movie.objects.values('content')
+    df = pd.DataFrame(content)
+    BigdataPro.makeWordCloud(df.content)
+    return render(request, 'bigdata_pro/wordcloud.html', {'content':df.content})
