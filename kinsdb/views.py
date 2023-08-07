@@ -44,7 +44,7 @@ def simple_upload(request):
             return HttpResponse('잘못된 형식의 파일입니다.')
         else:
             data.save()
-            return render(request, 'kinsdb/upload.html')
+            return render(request, 'kinsdb/upload_data.html')
     else:
         form = DataForm
         context = {

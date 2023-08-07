@@ -116,12 +116,21 @@ class Document(models.Model):
     def __str__(self):
         return str(self.id) + ') ' + self.serial_num
 
+from django.utils import timezone
+def data_file_name(instance, filename):
+    time = timezone.now().strftime('%y%m%d%H%M%S')
+    bar = '_'
+    return '/'.join(['data', filename + '_' + time ])
+
+
 
 class Data(models.Model):
     document = models.ForeignKey(
         'kinsdb.Document', on_delete=models.CASCADE)
-    file = models.FileField(upload_to="data/%Y/%m/%d")
+    file = models.FileField(upload_to=data_file_name)
     last_updated = models.DateTimeField(auto_now_add=True, blank=True)
+
+
 
 
 class Report(models.Model):

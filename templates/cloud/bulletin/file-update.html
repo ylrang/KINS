@@ -103,7 +103,7 @@
           <div class="col-lg-6">
             <div class="mb-4">
               <label for="jobtitle" class="form-label">수정내용</label>
-              <input type="text" class="form-control" id="jobtitle" placeholder="title">
+              <input type="text" class="form-control" id="jobtitle" placeholder="">
             </div>
           </div>
           <!--end col-->
@@ -117,7 +117,7 @@
           <div class="col-lg-12">
             <div class="mb-4">
               <label for="jobtitle" class="form-label">파일 추가</label>
-              <input type="file" class="form-control" id="jobtitle" placeholder="파일 업로드">
+              <input type="file" class="form-control" id="jobtitle" placeholder="">
             </div>
           </div>
           <!--end col-->
@@ -143,10 +143,18 @@
 
                 <div class="d-flex flex-column align-items-stretch w-100">
                   <div class="ms-4">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
                       <h6 class="fs-16 mb-1">필드 수정</h6>
                       <p class="fs-12 text-muted mb-0 mx-2">23.06.28 00:00:00</p>
+                      </div>
+                      <i class="mdi mdi-dots-vertical" id="dropdownMenuUpdate" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuUpdate">
+                      <li><a class="dropdown-item" href="javascript:void(0)">수정</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0)">삭제</a></li>
+                      </ul>
                     </div>
+
                     <p class="text-muted">데이터베이스 검색을 위한 제목 필드 수정 완료하였습니다.</p>
                   </div>
                   <ul class="profile-document list-unstyled mb-0">
@@ -159,7 +167,6 @@
                           <h6 class="fs-16 mb-0">filename3.pdf</h6>
                           <p class="text-muted mb-0">1.25 MB</p>
                         </div>
-
                       </div>
                     </li>
                     <li>
@@ -168,7 +175,7 @@
                           <i class="uil uil-file"></i>
                         </div>
                         <div class="ms-3">
-                          <h6 class="fs-16 mb-0">filename2s.pdf</h6>
+                          <h6 class="fs-16 mb-0">filename2.pdf</h6>
                           <p class="text-muted mb-0">1.25 MB</p>
                         </div>
                       </div>
@@ -184,9 +191,16 @@
 
                 <div class="d-flex flex-column align-items-stretch w-100">
                   <div class="ms-4">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
                       <h6 class="fs-16 mb-1">초안 업로드</h6>
                       <p class="fs-12 text-muted mb-0 mx-2">23.06.07 12:41:00</p>
+                      </div>
+                      <i class="mdi mdi-dots-vertical" id="dropdownMenuUpdate" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuUpdate">
+                      <li><a class="dropdown-item" href="#">수정</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0)">삭제</a></li>
+                      </ul>
                     </div>
                     <p class="text-muted">6월 데이터 업데이트</p>
                   </div>

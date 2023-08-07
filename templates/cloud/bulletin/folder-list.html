@@ -11,8 +11,16 @@
 {% block content %}
 
 <style>
-  li:last-child {
+  .folder-Categories-list li:last-child {
     text-align: center;
+  }
+
+  .folder-Categories-box .folder-Categories-list li {
+    background-color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    box-shadow: 0.075rem 1.5rem rgba(49, 64, 71, .03)
   }
 </style>
 <section class="page-title-box">
@@ -56,9 +64,9 @@
         <div class="text-center">
           <p class="badge bg-warning fs-14 mb-2">KINS 기관 제출 공문</p>
         </div>
-        <div class="card job-Categories-box bg-light border-0">
+        <div class="card folder-Categories-box bg-light border-0">
           <div class="card-body p-4">
-            <ul class="list-unstyled job-Categories-list mb-0">
+            <ul class="list-unstyled folder-Categories-list mb-0">
               <li>
                 <a href="{% url 'file_list' %}" class="primary-link fs-20">과제협약<span class="badge bg-soft-info float-end">5</span></a>
               </li>
@@ -86,9 +94,9 @@
         <div class="text-center">
           <p class="badge bg-warning fs-14 mb-2">참여기관 공유</p>
         </div>
-        <div class="card job-Categories-box bg-light border-0">
+        <div class="card folder-Categories-box bg-light border-0">
           <div class="card-body p-4">
-            <ul class="list-unstyled job-Categories-list mb-0">
+            <ul class="list-unstyled folder-Categories-list mb-0">
               <li>
                 <a href="{% url 'file_list' %}" class="primary-link fs-20">원안위 데이터 전달<span class="badge bg-soft-info float-end">25</span></a>
               </li>
@@ -111,9 +119,9 @@
         <div class="text-center">
           <p class="badge bg-warning fs-14 mb-2">회의일정 및 발표자료</p>
         </div>
-        <div class="card job-Categories-box bg-light border-0">
+        <div class="card folder-Categories-box bg-light border-0">
           <div class="card-body p-4">
-            <ul class="list-unstyled job-Categories-list mb-0">
+            <ul class="list-unstyled folder-Categories-list mb-0">
               <li>
                 <a href="{% url 'file_list' %}" class="primary-link fs-20">데이터<span class="badge bg-soft-info float-end">25</span></a>
               </li>
