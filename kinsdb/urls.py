@@ -5,7 +5,8 @@ urlpatterns = [
     path('database-index', views.index, name='database-index'),
     path('institution', views.institution, name='institution'),
     path('site', views.site, name='site'),
-    path('regulation_database', views.regulation_database, name='regulation_database'),
+    path('regulation_database', views.regulation_database,
+         name='regulation_database'),
 
     path('brnc', views.brnc, name='brnc'),
     path('docs-details<int:pk>', views.docs_detail, name='docs-details'),
@@ -14,7 +15,8 @@ urlpatterns = [
     path('unist', views.unist, name='unist'),
 
     path('report<int:report_num>', views.report, name='report'),
-    path('issue_detail<int:pk><int:report_num>', views.issue_detail, name='issue_detail'),
+    path('issue_detail<int:pk><int:report_num>',
+         views.issue_detail, name='issue_detail'),
 
     path('document<int:doc_num>', views.document, name='document'),
     path('document_detail', views.document_detail, name='document_detail'),
@@ -26,11 +28,14 @@ urlpatterns = [
     path('component<str:cmp>', views.component, name='component'),
     path('siting<str:country>', views.siting, name='siting'),
     path('details<str:country>_<str:title>', views.details, name='details'),
-    path('details-component<str:title>', views.detail_component, name='details-component'),
+    path('details-component<str:title>',
+         views.detail_component, name='details-component'),
 
     path('upload', views.simple_upload, name='upload'),
 
     path('wordcloud', views.wordcloud, name='wordcloud'),
     path('analysis', views.analysis, name='analysis'),
-    path('upload_data', views.upload_data, name='upload_data')
+    path('upload_data', views.upload_data, name='upload_data'),
+    # path('wordcloudview', views.WordCloudView, name='wordcloudview'),
+
 ]

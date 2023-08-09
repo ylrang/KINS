@@ -1,3 +1,18 @@
+from django.core.files.base import ContentFile
+import urllib
+import io
+import base64
+import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from krwordrank.word import summarize_with_keywords
+from .forms import DataForm
+from konlpy.tag import Okt
+from django.db import IntegrityError
+import csv
+from jobcy.settings import STATIC_ROOT
+from collections import Counter
 from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 import os
@@ -16,25 +31,55 @@ from django.http import HttpResponse
 
 import pandas as pd
 
+
 def analysis(request):
     qs = Docs.objects.all().values()
     data = pd.DataFrame(qs)
-    context = {'df' : data.to_html() }
+    context = {'df': data.to_html()}
 
     return render(request, "kinsdb/Analysis/test.html", context)
 
 
-# @api_view(['GET'])
-# def wordcloud(request, doc_id):
-#     doc = Docs.objects.get(id=doc_id)
+# from kinsdb.utils import read_file_by_file_extension, show_wordcloud
+# def WordCloudView(request):
+#     def get_context_data(self) -> dict[str, Any]:
+#         """For storing our context."""
+#         context: dict[str, Any] = {}
+#         context["DataForm"] = DataForm()
+#         return context
+#     def narration_chart_data(self, request: HttpRequest, data:
+#                             Optional[pd.DataFrame]) -> HttpResponse:
+#         """For displaying wordcloud."""
+#         context = self.get_context_data()
+#         wordcloud = show_wordcloud(data)
+#         context["wordcloud"] = wordcloud
+#         return render(request, self.template_name, context)
+#     def get(self, request: HttpRequest) -> HttpResponse:
+#         return render(request,self.template_name,
+#                      self.get_context_data())
+#     def post(self, request: HttpRequest) -> HttpResponse:
+#         context = self.get_context_data()
+#         form = DataForm(request.POST, request.FILES)
+#         values: list[str] = []
+#         if form.is_valid():
+#             user_file = form.cleaned_data["file"]
+#             read_file = read_file_by_file_extension(user_file)
+#             if read_file is not None:
+#                 for _, row in read_file.iterrows():
+#                     values.append(row["narration"])
+#                 converted_to_string = " ".join(values)
+#                 return self.narration_chart_data(request,
+#                               converted_to_string)
+#         else:
+#             form = DataForm()
+#         return render(request, "kinsdb/wordcloudvisualization.html", context)
 
-from .forms import DataForm
 
 def simple_upload(request):
     if request.method == 'POST':
         data = Data(
-            document_id = request.POST['document'],
-            file = request.FILES['file'],
+            document_id=request.POST['document'],
+            file=request.FILES['file'],
         )
         # form.title =
         # docs_resource = DocsResource()
@@ -48,16 +93,13 @@ def simple_upload(request):
     else:
         form = DataForm
         context = {
-            'form' : form,
+            'form': form,
         }
         return render(request, 'kinsdb/upload.html', context)
-
 
         # fs = FileSystemStorage(location='data', base_url='media/')
         # filename = fs.save(new_docs.name, new_docs)
         # uploaded_file_url = fs.url(filename)
-
-
 
         # imported_data = dataset.load(new_docs.read(), format='csv')
         # for data in imported_data:
@@ -72,43 +114,96 @@ def simple_upload(request):
     return render(request, 'kinsdb/upload.html')
 
 
-
-import csv
-from django.db import IntegrityError
-
 data = None
 
+
+def wordcloud(content):
+    okt = Okt()
+    nouns = okt.nouns(content)
+
+    words = [n for n in nouns if len(n) > 1]
+
+    c = Counter(words)
+
+    wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250,
+                   font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
+    gen = wc.generate_from_frequencies(c)
+    plt.figure()
+
+    plt.imshow(wc, interpolation='bilinear')
+    plt.axis('off')
+
+    image = io.BytesIO()
+    plt.savefig(image, format='png')
+
+    image.seek(0)
+    string = base64.b64encode(image.read())
+
+    image_64 = 'data:image/png;base64,' + urllib.parse.quote(string)
+    return image_64
+
+    # wc.to_file(filename="wc_1.png")
+    # # gen.to_file('media/images/data/test.png')
+    #
+    # context = {'c': c, 'words': words, 'wc': wc, 'gen': gen}
+    #
+    # return gen
+
+from django.core.files.base import ContentFile
 def upload_data(request):
-    with open ('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
+    with open('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
         count = 0
         rows = csv.DictReader(csv_file)
         uploaded = '업로드 완료 항목: '
         failed = '중복된 항목: '
+        # wc = wordcloud(
+        #     '국제기본안전기준(International Basic Safety Standards)과 기타 기준[3, 13,14]에서 요구한 차등접근법에 따라, 폐기물을 보관하고 인간과 환경으로부터 격리하기 위해 선택된 처분체계의 능력은 해당 폐기물의 잠재적 위험에 상응한다. 본 간행물에서 명시한 요건은 모든 종류의 처분시설에 적용된다. 그러나 해당 요건을 충족하기 위해 필요한 대책마련의 범위는 차등접근에 따라 차이가 있을 수 있다. 이러한 점은 1.14 에서 언급한 다른 종류의 시설을 위한 안전지침에 반영된다. ')
+
         # next(rows, None)
         for row in rows:
+
+            # format, imgstr = wc.split(';base64,')
+            # ext = format.split('/')[-1]
+            #
+            # data = ContentFile(base64.b64decode(imgstr))
+
+            # img = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+
             try:
+                wc_uri = wordcloud(row['content_kor'])
                 Docs.objects.create(
-                    title = row['title'],
-                    content_kor = row['content_kor'],
-                    content_eng = row['content_eng'],
-                    writer_id = row['writer'],
-                    index_title_kor = row['index_title_kor'],
-                    index_title_eng = row['index_title_eng'],
-                    index_num = row['index_num'],
-                    sector = row['sector'],
-                    document_id = row['Document_ID'],
+                    title=row['title'],
+                    content_kor=row['content_kor'],
+                    content_eng=row['content_eng'],
+                    writer_id=row['writer'],
+                    index_title_kor=row['index_title_kor'],
+                    index_title_eng=row['index_title_eng'],
+                    index_num=row['index_num'],
+                    sector=row['sector'],
+                    document_id=row['Document_ID'],
+                    wc=wc_uri,
                 )
                 uploaded = uploaded + str(row['index_num']) + ', '
             except IntegrityError:
-                count +=1
+                count += 1
                 failed = failed + str(row['index_num']) + ', '
 
-            context = {'uploaded': uploaded, 'count': count , 'failed': failed}
+    context = {'uploaded': uploaded,
+               'count': count, 'failed': failed, 'wc': wc_uri}
     return render(request, 'kinsdb/Analysis/read_data.html', context)
+
     # return HttpResponse('중복인 데이터 ' + str(count) + '개를 제외한 항목이 업데이트 되었습니다.')/
 
-
-
+    # okt = Okt()
+    # nouns = okt.nouns(content)
+    #
+    # words = [n for n in nouns if len(n) > 1]
+    #
+    # c = Counter(words)
+    #
+    # wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
+    # gen = wc.generate_from_frequencies(c)
+    # plt.figure()
 
 
 def index(request):
@@ -119,17 +214,16 @@ def unist(request):
     return render(request, "kinsdb/UNIST/unist.html")
 
 
-
 def report(request, report_num):
     rep = Report.objects.get(serial_num=report_num)
     issues = Issue.objects.select_related('report')
-    context = {'rep': rep, 'issues': issues }
+    context = {'rep': rep, 'issues': issues}
     return render(request, "kinsdb/UNIST/report.html", context)
 
 
 def issue_detail(request, pk, report_num):
     issue = Issue.objects.get(id=pk)
-    context = { 'issue': issue, 'report_num': report_num }
+    context = {'issue': issue, 'report_num': report_num}
     return render(request, "kinsdb/UNIST/issue-detail.html", context)
 
 
@@ -191,12 +285,13 @@ def details(request, country, title):
 
     return render(request, "kinsdb/UNIST/siting-detail.html", context)
 
+
 def brnc(request):
     return render(request, "kinsdb/BRNC/brnc.html")
 
 
 def regulation_database(request):
-    regulation_list = ['all','법률', '규정', '규제지침']
+    regulation_list = ['all', '법률', '규정', '규제지침']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
     field = request.GET.get('field', '')
@@ -205,7 +300,8 @@ def regulation_database(request):
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
 
-    docs = docs.filter(Q(title__icontains=search)).filter(Q(document__institution__icontains=country)).filter(Q(sector__icontains=field))
+    docs = docs.filter(Q(title__icontains=search)).filter(
+        Q(document__institution__icontains=country)).filter(Q(sector__icontains=field))
     # .filter(Q(field__in=field))
 
     # if field == 'title':
@@ -228,7 +324,7 @@ def regulation_database(request):
     page_obj = paginator.page(page_number)
 
     context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter,
-               'search': search, 'documents': documents, 'country': country, 'regulation': regulation }
+               'search': search, 'documents': documents, 'country': country, 'regulation': regulation}
     return render(request, "kinsdb/BRNC/BRNC_database.html", context)
 
 
@@ -284,9 +380,8 @@ def download_file(request, filename):
     return response
 
 
-
-def wordcloud(request):
-    content = Movie.objects.values('content')
-    df = pd.DataFrame(content)
-    BigdataPro.makeWordCloud(df.content)
-    return render(request, 'bigdata_pro/wordcloud.html', {'content':df.content})
+# def wordcloud(request):
+#     content = Movie.objects.values('content')
+#     df = pd.DataFrame(content)
+#     BigdataPro.makeWordCloud(df.content)
+#     return render(request, 'bigdata_pro/wordcloud.html', {'content':df.content})

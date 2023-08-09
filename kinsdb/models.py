@@ -77,6 +77,8 @@ class Docs(models.Model):
     document = models.ForeignKey(
         'kinsdb.Document', on_delete=models.CASCADE)  # 문서     #국가 포함
 
+    wc = models.TextField(null=True, blank=True)
+
     class Meta:
         verbose_name = 'Docs'
         verbose_name_plural = 'Docs'
