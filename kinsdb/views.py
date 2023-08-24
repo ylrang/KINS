@@ -76,20 +76,52 @@ def analysis(request):
 
 
 def simple_upload(request):
+
     if request.method == 'POST':
-        data = Data(
-            document_id=request.POST['document'],
-            file=request.FILES['file'],
-        )
+        file = request.FILES['csv']
+        file.seek(0)
+        # data = Data(
+        #     document_id=request.POST['document'],
+        #     file=request.FILES['file'],
+        # )
         # form.title =
         # docs_resource = DocsResource()
         # dataset = Dataset()
-        if not data.file.name.endswith('csv'):
+        if not file.name.endswith('csv'):
             messages.info(request, 'wrong format')
-            return HttpResponse('잘못된 형식의 파일입니다.')
+            return HttpResponse('잘못된 형식의 파일입니다.' + file.name + '!')
         else:
-            data.save()
-            return render(request, 'kinsdb/upload_data.html')
+            count = 0
+            uploaded = '업로드 완료 항목: '
+            failed = '중복된 항목: '
+            reader = csv.DictReader(io.StringIO(file.read().decode('cp949')))
+            wc_uri = '1'
+            for row in reader:
+                try:
+                    # wc_uri = wordcloud(row['content_kor'])
+                    Docs.objects.create(
+                        title=row['title'],
+                        content_kor=row['content_kor'],
+                        content_eng=row['content_eng'],
+                        writer_id=row['writer'],
+                        index_title_kor=row['index_title_kor'],
+                        index_title_eng=row['index_title_eng'],
+                        index_num=row['index_num'],
+                        sector=row['sector'],
+                        document_id=row['Document_ID'],
+                        wc=wc_uri,
+                    )
+                    uploaded = uploaded + str(row['index_num']) + ', '
+                except IntegrityError:
+                    count += 1
+                    failed = failed + str(row['index_num']) + ', '
+
+            context = {'uploaded': uploaded,
+                   'count': count, 'failed': failed, 'wc': wc_uri}            # with open(file, 'r', encoding='cp949') as csv_file:
+                # rows = csv.DictReader(csv_file)
+            # context = { 'rows': rows, 'file': file.name }
+        #     data.save()
+            return render(request, 'kinsdb/Analysis/read_data.html', context)
     else:
         form = DataForm
         context = {
@@ -111,7 +143,7 @@ def simple_upload(request):
         #     )
         #     value.save()
 
-    return render(request, 'kinsdb/upload.html')
+    # return render(request, 'kinsdb/upload.html')
 
 
 data = None
@@ -125,7 +157,7 @@ def wordcloud(content):
 
     c = Counter(words)
 
-    wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250,
+    wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, background_color='white',
                    font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
     gen = wc.generate_from_frequencies(c)
     plt.figure()

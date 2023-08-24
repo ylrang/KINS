@@ -104,12 +104,16 @@ class Tag(models.Model):
 def content_file_name(instance, filename):
     return '/'.join(['documents', instance.institution, filename])
 
+def csv_file_name(instance, filename):
+    return '/'.join(['data', instance.serial_num, filename])
+
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to=content_file_name)
     serial_num = models.CharField(max_length=100)
     institution = models.CharField(max_length=100)
+    csv = models.FileField(upload_to=csv_file_name, blank=True)
 
     class Meta:
         verbose_name = 'BRNC_Documents'
@@ -127,10 +131,10 @@ def data_file_name(instance, filename):
 
 
 class Data(models.Model):
-    document = models.ForeignKey(
-        'kinsdb.Document', on_delete=models.CASCADE)
-    file = models.FileField(upload_to=data_file_name)
-    last_updated = models.DateTimeField(auto_now_add=True, blank=True)
+        document = models.ForeignKey(
+            'kinsdb.Document', on_delete=models.CASCADE)
+        file = models.FileField(upload_to=data_file_name)
+        last_updated = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 

@@ -1,18 +1,74 @@
-<h1>HI</h1>
-{% if messages %}
+{% extends 'partials/rnd_base.html' %}
+{% load static %}
+{% block title %}Data Upload{% endblock title %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
 
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }}" role="alert">
-  <p{% if message.tags %} class=""{% endif %}>{{ message }}</p>
+<section class="page-title-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h3 class="mb-4"> 데이터 업로드 </h3>
+
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<div class="position-relative" style="z-index: 1">
+  <div class="shape">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
 </div>
-{% endfor %}
-{% endif %}
 
-<form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
-  {% csrf_token %}
-{{ form.as_p }}
-  <!-- <input type="text" name="document">
-  <input type="file" name="myfile"> -->
-  <button type="submit" value="submit">Upload</button>
-  <h2>Please Upload Excel File</h2>
-</form>
+
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      {% if messages %}
+
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        <p{% if message.tags %} class="" {% endif %}>{{ message }}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary" value="submit">Upload</button>
+
+      </form>
+
+</div>
+</div>
+</section>
+
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}
