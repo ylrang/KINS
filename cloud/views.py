@@ -49,6 +49,8 @@ class Components(TemplateView):
     template_name = "cloud/extra-pages/components.html"
 
 
+from .models import *
+from .forms import PostForm
 
 from django.shortcuts import render
 
@@ -65,19 +67,33 @@ def folder_detail(request):
     return render(request, "cloud/bulletin/folder-detail.html")
 
 def file_list(request):
-    return render(request, "cloud/bulletin/file-list.html")
+    posts = Post.objects.all()
+    context = {'posts': posts }
+    return render(request, "cloud/bulletin/file-list.html", context)
 
-def file_detail(request):
-    return render(request, "cloud/bulletin/file-detail.html")
+
+    # ie = Docs.objects.filter(document__institution='IAEA').count()
+
+def file_detail(request, post_id):
+    logs = Log.objects.filter(post__id=post_id).order_by('-creation_date')
+    context = {'logs': logs }
+    return render(request, "cloud/bulletin/file-detail.html", context)
 
 def file_upload(request):
-    return render(request, "cloud/bulletin/file-upload.html")
+    if request.method == 'POST':
+        file = request.FILES['file']
+    else:
+        form = PostForm
+        context = {
+            'form': form,
+        }
+
+    return render(request, "cloud/bulletin/file-upload.html", context)
 
 def file_update(request):
     return render(request, "cloud/bulletin/file-update.html")
 
 
-from .models import *
 # # from account.models import Folders
 from .utils import Calendar
 from datetime import timedelta

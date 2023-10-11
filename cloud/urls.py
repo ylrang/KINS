@@ -11,7 +11,7 @@ urlpatterns = [
     path('folder-list', views.folder_list, name='folder_list'),
     path('folder-detail', views.folder_detail, name='folder_detail'),
     path('file-list', views.file_list, name='file_list'),
-    path('file-detail', views.file_detail, name='file_detail'),
+    path('file-detail<int:post_id>', views.file_detail, name='file_detail'),
     path('file-upload', views.file_upload, name='file_upload'),
     path('file-update', views.file_update, name='file_update'),
 

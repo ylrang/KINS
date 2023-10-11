@@ -30,6 +30,29 @@ class Person(models.Model):
     objects = models.Manager()
 
 
+class Log(models.Model):
+    post = models.ForeignKey('cloud.Post', on_delete=models.CASCADE)
+    creation_date = models.DateTimeField()
+    title = models.TextField()
+    description = models.TextField()
+
+
+class Files(models.Model):
+    file = models.FileField()
+    log = models.ForeignKey('cloud.Log', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Files'
+        verbose_name_plural = 'Files'
+
+class Post(models.Model):
+    creation_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
+    title = models.TextField()
+    description = models.TextField()
+
+    def __str__(self):
+        return str(self.id) + ') ' + self.title
 #
 # from django.db import models
 # from django.utils import timezone

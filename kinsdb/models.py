@@ -62,7 +62,7 @@ class Docs(models.Model):
     regist_date = models.DateTimeField(auto_now_add=True, blank=True)  # 등록일자
     last_updated = models.DateTimeField(
         auto_now_add=True, blank=True)  # 최근 수정일
-    writer = models.ForeignKey(myUser, on_delete=models.PROTECT)  # 작성자
+    writer = models.ForeignKey(myUser, on_delete=models.PROTECT, db_constraint=False)  # 작성자
     tags = models.ManyToManyField(
         'kinsdb.Tag', related_name='tags', blank=True)  # 태그
     views = models.IntegerField(verbose_name='VIEWS', default=0)  # 조회
