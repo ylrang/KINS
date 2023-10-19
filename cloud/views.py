@@ -50,9 +50,10 @@ class Components(TemplateView):
 
 
 from .models import *
-from .forms import PostForm
+from .forms import *
+from django.views.decorators.csrf import csrf_exempt
 
-from django.shortcuts import render
+from django.shortcuts import redirect
 
 def notice(request):
     return render(request, "index/notice.html")
@@ -79,16 +80,32 @@ def file_detail(request, post_id):
     context = {'logs': logs }
     return render(request, "cloud/bulletin/file-detail.html", context)
 
+
+@csrf_exempt
 def file_upload(request):
     if request.method == 'POST':
-        file = request.FILES['file']
+        # fileform = FileForm(request.POST, request.FILES)
+        postform = PostForm(request.POST, request.FILES)
+        # files = request.FILES.getlist('files')
+        if postform.is_valid():
+            # for f in files:
+            #     file_instance = Files(file=f)
+            #     file_instance.save()
+            post = postform.save(commit=False)
+            post.save()
+            log = Log.objects.create(title='생성', description='게시글 생성', post=post)
+            # log.post = postform
+            log.save()
+            return redirect('folder_list')
     else:
-        form = PostForm
-        context = {
-            'form': form,
-        }
+        postform = PostForm()
 
+    context = {
+        'postform': postform,
+        # 'fileform': fileform
+    }
     return render(request, "cloud/bulletin/file-upload.html", context)
+
 
 def file_update(request):
     return render(request, "cloud/bulletin/file-update.html")
