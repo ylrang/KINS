@@ -4,15 +4,15 @@ from account.models import myUser
 from django.db.models import CharField
 
 class FileForm(forms.ModelForm):
+
     class Meta:
         model = Files
         fields = '__all__'
 
-
-class LogForm(forms.ModelForm):
-    class Meta:
-        model = Log
-        fields = ['post']
+    files = forms.FileField(
+        label="파일 업로드",
+        widget=forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})
+    )
 
 
 class PostForm(forms.ModelForm):
@@ -63,8 +63,3 @@ class PostForm(forms.ModelForm):
         queryset=Folder.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control'})
     )
-
-    # files = forms.FileField(
-    #     label="파일 업로드",
-    #     widget=forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})
-    # )

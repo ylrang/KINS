@@ -76,33 +76,36 @@ def file_list(request):
     # ie = Docs.objects.filter(document__institution='IAEA').count()
 
 def file_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
     logs = Log.objects.filter(post__id=post_id).order_by('-creation_date')
-    context = {'logs': logs }
+    context = {'post': post, 'logs': logs }
     return render(request, "cloud/bulletin/file-detail.html", context)
 
 
 @csrf_exempt
 def file_upload(request):
     if request.method == 'POST':
-        # fileform = FileForm(request.POST, request.FILES)
         postform = PostForm(request.POST, request.FILES)
-        # files = request.FILES.getlist('files')
+
+        fileform = FileForm(request.POST, request.FILES)
+        files = request.FILES.getlist('files')
+
         if postform.is_valid():
-            # for f in files:
-            #     file_instance = Files(file=f)
-            #     file_instance.save()
             post = postform.save(commit=False)
             post.save()
             log = Log.objects.create(title='생성', description='게시글 생성', post=post)
-            # log.post = postform
             log.save()
+            for f in files:
+                file = Files(file=f, log=log)
+                file.save()
             return redirect('folder_list')
     else:
         postform = PostForm()
+        fileform = FileForm()
 
     context = {
         'postform': postform,
-        # 'fileform': fileform
+        'fileform': fileform,
     }
     return render(request, "cloud/bulletin/file-upload.html", context)
 
