@@ -30,7 +30,7 @@ from django.http import HttpResponse
 
 
 import pandas as pd
-
+from django.core.files.base import ContentFile
 
 def analysis(request):
     qs = Docs.objects.all().values()
@@ -38,42 +38,6 @@ def analysis(request):
     context = {'df': data.to_html()}
 
     return render(request, "kinsdb/Analysis/test.html", context)
-
-
-# from kinsdb.utils import read_file_by_file_extension, show_wordcloud
-# def WordCloudView(request):
-#     def get_context_data(self) -> dict[str, Any]:
-#         """For storing our context."""
-#         context: dict[str, Any] = {}
-#         context["DataForm"] = DataForm()
-#         return context
-#     def narration_chart_data(self, request: HttpRequest, data:
-#                             Optional[pd.DataFrame]) -> HttpResponse:
-#         """For displaying wordcloud."""
-#         context = self.get_context_data()
-#         wordcloud = show_wordcloud(data)
-#         context["wordcloud"] = wordcloud
-#         return render(request, self.template_name, context)
-#     def get(self, request: HttpRequest) -> HttpResponse:
-#         return render(request,self.template_name,
-#                      self.get_context_data())
-#     def post(self, request: HttpRequest) -> HttpResponse:
-#         context = self.get_context_data()
-#         form = DataForm(request.POST, request.FILES)
-#         values: list[str] = []
-#         if form.is_valid():
-#             user_file = form.cleaned_data["file"]
-#             read_file = read_file_by_file_extension(user_file)
-#             if read_file is not None:
-#                 for _, row in read_file.iterrows():
-#                     values.append(row["narration"])
-#                 converted_to_string = " ".join(values)
-#                 return self.narration_chart_data(request,
-#                               converted_to_string)
-#         else:
-#             form = DataForm()
-#         return render(request, "kinsdb/wordcloudvisualization.html", context)
-
 
 def simple_upload(request):
 
@@ -145,10 +109,17 @@ def simple_upload(request):
 
     # return render(request, 'kinsdb/upload.html')
 
+def download_file(request, filename):
+    file_path = os.path.abspath("media")
+    file_name = os.path.basename(filename)
+    fs = FileSystemStorage(file_path)
+    response = FileResponse(fs.open(filename, 'r'),
+                            content_type='application/force-download')  # mime_type
+    response['Content-Disposition'] = 'attachment; filename=""'
+
+    return response
 
 data = None
-
-
 def wordcloud(content):
     okt = Okt()
     nouns = okt.nouns(content)
@@ -181,7 +152,6 @@ def wordcloud(content):
     #
     # return gen
 
-from django.core.files.base import ContentFile
 def upload_data(request):
     with open('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
         count = 0
@@ -242,85 +212,8 @@ def index(request):
     return render(request, "kinsdb/database-index.html")
 
 
-def unist(request):
-    return render(request, "kinsdb/UNIST/unist.html")
-
-
-def report(request, report_num):
-    rep = Report.objects.get(serial_num=report_num)
-    issues = Issue.objects.select_related('report')
-    context = {'rep': rep, 'issues': issues}
-    return render(request, "kinsdb/UNIST/report.html", context)
-
-
-def issue_detail(request, pk, report_num):
-    issue = Issue.objects.get(id=pk)
-    context = {'issue': issue, 'report_num': report_num}
-    return render(request, "kinsdb/UNIST/issue-detail.html", context)
-
-
-def document(request, doc_num):
-    return render(request, "kinsdb/UNIST/document.html")
-
-
-def document_detail(request):
-    return render(request, "kinsdb/UNIST/document-detail.html")
-
-# 1
-
-
-def safety(request):
-    return render(request, "kinsdb/UNIST/safety-case.html")
-
-
-def detail_safety(request, doc):
-    context = {'doc': doc}
-    return render(request, "kinsdb/UNIST/safety-detail.html", context)
-
-
-def temp_safety(request, doc):
-    context = {'doc': doc}
-    return render(request, "kinsdb/UNIST/safety-temp.html", context)
-
-
-# 2
-def kbs(request):
-    return render(request, "kinsdb/UNIST/kbs-3.html")
-
-
-def component(request, cmp):
-    context = {'cmp': cmp}
-    return render(request, "kinsdb/UNIST/component-list.html", context)
-
-
-def detail_component(request, title):
-    context = {'title': title}
-    return render(request, "kinsdb/UNIST/component-detail.html", context)
-
-
-# 3
-def siting(request, country):
-    sites = Site.objects.filter(country=country)
-
-    context = {'country': country, 'sites': sites}
-    return render(request, "kinsdb/UNIST/siting.html", context)
-
-
-def details(request, country, title):
-    # if site.country = '스웨덴':
-    #     factor = SWFactor.objects.filter(title=title)
-    # else:
-    # factors = SWFactor.objects.filter(title='지하수 조성')
-    factors = SWFactor.objects.filter(title=title)
-    context = {'site': site, 'country': country,
-               'factors': factors, 'title': title}
-
-    return render(request, "kinsdb/UNIST/siting-detail.html", context)
-
-
 def brnc(request):
     return render(request, "kinsdb/BRNC/brnc.html")
-
 
 def regulation_database(request):
     regulation_list = ['all', '법률', '규정', '규제지침']
@@ -359,57 +252,155 @@ def regulation_database(request):
                'search': search, 'documents': documents, 'country': country, 'regulation': regulation}
     return render(request, "kinsdb/BRNC/BRNC_database.html", context)
 
-
-def institution(request):
-    # countries = Document.objects.all().values_list('institution', flat=True)
-    ie = Docs.objects.filter(document__institution='IAEA').count()
-    am = Docs.objects.filter(document__institution='미국').count()
-    sw = Docs.objects.filter(document__institution='스웨덴').count()
-    fn = Docs.objects.filter(document__institution='핀란드').count()
-    fr = Docs.objects.filter(document__institution='프랑스').count()
-    gm = Docs.objects.filter(document__institution='독일').count()
-    ca = Docs.objects.filter(document__institution='캐나다').count()
-    ja = Docs.objects.filter(document__institution='일본').count()
-    counts = [ie, am, sw, fn, fr, gm, ca, ja]
-    context = {'counts': counts}
-    return render(request, "kinsdb/institution.html", context)
-
-
-def site(request):
-    ie = Site.objects.filter(country='IAEA').count()
-    am = Site.objects.filter(country='미국').count()
-    sw = Site.objects.filter(country='스웨덴').count()
-    fn = Site.objects.filter(country='핀란드').count()
-    fr = Site.objects.filter(country='프랑스').count()
-    gm = Site.objects.filter(country='독일').count()
-    ca = Site.objects.filter(country='캐나다').count()
-    ja = Site.objects.filter(country='일본').count()
-    counts = [ie, am, sw, fn, fr, gm, ca, ja]
-    context = {'counts': counts}
-    return render(request, "kinsdb/site.html", context)
-
-
 def docs_detail(request, pk):
     doc = Docs.objects.get(pk=pk)
     context = {'doc': doc}
     return render(request, "kinsdb/docs-detail.html", context)
 
 
-def site_detail(request, pk):
-    doc = Site.objects.get(pk=pk)
-    context = {'doc': doc}
-    return render(request, "kinsdb/site-detail.html", context)
+def unist(request):
+    return render(request, "kinsdb/UNIST/unist.html")
+
+def report(request, report_num):
+    rep = Report.objects.get(serial_num=report_num)
+    issues = Issue.objects.select_related('report')
+    context = {'rep': rep, 'issues': issues}
+    return render(request, "kinsdb/UNIST/report.html", context)
+
+def issue_detail(request, pk, report_num):
+    issue = Issue.objects.get(id=pk)
+    context = {'issue': issue, 'report_num': report_num}
+    return render(request, "kinsdb/UNIST/issue-detail.html", context)
 
 
-def download_file(request, filename):
-    file_path = os.path.abspath("media")
-    file_name = os.path.basename(filename)
-    fs = FileSystemStorage(file_path)
-    response = FileResponse(fs.open(filename, 'r'),
-                            content_type='application/force-download')  # mime_type
-    response['Content-Disposition'] = 'attachment; filename=""'
+# def document(request, doc_num):
+#     return render(request, "kinsdb/v1/document.html")
 
-    return response
+
+# def document_detail(request):
+#     return render(request, "kinsdb/v1/document-detail.html")
+
+# 1
+
+
+# def safety(request):
+#     return render(request, "kinsdb/v1/safety-case.html")
+
+
+# def detail_safety(request, doc):
+#     context = {'doc': doc}
+#     return render(request, "kinsdb/v1/safety-detail.html", context)
+
+
+# def temp_safety(request, doc):
+#     context = {'doc': doc}
+#     return render(request, "kinsdb/v1/safety-temp.html", context)
+
+
+# 2
+# def kbs(request):
+#     return render(request, "kinsdb/v1/kbs-3.html")
+
+
+# def component(request, cmp):
+#     context = {'cmp': cmp}
+#     return render(request, "kinsdb/v1/component-list.html", context)
+
+
+# def detail_component(request, title):
+#     context = {'title': title}
+#     return render(request, "kinsdb/v1/component-detail.html", context)
+
+
+# 3
+# def siting(request, country):
+#     sites = Site.objects.filter(country=country)
+#
+#     context = {'country': country, 'sites': sites}
+#     return render(request, "kinsdb/v1/siting.html", context)
+
+
+# def details(request, country, title):
+#     # if site.country = '스웨덴':
+#     #     factor = SWFactor.objects.filter(title=title)
+#     # else:
+#     # factors = SWFactor.objects.filter(title='지하수 조성')
+#     factors = SWFactor.objects.filter(title=title)
+#     context = {'site': site, 'country': country,
+#                'factors': factors, 'title': title}
+#
+#     return render(request, "kinsdb/v1/siting-detail.html", context)
+
+# from kinsdb.utils import read_file_by_file_extension, show_wordcloud
+# def WordCloudView(request):
+#     def get_context_data(self) -> dict[str, Any]:
+#         """For storing our context."""
+#         context: dict[str, Any] = {}
+#         context["DataForm"] = DataForm()
+#         return context
+#     def narration_chart_data(self, request: HttpRequest, data:
+#                             Optional[pd.DataFrame]) -> HttpResponse:
+#         """For displaying wordcloud."""
+#         context = self.get_context_data()
+#         wordcloud = show_wordcloud(data)
+#         context["wordcloud"] = wordcloud
+#         return render(request, self.template_name, context)
+#     def get(self, request: HttpRequest) -> HttpResponse:
+#         return render(request,self.template_name,
+#                      self.get_context_data())
+#     def post(self, request: HttpRequest) -> HttpResponse:
+#         context = self.get_context_data()
+#         form = DataForm(request.POST, request.FILES)
+#         values: list[str] = []
+#         if form.is_valid():
+#             user_file = form.cleaned_data["file"]
+#             read_file = read_file_by_file_extension(user_file)
+#             if read_file is not None:
+#                 for _, row in read_file.iterrows():
+#                     values.append(row["narration"])
+#                 converted_to_string = " ".join(values)
+#                 return self.narration_chart_data(request,
+#                               converted_to_string)
+#         else:
+#             form = DataForm()
+#         return render(request, "kinsdb/wordcloudvisualization.html", context)
+
+
+# def institution(request):
+#     # countries = Document.objects.all().values_list('institution', flat=True)
+#     ie = Docs.objects.filter(document__institution='IAEA').count()
+#     am = Docs.objects.filter(document__institution='미국').count()
+#     sw = Docs.objects.filter(document__institution='스웨덴').count()
+#     fn = Docs.objects.filter(document__institution='핀란드').count()
+#     fr = Docs.objects.filter(document__institution='프랑스').count()
+#     gm = Docs.objects.filter(document__institution='독일').count()
+#     ca = Docs.objects.filter(document__institution='캐나다').count()
+#     ja = Docs.objects.filter(document__institution='일본').count()
+#     counts = [ie, am, sw, fn, fr, gm, ca, ja]
+#     context = {'counts': counts}
+#     return render(request, "kinsdb/v1/institution.html", context)
+
+
+# def site(request):
+#     ie = Site.objects.filter(country='IAEA').count()
+#     am = Site.objects.filter(country='미국').count()
+#     sw = Site.objects.filter(country='스웨덴').count()
+#     fn = Site.objects.filter(country='핀란드').count()
+#     fr = Site.objects.filter(country='프랑스').count()
+#     gm = Site.objects.filter(country='독일').count()
+#     ca = Site.objects.filter(country='캐나다').count()
+#     ja = Site.objects.filter(country='일본').count()
+#     counts = [ie, am, sw, fn, fr, gm, ca, ja]
+#     context = {'counts': counts}
+#     return render(request, "kinsdb/v1/site.html", context)
+
+
+
+# def site_detail(request, pk):
+#     doc = Site.objects.get(pk=pk)
+#     context = {'doc': doc}
+#     return render(request, "kinsdb/v1/site-detail.html", context)
+
 
 
 # def wordcloud(request):
