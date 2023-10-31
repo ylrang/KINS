@@ -51,14 +51,12 @@ th {
 
 <section>
   <div class="container">
-
-
     <div class="row justify-content-center">
 
-      <div class="col-lg-10">
+      <div class="col-lg-12">
 
         <div class="p-2" style="display:inline">
-          <i class="mdi mdi-calendar-clock"></i> last updated:
+          <i class="mdi mdi-calendar-clock"></i> last updated: 2023-05-12
         </div>
 
         <div class="border-bottom"></div>
@@ -80,7 +78,24 @@ th {
             </tr>
             <tr>
               <th>첨부파일</th>
-              <td colspan="3"></td>
+              <td colspan="3">
+                  <ul class="profile-document list-unstyled mb-0">
+                    <li>
+                      <div class="profile-document-list d-flex align-items-center">
+                        <div class="d-flex vertical-align-middle">
+                          <p class="fs-14 mb-0">
+                            파일명
+                          </p>
+                          <p class="fs-12 mb-0">({{ doc.document.file.size|filesizeformat }})</p>
+                        </div>
+                        <div class="ms-auto">
+                          <a class="fs-14 text-muted" onclick=location.href=''><i class="uil uil-import"></i></a>
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
+              </td>
             </tr>
             <tr>
               <th>내용</th>
@@ -120,6 +135,36 @@ th {
     </div>
   </div>
 </section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11">
+        <div class="p-2" style="display:inline">
+          <i class="mdi mdi-calendar-clock"></i> 작성자: @qkrwnl <i class="ms-3 mdi mdi-calendar-clock"></i> 일시: 2023-05-12
+        </div>
+
+        <div class="card" id="comment">
+            <div class="card-body p-4">
+                <h5 class="card-title">Basic</h5>
+                <p class="text-muted">의견</p>
+                <div>
+                    <div class="alert  bg-soft-primary" role="alert">
+                        A simple primary alert—check it out!
+                    </div>
+                    <div class="alert  bg-soft-secondary" role="alert">
+                        A simple secondary alert—check it out!
+                    </div>
+                </div>
+
+            </div>
+        </div><!--end alerts-->
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <script>
   function temp_save() {

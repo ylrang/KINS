@@ -263,19 +263,23 @@
     </div>
     <!--end row-->
 
-    <div class="row">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-10 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 m-5">
         <nav>
           <ul class="pagination job-pagination mb-0 justify-content-center">
 
             {% if page_obj.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
-
+              <a class="page-link" href="{% my_url 1 'page' request.GET.urlencode %}" tabindex="-1">
                 <i class="mdi mdi-chevron-double-left fs-15"></i>
               </a>
             </li>
+            <li class="page-item">
+              <a class="page-link" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" tabindex="-1">
+                <i class="mdi mdi-chevron-left fs-15"></i>
+              </a>
+            </li>
+
             {% else %}
             <li class="page-item disabled">
               <a class="page-link" href="javascript:void(0)">
@@ -283,18 +287,26 @@
                 <i class="mdi mdi-chevron-double-left fs-15"></i>
               </a>
             </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="javascript:void(0)">
+
+                <i class="mdi mdi-chevron-left fs-15"></i>
+              </a>
+            </li>
             {% endif %}
 
 
             {% for page_number in page_obj.paginator.page_range %}
-            {% if page_number == page_obj.number %}
-            <li class="page-item active" aria-current="page">
-              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-            </li>
+            {% if page_start_number <= page_number and page_end_number >= page_number %}
+              {% if page_number == page_obj.number %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+              </li>
+              {% else %}
+              <li class="page-item">
+                <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+              </li>
+              {% endif %}
             {% endif %}
             {% endfor %}
 
@@ -302,10 +314,20 @@
             {% if page_obj.has_next %}
             <li class="page-item">
               <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
+                <i class="mdi mdi-chevron-right fs-15"></i>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="{% my_url last_page_num 'page' request.GET.urlencode %} ">
                 <i class="mdi mdi-chevron-double-right fs-15"></i>
               </a>
             </li>
             {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                <i class="mdi mdi-chevron-right fs-15"></i>
+              </a>
+            </li>
             <li class="page-item disabled">
               <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
                 <i class="mdi mdi-chevron-double-right fs-15"></i>

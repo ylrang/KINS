@@ -32,12 +32,14 @@ from django.http import HttpResponse
 import pandas as pd
 from django.core.files.base import ContentFile
 
+
 def analysis(request):
     qs = Docs.objects.all().values()
     data = pd.DataFrame(qs)
     context = {'df': data.to_html()}
 
     return render(request, "kinsdb/Analysis/test.html", context)
+
 
 def simple_upload(request):
 
@@ -81,8 +83,8 @@ def simple_upload(request):
                     failed = failed + str(row['index_num']) + ', '
 
             context = {'uploaded': uploaded,
-                   'count': count, 'failed': failed, 'wc': wc_uri}            # with open(file, 'r', encoding='cp949') as csv_file:
-                # rows = csv.DictReader(csv_file)
+                       'count': count, 'failed': failed, 'wc': wc_uri}            # with open(file, 'r', encoding='cp949') as csv_file:
+            # rows = csv.DictReader(csv_file)
             # context = { 'rows': rows, 'file': file.name }
         #     data.save()
             return render(request, 'kinsdb/Analysis/read_data.html', context)
@@ -109,6 +111,7 @@ def simple_upload(request):
 
     # return render(request, 'kinsdb/upload.html')
 
+
 def download_file(request, filename):
     file_path = os.path.abspath("media")
     file_name = os.path.basename(filename)
@@ -119,7 +122,10 @@ def download_file(request, filename):
 
     return response
 
+
 data = None
+
+
 def wordcloud(content):
     okt = Okt()
     nouns = okt.nouns(content)
@@ -151,6 +157,7 @@ def wordcloud(content):
     # context = {'c': c, 'words': words, 'wc': wc, 'gen': gen}
     #
     # return gen
+
 
 def upload_data(request):
     with open('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
@@ -215,6 +222,11 @@ def index(request):
 def brnc(request):
     return render(request, "kinsdb/BRNC/brnc.html")
 
+
+MAX_LIST_CNT = 4
+MAX_PAGE_CNT = 5
+
+
 def regulation_database(request):
     regulation_list = ['all', '법률', '규정', '규제지침']
     docs = Docs.objects.all()
@@ -244,28 +256,42 @@ def regulation_database(request):
     docsFilter = DocsFilter(request.GET, queryset=docs)
     docs = docsFilter.qs
 
-    paginator = Paginator(docs, 5)
+    paginator = Paginator(docs, MAX_LIST_CNT)
+
     page_number = request.GET.get('page', '1')
     page_obj = paginator.page(page_number)
 
-    context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter,
+    last_page_num = 0
+    for last_page in paginator.page_range:
+        last_page_num = last_page_num + 1
+
+    current_block = ((int(page_number) - 1) / MAX_PAGE_CNT) + 1
+    current_block = int(current_block)
+
+    page_start_number = ((current_block - 1) * MAX_PAGE_CNT) + 1
+    page_end_number = page_start_number + MAX_PAGE_CNT - 1
+
+    context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter, 'page_start_number': page_start_number, 'page_end_number': page_end_number, 'last_page_num': last_page_num,
                'search': search, 'documents': documents, 'country': country, 'regulation': regulation}
-    return render(request, "kinsdb/BRNC/BRNC_database.html", context)
+    return render(request, "kinsdb/BRNC/database.html", context)
+
 
 def docs_detail(request, pk):
     doc = Docs.objects.get(pk=pk)
     context = {'doc': doc}
-    return render(request, "kinsdb/docs-detail.html", context)
+    return render(request, "kinsdb/BRNC/docs-detail.html", context)
 
 
 def unist(request):
     return render(request, "kinsdb/UNIST/unist.html")
+
 
 def report(request, report_num):
     rep = Report.objects.get(serial_num=report_num)
     issues = Issue.objects.select_related('report')
     context = {'rep': rep, 'issues': issues}
     return render(request, "kinsdb/UNIST/report.html", context)
+
 
 def issue_detail(request, pk, report_num):
     issue = Issue.objects.get(id=pk)
@@ -395,12 +421,10 @@ def issue_detail(request, pk, report_num):
 #     return render(request, "kinsdb/v1/site.html", context)
 
 
-
 # def site_detail(request, pk):
 #     doc = Site.objects.get(pk=pk)
 #     context = {'doc': doc}
 #     return render(request, "kinsdb/v1/site-detail.html", context)
-
 
 
 # def wordcloud(request):

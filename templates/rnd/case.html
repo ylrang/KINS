@@ -107,12 +107,13 @@
               <ul class="progressbar">
                 <li class="active">1. 서류접수</li>
                 <li class="active">2. 적합판정</li>
-                <li>3. 종합검토</li>
-                <li>4. 검토완료</li>
+                <li class="">3. 종합검토</li>
+                <li class="">4. 검토완료</li>
 
               </ul>
 
               <button type="button" class="btn btn-primary" style="float:right" onclick=location.href="{% url 'rnd:create_case' %}">검토/요청</button>
+
             </div>
             <!--end basic-tabs-->
 
@@ -125,7 +126,6 @@
     </div>
   </div>
 </section>
-
 
 {% endblock content %}
 {% block javascript %}
