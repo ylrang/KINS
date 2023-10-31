@@ -310,12 +310,12 @@
             {% endif %}
             {% endfor %}
 
-
             {% if page_obj.has_next %}
             <li class="page-item">
               <a class="page-link" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %} ">
                 <i class="mdi mdi-chevron-right fs-15"></i>
               </a>
+
             </li>
             <li class="page-item">
               <a class="page-link" href="{% my_url last_page_num 'page' request.GET.urlencode %} ">
