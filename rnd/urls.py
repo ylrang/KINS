@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('regulation', views.regulation, name='regulation'),
     path('regulation_detail<int:pk>', views.regulation_detail, name='regulation_detail'),
+    path('download/<path:filename>', views.download_regulation_file, name='download_regulation_file'),
 
     path('institute', views.institute, name='institute'),
 

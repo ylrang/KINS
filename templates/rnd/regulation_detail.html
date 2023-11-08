@@ -16,6 +16,15 @@ th {
   background-color: whitesmoke !important;
 }
 
+.link:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.link:hover p{
+  text-decoration: underline;
+}
+
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -26,7 +35,6 @@ th {
       <div class="col-md-6">
         <div class="text-center text-white">
           <h3 class="mb-4">{{ reg.title }}</h3>
-
         </div>
       </div>
       <!--end col-->
@@ -63,22 +71,21 @@ th {
               <th>작성자</th>
               <td>{{ reg.writer }}</td>
               <th>작성시간</th>
-              <td>{{ reg.creation_date }}</td>
+              <td>{{ reg.creation_date|date:"Y-m-d" }}</td>
             </tr>
             <tr>
               <th>첨부파일</th>
               <td colspan="3">
                   <ul class="profile-document list-unstyled mb-0">
-                    <li>
+                    <li class="link" onclick=location.href="{% url 'rnd:download_regulation_file' filename=reg.file %}">
                       <div class="profile-document-list d-flex align-items-center">
                         <div class="d-flex vertical-align-middle">
-                          <p class="fs-14 mb-0">
+                          <i class="uil uil-import"></i>
+                          <p class="fs-14 mb-0 ms-2">
                             {{ reg.file.name }}
                           </p>
-                          <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})</p>
-                        </div>
-                        <div class="ms-auto">
-                          <a class="fs-14 text-muted" onclick=location.href=''><i class="uil uil-import"></i></a>
+                          <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})
+                          </p>
                         </div>
                       </div>
                     </li>
@@ -125,37 +132,6 @@ th {
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-11">
-
-
-        <div class="card" id="comment">
-            <div class="card-body p-4">
-                <h5 class="card-title">메모 및 의견</h5>
-                <div class="mb-2 border-bottom"></div>
-
-                <div class="p-2" style="display:inline">
-                  <i class="mdi mdi-calendar-clock"></i> 작성자: @qkrwnl <i class="ms-3 mdi mdi-calendar-clock"></i> 일시: 2023-05-12
-                  <div class="alert  bg-soft-primary" role="alert">
-                    오탈자 확인 및  파일 재업로드 요청
-                  </div>
-                </div>
-                <div class="p-2" style="display:inline">
-                  <i class="mdi mdi-calendar-clock"></i> 작성자: @qkrwnl <i class="ms-3 mdi mdi-calendar-clock"></i> 일시: 2023-05-12
-                  <div class="alert  bg-soft-secondary" role="alert">
-                      제목 및 양식 수정 요청
-                  </div>
-                </div>
-
-            </div>
-        </div><!--end alerts-->
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 <script>

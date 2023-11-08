@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Regulation
+import os
+from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse
 
-# Create your views here.
 
 def index(request):
     return render(request, "rnd/index.html")
@@ -40,6 +42,18 @@ def regulation_detail(request, pk):
     context = {'reg': reg}
 
     return render(request, "rnd/regulation_detail.html", context)
+
+
+def download_regulation_file(request, filename):
+    file_path = os.path.abspath("media")
+    file_name = os.path.basename(filename)
+    fs = FileSystemStorage(file_path)
+    response = FileResponse(fs.open(filename, 'r'),
+                            content_type='application/force-download')  # mime_type
+    response['Content-Disposition'] = 'attachment; filename=""'
+
+    return response
+
 
 
 def institute(request):
