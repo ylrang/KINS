@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Regulation
 
 # Create your views here.
 
@@ -23,9 +24,22 @@ def create_case(request):
 def case_detail(request):
     return render(request, "rnd/case_detail.html")
 
-    
+
 def about(request):
     return render(request, "rnd/about.html")
+
+
+def regulation(request):
+    reg_list = Regulation.objects.all()
+    context = {'reg_list': reg_list}
+
+    return render(request, "rnd/regulation.html", context)
+
+def regulation_detail(request, pk):
+    reg = Regulation.objects.get(pk=pk)
+    context = {'reg': reg}
+
+    return render(request, "rnd/regulation_detail.html", context)
 
 
 def institute(request):

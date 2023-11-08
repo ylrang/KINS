@@ -5,8 +5,8 @@
 <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar" style="margin-top:0 !important">
   <div class="container-fluid custom-container">
     <a class="navbar-brand text-dark fw-bold me-auto" href="{% url 'rnd:index'%}">
-      <img src="{% static 'images/kins-logo.png' %}" height="22" alt="" class="logo-light" style="height:30px"/>
-      <img src="{% static 'images/KINS_LOGO.png' %}" height="22" alt="" class="logo-dark" style="height:30px"/>
+      <img src="{% static 'images/kins-logo.png' %}" height="22" alt="" class="logo-light" style="height:30px" />
+      <img src="{% static 'images/KINS_LOGO.png' %}" height="22" alt="" class="logo-dark" style="height:30px" />
     </a>
     <div>
       <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
@@ -14,40 +14,32 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
+
       <ul class="navbar-nav mx-auto navbar-center">
-        <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link" href="javascript:void(0)" id="homedrop" role="button" data-bs-toggle="dropdown">
-            R&D  지원 제도 안내 <div class="arrow-down"></div>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'rnd:about' %}" id="about" role="button">
+            R&D 지원 프로그램 안내
           </a>
-          <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-            <span class="dropdown-header">R&D  지원 제도 안내</span>
-            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">개요</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">검토범위</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:about'%}">검토절차</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">관련법규</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:about' %}">필요서류</a></li>
-          </ul>
         </li>
 
 
-
         <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link" href="javascript:void(0)" id="clouddoropdown" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link" href="javascript:void(0)" id="case" role="button" data-bs-toggle="dropdown">
             R&D 지원 검토 사례
             <div class="arrow-down"></div>
           </a>
-
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="jobsdropdown">
             <span class="dropdown-header">R&D 지원 검토 사례</span>
             <li><a class="dropdown-item" href="{% url 'rnd:case' %}">검토 진행사항</a></li>
             <li><a class="dropdown-item" href="{% url 'rnd:KAERI_case' %}">KAERI 연구 검토사례</a></li>
             <li><a class="dropdown-item" href="{% url 'rnd:KORAD_case' %}">KORAD 연구 검토사례</a></li>
           </ul>
-
         </li>
-        <!--end dropdown-->
+
+
         <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link" href="javascript:void(0)" id="productdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link" href="javascript:void(0)" id="database" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             심층처분 데이터베이스
             <div class="arrow-down"></div>
           </a>
@@ -58,17 +50,23 @@
             <li><a class="dropdown-item" href="{% url 'unist' %}">규제사례 관련</a></li>
           </ul>
         </li>
-        <!--end dropdown-->
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'rnd:regulation' %}" id="regulation" role="button">
+            규제정보 제공
+          </a>
+        </li>
+
+
         <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link" href="javascript:void(0)" id="productdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link" href="javascript:void(0)" id="institution" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             기관 안내
             <div class="arrow-down"></div>
           </a>
           <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
             <span class="dropdown-header">기관 안내</span>
             <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">검토기관 소개</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">검토기관 안내</a></li>
-            <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">조직도/연락처</a></li>
             <li><a class="dropdown-item" href="{% url 'rnd:institute' %}">오시는길</a></li>
           </ul>
         </li>
@@ -178,14 +176,14 @@
       </li>
 
       <li>
-            <div class="text-center p-3">
-                <!-- light-dark mode -->
-                <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3" style="height:35px; width:50px; line-height:35px;">
-                    <i class="uil uil-brightness mode-dark mx-auto"></i>
-                    <i class="uil uil-moon mode-light"></i>
-                </a>
-                <!-- END light-dark Mode -->
-            </div>
+        <div class="text-center p-3">
+          <!-- light-dark mode -->
+          <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3" style="height:35px; width:50px; line-height:35px;">
+            <i class="uil uil-brightness mode-dark mx-auto"></i>
+            <i class="uil uil-moon mode-light"></i>
+          </a>
+          <!-- END light-dark Mode -->
+        </div>
       </li>
 
 

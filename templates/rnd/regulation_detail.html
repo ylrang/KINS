@@ -25,7 +25,7 @@ th {
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">검토 상세 내용</h3>
+          <h3 class="mb-4">{{ reg.title }}</h3>
 
         </div>
       </div>
@@ -55,26 +55,15 @@ th {
 
       <div class="col-lg-12">
 
-        <div class="p-2" style="display:inline">
-          <i class="mdi mdi-calendar-clock"></i> last updated: 2023-05-12
-        </div>
-
-        <div class="border-bottom"></div>
 
 
         <table class="table table-bordered mb-0">
           <tbody>
             <tr>
-              <th>제목</th>
-              <td>1차 보고서</td>
-              <th>조회수</th>
-              <td>12</td>
-            </tr>
-            <tr>
               <th>작성자</th>
-              <td>홍길동</td>
+              <td>{{ reg.writer }}</td>
               <th>작성시간</th>
-              <td>2023-04-18</td>
+              <td>{{ reg.creation_date }}</td>
             </tr>
             <tr>
               <th>첨부파일</th>
@@ -84,9 +73,9 @@ th {
                       <div class="profile-document-list d-flex align-items-center">
                         <div class="d-flex vertical-align-middle">
                           <p class="fs-14 mb-0">
-                            파일명
+                            {{ reg.file.name }}
                           </p>
-                          <p class="fs-12 mb-0">({{ doc.document.file.size|filesizeformat }})</p>
+                          <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})</p>
                         </div>
                         <div class="ms-auto">
                           <a class="fs-14 text-muted" onclick=location.href=''><i class="uil uil-import"></i></a>
@@ -106,7 +95,7 @@ th {
 
 
         <div class="m-4" style="text-align:center">
-          <button type="button" class="btn btn-primary" style="width:15%" onclick=location.href="{% url 'rnd:KAERI_case' %}">목록</button>
+          <button type="button" class="btn btn-primary" style="width:15%" onclick=location.href="{% url 'rnd:regulation' %}">목록</button>
 
 
 
@@ -136,7 +125,7 @@ th {
   </div>
 </section>
 
-<section class="section">
+<section>
   <div class="container">
     <div class="row">
       <div class="col-lg-11">

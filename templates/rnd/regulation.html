@@ -1,6 +1,6 @@
 {% extends 'partials/rnd_base.html' %}
 {% load static %}
-{% block title %}R&D 지원 검토 사례{% endblock title %}
+{% block title %}규제정보 제공{% endblock title %}
 {% block extra_css %}
 <!-- Choise Css -->
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
@@ -24,8 +24,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">R&D 지원 검토 사례</h3>
-
+          <h3 class="mb-4">규제정보 제공</h3>
         </div>
       </div>
       <!--end col-->
@@ -50,13 +49,15 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h6>검토 작업 목록</h6>
+        <h5>자료 게시판</h5>
         <div class="mb-2 border-bottom"></div>
-        <p class="text-muted">진행중 / 완료 목록 확인</p>
+        <p class="text-muted">R&D 연구과제 진행에 활용되는 참고자료를 활용할 수 있도록 제공되는 페이지 입니다.</p>
       </div>
 
       <div class="col-lg-10">
-        {% include 'partials/rnd_post_card.html' %}
+        {% for reg in reg_list %}
+        {% include 'partials/rnd_regulation_card.html' %}
+        {% endfor %}
       </div>
 
     </div>

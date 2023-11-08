@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_rename_app',
     'import_export',
+    'rnd',
 ]
 
 MIDDLEWARE = [

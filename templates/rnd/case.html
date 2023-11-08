@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}R&D 지원 검토 사례{% endblock title %}
 {% block extra_css %}
-<!-- Choise Css -->
+
 <link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
 <style>
   .img-fluid {
@@ -27,10 +27,10 @@
   .progressbar li:before {
     content: counter(step);
     counter-increment: step;
-    width: 30px;
-    height: 30px;
-    line-height: 25px;
-    border: 3px solid #ddd;
+    width: 40px;
+    height: 40px;
+    line-height: 30px;
+    border: 6px solid #ddd;
     border-radius: 100%;
     display: block;
     text-align: center;
@@ -42,7 +42,7 @@
     content: "";
     position: absolute;
     width: 100%;
-    height: 3px;
+    height: 6px;
     background-color: #ddd;
     top: 15px;
     left: -50%;
@@ -55,6 +55,7 @@
 
   .progressbar li.active {
     color: var(--bs-primary);
+    font-weight: bold;
   }
 
   .progressbar li.active:before {
@@ -64,6 +65,27 @@
   .progressbar li.active+li:after {
     background-color: var(--bs-primary);
   }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+  }
+
+  /* Style the close button */
+  .topright {
+    float: right;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 0px;
+  }
+
+  .topright:hover {
+    color: red;
+  }
+
+
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -94,27 +116,73 @@
 </div>
 <!-- END SHAPE -->
 
-<section>
+
+<script>
+  // Add active class to the current button (highlight it)
+  function progress(num) {
+    // active 제거
+    for (i = 1; i <= 4; i++) {
+      document.getElementById(`pli${i}`).classList.remove('active');
+    }
+    // active 추가
+    for (i = 1; i <= num; i++) {
+      document.getElementById(`pli${i}`).classList.add('active');
+    }
+  }
+</script>
+
+<script>
+  function openTab(evt, num) {
+    var i, tabcontent, tabli;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tabli = document.getElementsByClassName("tabli");
+    for (i = 0; i < tabli.length; i++) {
+      tabli[i].className = tabli[i].className.replace(" active", "");
+    }
+    document.getElementById(num).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+
+<section class="section">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div id="tabs">
           <div class="card-body p-4">
-            <div>
-              <h6 class="card-title">검토 진행 프로세스</h6>
-              <div class="mb-2 border-bottom"></div>
-              <p class="text-muted">검토 진행 단계 안내</p>
-              <ul class="progressbar">
-                <li class="active">1. 서류접수</li>
-                <li class="active">2. 적합판정</li>
-                <li class="">3. 종합검토</li>
-                <li class="">4. 검토완료</li>
+            <h6 class="card-title">검토 진행 프로세스</h6>
+            <div class="mb-2 border-bottom"></div>
+            <p class="text-muted">검토 진행 단계 안내</p>
 
+            <div class="tab">
+              <ul class="nav progressbar">
+                <li id="pli1" onclick="progress(1); openTab(event, 'tab01')" data-toggle="tab">1. 서류접수</li>
+                <li id="pli2" onclick="progress(2); openTab(event, 'tab02')" data-toggle="tab">2. 적합판정</li>
+                <li id="pli3" onclick="progress(3); openTab(event, 'tab03')" data-toggle="tab">3. 종합검토</li>
+                <li id="pli4" onclick="progress(4); openTab(event, 'tab04')" data-toggle="tab">4. 검토완료</li>
               </ul>
+            </div>
 
-              <button type="button" class="btn btn-primary" style="float:right" onclick=location.href="{% url 'rnd:create_case' %}">검토/요청</button>
+            <div class="tab-content">
+              <div id="tab01" class="tabcontent">
+                <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+                <h5>1단계</h5>
+              </div>
+              <div id="tab02" class="tabcontent">
+                <h5>2단계</h5></div>
+              <div id="tab03" class="tabcontent">
+                <h5>3단계</h5></div>
+              <div id="tab04" class="tabcontent">
+                <h5>4단계</h5></div>
 
             </div>
+
+            <button type="button" class="btn btn-primary" style="float:right" onclick=location.href="{% url 'rnd:create_case' %}">검토작성</button>
+
             <!--end basic-tabs-->
 
             <!--end nav-pills-->
@@ -126,6 +194,7 @@
     </div>
   </div>
 </section>
+
 
 {% endblock content %}
 {% block javascript %}
