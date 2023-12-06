@@ -64,7 +64,7 @@ def simple_upload(request):
             wc_uri = '1'
             for row in reader:
                 try:
-                    # wc_uri = wordcloud(row['content_kor'])
+                    wc_uri = wordcloud(row['content_kor'])
                     Docs.objects.create(
                         title=row['title'],
                         content_kor=row['content_kor'],
@@ -232,13 +232,13 @@ def regulation_database(request):
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
     field = request.GET.get('field', '')
-    country = request.GET.get('country', '')
+    serial = request.GET.get('serial', '')
     # sector = re/quest.GET.get('sector', '')
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
 
     docs = docs.filter(Q(title__icontains=search)).filter(
-        Q(document__institution__icontains=country)).filter(Q(sector__icontains=field))
+        Q(document__serial_num__icontains=serial)).filter(Q(sector__icontains=field))
     # .filter(Q(field__in=field))
 
     # if field == 'title':
@@ -272,7 +272,7 @@ def regulation_database(request):
     page_end_number = page_start_number + MAX_PAGE_CNT - 1
 
     context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter, 'page_start_number': page_start_number, 'page_end_number': page_end_number, 'last_page_num': last_page_num,
-               'search': search, 'documents': documents, 'country': country, 'regulation': regulation}
+               'search': search, 'documents': documents, 'serial': serial, 'regulation': regulation}
     return render(request, "kinsdb/BRNC/database.html", context)
 
 

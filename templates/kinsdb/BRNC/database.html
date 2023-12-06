@@ -11,45 +11,116 @@
     padding-left: 3em !important;
   }
 </style> -->
+
+<script src="{% static 'js/wordcloud2.js' %}"></script>
+
+
+<style>
+  .pill-list {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0 10px 10px 0;
+    text-transform: capitalize;
+    width: initial !important;
+  }
+
+  .pill-list input[type="checkbox"] {
+    display: none;
+  }
+
+  .pill-list input[type="checkbox"]:checked+.pill-label {
+    background-color: var(--bs-blue);
+    border: 1px solid var(--bs-blue);
+    color: #fff;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .pill-label {
+    border: 1px solid #1da1f2;
+    border-radius: 20px;
+    color: #1c94e0;
+    display: block;
+    padding: 7px 14px;
+    text-decoration: none;
+  }
+
+  .pill-label:hover {
+    box-shadow: inset 0 0 2px var(--bs-blue);
+  }
+
+  .pill-list input[type="checkbox"]:checked+.pill-label .icon--checkLight {
+    display: inline-block;
+  }
+
+  .pill-list input[type="checkbox"]:checked+.pill-label .icon--addLight,
+  .pill-label .icon--checkLight,
+  .PillList-children {
+    display: none;
+  }
+
+  .icon--smallest {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .icon {
+    background: transparent;
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    position: relative;
+  }
+
+  .field {
+    padding: 10px;
+    box-shadow: inset 0 0 2px var(--bs-blue);
+    border-radius: 3px;
+  }
+
+  .legend {
+    font-size: calc(1rem + .2vw) !important;
+  }
+</style>
 {% endblock extra_css %}
 {% block content %}
 <!-- Start home -->
+
+<script>
+  function keywordPill() {
+    document.getElementById('keyword').classList.toggle('active');
+  }
+</script>
+
+<script>
+  WordCloud(document.getElementById('my_canvas'), {
+    list: [
+      ['foo', 12],
+      ['love', 6],
+      ['lee', 2]
+    ]
+  });
+</script>
+
+
+
+
 <section class="page-title-box">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="text-center text-white">
-          <h2 class="mb-4">규제기준 데이터베이스</h2>
-          <button type="button" name="button" class="btn btn-primary w-100" onclick=location.href="{% url 'brnc' %}">메인화면 돌아가기</button>
-        </div>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="text-center text-white">
+        <h2 class="mb-4">규제기준 데이터베이스</h2>
       </div>
-
-      <div class="col-md-4" style="">
-        <fieldset style="background-color:white;height:235px;margin-top:6px;border:1px solid var(--primary);padding:5px">
-          <legend>키워드 선택</legend>
-          <button type="button" class="btn btn-primary rounded-pill" style="margin:2px">공학적 방벽</button>
-          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">방사성폐기물</button>
-          <button type="button" class="btn btn-primary rounded-pill" style="margin:2px">부지개발</button>
-          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">부지환경</button>
-          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">안전사례</button>
-          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">처분시설 개발</button>
-          <button type="button" class="btn btn-light rounded-pill" style="margin:2px">처분안전</button>
-        </fieldset>
-      </div>
-
-      <div class="col-md-4">
-        <img src="{% static 'images/brnc/60.1_textmining.png' %}" alt="" style="width:100%;height:250px">
-      </div>
-
-      <div class="col-md-4">
-        <img src="{% static 'images/brnc/text_network.png' %}" alt="" style="width:100%;height:250px">
-      </div>
-
-
-      <!--end col-->
     </div>
-    <!--end row-->
+
+
+    <!--end col-->
   </div>
+  <!--end row-->
   <!--end container-->
 </section>
 <!-- end home -->
@@ -65,7 +136,99 @@
 <!-- END SHAPE -->
 
 
-<!-- START JOB-LIST -->
+<section>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-lg-12">
+        <button type="button" name="button" class="btn btn-primary w-30" onclick=location.href="{% url 'brnc' %}">메인화면 돌아가기</button>
+      </div> -->
+      <div class="col-lg-4">
+        <div class="card mt-4">
+          <div class="field p-4">
+            <legend class="legend">부문 선택</legend>
+
+            <label class="pill-list" onclick="setImage('방사성폐기물')">
+              <input type="checkbox" name="feature" value="공학적 방벽">
+              <span class="pill-label">공학적 방벽
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="방사성폐기물">
+              <span class="pill-label">방사성폐기물
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="부지개발">
+              <span class="pill-label">부지개발
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="부지환경">
+              <span class="pill-label">부지환경
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="안전사례">
+              <span class="pill-label">안전사례
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="처분시설 개발">
+              <span class="pill-label">처분시설 개발
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+            <label class="pill-list">
+              <input type="checkbox" name="feature" value="처분안전">
+              <span class="pill-label">처분안전
+                <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        setImage = function(img) {
+          getElementById('wordcloud').src = "{% static 'images/wordcloud/" + img + ".png' %}"
+        }
+      </script>
+
+      <div class="col-lg-4">
+        <div class="card mt-4">
+          <div class="field p-4">
+            <legend class="legend">부문별 주요 키워드</legend>
+            <div>
+              <img id="wordcloud" src="{% static 'images/wordcloud/공학적방벽.png' %}" alt="" class="img-fluid rounded-3">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4">
+        <div class="card mt-4">
+          <div class="field p-4">
+            <legend class="legend">키워드 관계망</legend>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</section>
+
+
+
 <section class="">
   <div class="container">
 
@@ -97,15 +260,15 @@
       </script>
 
 
-      <div class="col-lg-9">
+      <div class="col-lg-11">
         <div class="candidate-list-widgets mb-4">
           <form method="get" name="search_filter" id="search_filter">
             {% csrf_token %}
 
 
             <script>
-              function changeCountry(str) {
-                document.getElementById('countryInput').value = str;
+              function changeSerial(str) {
+                document.getElementById('serialInput').value = str;
               }
 
               function changeField(str) {
@@ -115,20 +278,25 @@
 
 
             <div class="row g-2 mt-3 mb-3">
-              <div class="col-lg-2">
+              <div class="col-lg-3">
                 <div class="filler-job-form">
                   <i class="uil uil-clipboard-notes"></i>
-                  <select class="form-select" data-trigger name="choices-single-docs" id="choices-single-docs" onchange="changeCountry(this.value)">
-                    <option value="">국가</option>
-                    <option value="미국" {% if country == '미국' %}selected{% endif %}>미국</option>
-                    <option value="스웨덴" {% if country == '스웨덴' %}selected{% endif %}>스웨덴</option>
-                    <option value="스위스" {% if country == '스위스' %}selected{% endif %}>스위스</option>
-                    <option value="영국" {% if country == '영국' %}selected{% endif %}>영국</option>
-                    <option value="일본" {% if country == '일본' %}selected{% endif %}>일본</option>
-                    <option value="캐나다" {% if country == '캐나다' %}selected{% endif %}>캐나다</option>
-                    <option value="핀란드" {% if country == '핀란드' %}selected{% endif %}>핀란드</option>
-                    <option value="프랑스" {% if country == '프랑스' %}selected{% endif %}>프랑스</option>
-
+                  <select class="" data-trigger name="choices-single-docs" id="choices-single-docs" onchange="changeSerial(this.value)">
+                    <option value="">문서</option>
+                    <option value="10CRF60" {% if serial == '10CRF60' %}selected{% endif %}>10CRF60</option>
+                    <option value="SSR-5" {% if serial == 'SSR-5' %}selected{% endif %}>SSR-5</option>
+                    <option value="10CRF63" {% if serial == '10CRF63' %}selected{% endif %}>10CRF63</option>
+                    <option value="SSG-14" {% if serial == 'SSG-14' %}selected{% endif %}>SSG-14</option>
+                    <option value="SSG-23" {% if serial == 'SSG-23' %}selected{% endif %}>SSG-23</option>
+                    <option value="SSG-31" {% if serial == 'SSG-31' %}selected{% endif %}>SSG-31</option>
+                    <option value="ACT No.1988:20" {% if serial == 'ACT No.1988:20' %}selected{% endif %}>ACT No.1988:20</option>
+                    <option value="SSMFS 2008:37" {% if serial == 'SSMFS 2008:37' %}selected{% endif %}>SSMFS 2008:37</option>
+                    <option value="40CFR191" {% if serial == '40CFR191' %}selected{% endif %}>40CFR191</option>
+                    <option value="40CFR197" {% if serial == '40CFR197' %}selected{% endif %}>40CFR197</option>
+                    <option value="RECDOC-1.2.1" {% if serial == 'RECDOC-1.2.1' %}selected{% endif %}>RECDOC-1.2.1</option>
+                    <option value="GMBI.1993,Nr.13,S.220" {% if serial == 'GMBI.1993,Nr.13,S.220' %}selected{% endif %}>GMBI.1993,Nr.13,S.220</option>
+                    <option value="GS-G-3-4" {% if serial == 'GS-G-3-4' %}selected{% endif %}>GS-G-3-4</option>
+                    <option value="SFS 2018:505" {% if serial == 'SFS 2018:505' %}selected{% endif %}>SFS 2018:505</option>
                   </select>
                 </div>
               </div>
@@ -159,7 +327,7 @@
 
                   <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" name="search" value="{{ search }}" onfocus="this.value=''" placeholder="제목 검색" onblur="this.value=this.value.trim();">
 
-                  <input type="hidden" id="countryInput" name="country" value="{{ country }}">
+                  <input type="hidden" id="serialInput" name="serial" value="{{ serial }}">
                   <input type="hidden" id="fieldFormControlInput" name="field" value="{{ field }}" onfocus="this.value=''" placeholder="태그 입력">
 
                 </div>
@@ -167,7 +335,7 @@
               <!--end col-->
 
               <!--end col-->
-              <div class="col-lg-3">
+              <div class="col-lg-2">
                 <div>
                   <button type="submit" href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-filter"></i>검색</button>
                   <a href="{% url 'regulation_database' %}" style="padding-left:10px;">Clear<i class="uil uil-multiply"></i></a>
@@ -186,7 +354,7 @@
 
     <div class=" row justify-content-center">
 
-      <div class="col-lg-10">
+      <div class="col-lg-11">
         <div class="mb-3 mb-lg-0">
           <h6 class="fs-16 mb-0" style="font-weight:200; color: gray"> Showing
             <b>{{ page_obj.paginator.count }} results</b>
@@ -198,7 +366,6 @@
       <!--end row-->
 
     </div>
-
 
 
     <div class="row justify-content-center">
@@ -237,7 +404,7 @@
         </div>
       </div> -->
 
-      <div class="col-lg-10">
+      <div class="col-lg-11">
         <div class="candidate-list">
 
           {% for doc in page_obj %}
@@ -264,7 +431,7 @@
     <!--end row-->
 
     <div class="row justify-content-center">
-      <div class="col-lg-10 m-5">
+      <div class="col-lg-11 m-5">
         <nav>
           <ul class="pagination job-pagination mb-0 justify-content-center">
 
@@ -298,15 +465,15 @@
 
             {% for page_number in page_obj.paginator.page_range %}
             {% if page_start_number <= page_number and page_end_number >= page_number %}
-              {% if page_number == page_obj.number %}
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-              </li>
-              {% else %}
-              <li class="page-item">
-                <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-              </li>
-              {% endif %}
+            {% if page_number == page_obj.number %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+            </li>
+            {% endif %}
             {% endif %}
             {% endfor %}
 

@@ -11,20 +11,24 @@
     max-width: 80% !important;
   }
 
-th {
-  font-weight: 800 !important;
-  background-color: whitesmoke !important;
-}
+  th {
+    font-weight: 800 !important;
+    background-color: whitesmoke !important;
+  }
 
-.link:hover {
-  color: blue;
-  cursor: pointer;
-}
+  th,
+  td {
+    width: 25%;
+  }
 
-.link:hover p{
-  text-decoration: underline;
-}
+  .link:hover {
+    color: blue;
+    cursor: pointer;
+  }
 
+  .link:hover p {
+    text-decoration: underline;
+  }
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -63,8 +67,6 @@ th {
 
       <div class="col-lg-12">
 
-
-
         <table class="table table-bordered mb-0">
           <tbody>
             <tr>
@@ -76,26 +78,26 @@ th {
             <tr>
               <th>첨부파일</th>
               <td colspan="3">
-                  <ul class="profile-document list-unstyled mb-0">
-                    <li class="link" onclick=location.href="{% url 'rnd:download_regulation_file' filename=reg.file %}">
-                      <div class="profile-document-list d-flex align-items-center">
-                        <div class="d-flex vertical-align-middle">
-                          <i class="uil uil-import"></i>
-                          <p class="fs-14 mb-0 ms-2">
-                            {{ reg.file.name }}
-                          </p>
-                          <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})
-                          </p>
-                        </div>
+                <ul class="profile-document list-unstyled mb-0">
+                  <li class="link" onclick=location.href="{% url 'rnd:download_regulation_file' filename=reg.file %}">
+                    <div class="profile-document-list d-flex align-items-center">
+                      <div class="d-flex vertical-align-middle">
+                        <i class="uil uil-import"></i>
+                        <p class="fs-14 mb-0 ms-2">
+                          {{ reg.file.name }}
+                        </p>
+                        <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})
+                        </p>
                       </div>
-                    </li>
+                    </div>
+                  </li>
 
-                  </ul>
+                </ul>
               </td>
             </tr>
             <tr>
               <th>내용</th>
-              <td colspan="3" style="height:200px"></td>
+              <td colspan="3" style="height:200px">{{ reg.description }}</td>
             </tr>
           </tbody>
         </table>
