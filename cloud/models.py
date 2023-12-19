@@ -35,11 +35,12 @@ class Log(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     title = models.TextField()
     description = models.TextField()
+    # file_id = models.ForeignKey('cloud.Files', on_delete=models.CASCADE, related_name="log", db_column="file_id")
 
 
 class Files(models.Model):
     file = models.FileField()
-    log = models.ForeignKey('cloud.Log', on_delete=models.CASCADE)
+    log = models.ForeignKey('cloud.Log', on_delete=models.CASCADE, related_name='files')
 
     class Meta:
         verbose_name = 'Files'

@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
 from krwordrank.word import summarize_with_keywords
 from .forms import DataForm
 from konlpy.tag import Okt
@@ -32,13 +34,69 @@ from django.http import HttpResponse
 import pandas as pd
 from django.core.files.base import ContentFile
 
+    #
+    # okt = Okt()
+    # nouns = okt.nouns(content)
+    #
+    # words = [n for n in nouns if len(n) > 1]
+    #
+    # c = Counter(words)
+    #
+    # wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, background_color='white',
+    #                font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
+    # gen = wc.generate_from_frequencies(c)
 
 def analysis(request):
-    qs = Docs.objects.all().values()
-    data = pd.DataFrame(qs)
-    context = {'df': data.to_html()}
+    okt = Okt()
 
-    return render(request, "kinsdb/Analysis/test.html", context)
+    words = ["apple", "banana", "banana", "banana", "banana", "cherry",
+             "cherry", "pineapple", "strawberry", "strawberry", "strawberry",
+             "strawberry1", "strawberry2", "strawberry3", "strawbfdsfdsferry4", "strawberry5",
+             "strawberry6"]
+    docs = Docs.objects.filter(sector='Safety Context')
+    for doc in docs:
+        nouns = okt.nouns(doc.content_kor)
+        words += nouns
+        
+
+    text = " ".join(words)
+    wordcloud = WordCloud().generate(text)
+
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.show()
+
+    html_content = ''
+
+    for word in words:
+        # Create the HTML content
+        html_content += f"""
+        <html>
+        <head>
+            <title>{word}</title>
+        </head>
+        <body>
+            <h1>{word}</h1>
+            <p>This is the webpage for the word "{word}".</p>
+        </body>
+        </html>
+        """
+
+    context = {'html_content': html_content, 'wordcloud': wordcloud, 'docs': docs}
+
+    # Save the HTML content to a file
+    # filename = f"{word}.html"
+    # with open(filename, "w") as file:
+    #     file.write(html_content)
+
+    # Open the webpage in a new tab
+    # webbrowser.open_new_tab(filename)
+    # qs = Docs.objects.all().values()
+    # data = pd.DataFrame(qs)
+    # context = {'df': data.to_html()}
+
+    # return render(request, "kinsdb/Analysis/test.html", context)
+    return render(request, "kinsdb/Analysis/testW.html", context)
 
 
 def simple_upload(request):
@@ -226,6 +284,9 @@ def brnc(request):
 MAX_LIST_CNT = 4
 MAX_PAGE_CNT = 5
 
+SECTOR_1 = ['공학적 방벽', '지층구성', '다중 안전기능', '격납']
+SECTOR_2 = ['방사성폐기물', '부지', '개발']
+
 
 def regulation_database(request):
     regulation_list = ['all', '법률', '규정', '규제지침']
@@ -236,6 +297,8 @@ def regulation_database(request):
     # sector = re/quest.GET.get('sector', '')
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
+
+    # wordcloud = WordCloud(width=800, height=400)generate_from_frequencies(dict(zip(words, np.ones(len(words)))))
 
     docs = docs.filter(Q(title__icontains=search)).filter(
         Q(document__serial_num__icontains=serial)).filter(Q(sector__icontains=field))

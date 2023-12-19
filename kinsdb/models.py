@@ -93,6 +93,9 @@ class Docs(models.Model):
     def __str__(self):
         return str(self.index_num) + ') ' + self.title
 
+    # def get_content_kor():
+    #     return self.content_kor
+
 
 class Tag(models.Model):
     tag_content = models.CharField(max_length=100)

@@ -67,23 +67,47 @@ def folder_list(request):
 def folder_detail(request):
     return render(request, "cloud/bulletin/folder-detail.html")
 
-def file_list(request):
+def post_list(request):
     posts = Post.objects.all()
     context = {'posts': posts }
-    return render(request, "cloud/bulletin/file-list.html", context)
+    return render(request, "cloud/bulletin/post-list.html", context)
 
 
     # ie = Docs.objects.filter(document__institution='IAEA').count()
 
-def file_detail(request, post_id):
+def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     logs = Log.objects.filter(post__id=post_id).order_by('-creation_date')
-    context = {'post': post, 'logs': logs }
-    return render(request, "cloud/bulletin/file-detail.html", context)
+    # files = Log.objects.first().files.all()
+    context = {'post': post, 'logs': logs}
+    return render(request, "cloud/bulletin/post-detail.html", context)
+
+
+def post_update(request, post_id):
+    post = Post.objects.get(id=post_id)
+    logs = Log.objects.filter(post__id=post_id).order_by('-creation_date')
+
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.description = request.POST['description']
+        post.update_date = timezone.now()
+
+    else:
+        postform = PostEditForm()
+        fileform = FileEditForm()
+
+
+    context = {'post': post, 'logs': logs, 'postform': postform, 'fileform': fileform}
+    return render(request, "cloud/bulletin/post-update.html", context)
+
+def post_delete(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect('home')
 
 
 @csrf_exempt
-def file_upload(request):
+def post_upload(request):
     if request.method == 'POST':
         postform = PostForm(request.POST, request.FILES)
 
@@ -107,11 +131,7 @@ def file_upload(request):
         'postform': postform,
         'fileform': fileform,
     }
-    return render(request, "cloud/bulletin/file-upload.html", context)
-
-
-def file_update(request):
-    return render(request, "cloud/bulletin/file-update.html")
+    return render(request, "cloud/bulletin/post-upload.html", context)
 
 
 # # from account.models import Folders
