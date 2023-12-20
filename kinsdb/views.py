@@ -34,55 +34,49 @@ from django.http import HttpResponse
 import pandas as pd
 from django.core.files.base import ContentFile
 
-    #
-    # okt = Okt()
-    # nouns = okt.nouns(content)
-    #
-    # words = [n for n in nouns if len(n) > 1]
-    #
-    # c = Counter(words)
-    #
-    # wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, background_color='white',
-    #                font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
-    # gen = wc.generate_from_frequencies(c)
+#
+# okt = Okt()
+# nouns = okt.nouns(content)
+#
+# words = [n for n in nouns if len(n) > 1]
+#
+# c = Counter(words)
+#
+# wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, background_color='white',
+#                font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
+# gen = wc.generate_from_frequencies(c)
+
 
 def analysis(request):
-    okt = Okt()
+    list = [
+        ['foo', 73],
+        ['bar', 27],
+        ['apple', 28],
+        ['grape', 29],
+        ['said', 29],
+        ['min', 29],
+        ['oil', 29]
+    ]
 
-    words = ["apple", "banana", "banana", "banana", "banana", "cherry",
-             "cherry", "pineapple", "strawberry", "strawberry", "strawberry",
-             "strawberry1", "strawberry2", "strawberry3", "strawbfdsfdsferry4", "strawberry5",
-             "strawberry6"]
+    okt = Okt()
+    words = []
     docs = Docs.objects.filter(sector='Safety Context')
     for doc in docs:
         nouns = okt.nouns(doc.content_kor)
         words += nouns
-        
 
     text = " ".join(words)
     wordcloud = WordCloud().generate(text)
+
+    list_ = []
+    for wc in wordcloud.layout_:
+        list_.append([wc[0][0], wc[1]])
 
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.show()
 
-    html_content = ''
-
-    for word in words:
-        # Create the HTML content
-        html_content += f"""
-        <html>
-        <head>
-            <title>{word}</title>
-        </head>
-        <body>
-            <h1>{word}</h1>
-            <p>This is the webpage for the word "{word}".</p>
-        </body>
-        </html>
-        """
-
-    context = {'html_content': html_content, 'wordcloud': wordcloud, 'docs': docs}
+    context = {'wordcloud': wordcloud, 'docs': docs, 'list': list, 'list_': list_}
 
     # Save the HTML content to a file
     # filename = f"{word}.html"

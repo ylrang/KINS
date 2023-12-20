@@ -1,4 +1,4 @@
-{{ wordcloud.words_ }}<br />
+{% load static %}
 <style>
   ul.cloud {
     list-style: none;
@@ -12,42 +12,31 @@
   }
 
   ul.cloud a {
-    /*
-    Not supported by any browser at the moment :(
-    --size: attr(data-weight number);
-    */
     --size: 4;
     --color: #a33;
     color: var(--color);
-    font-size: calc(var(--size) * 0.25rem + 0.5rem);
     display: block;
     padding: 0.125rem 0.25rem;
     position: relative;
     text-decoration: none;
-    /*
-    For different tones of a single color
-    opacity: calc((15 - (9 - var(--size))) / 15);
-    */
   }
-
-  ul.cloud a[data-weight="0.1"] { --size: 1; }
-  ul.cloud a[data-weight="0.2"] { --size: 2; }
-  ul.cloud a[data-weight="0.25"] { --size: 3; }
-  ul.cloud a[data-weight="0.7"] { --size: 4; }
-  ul.cloud a[data-weight="0.75"] { --size: 6; }
-  ul.cloud a[data-weight="6"] { --size: 8; }
-  ul.cloud a[data-weight="7"] { --size: 10; }
-  ul.cloud a[data-weight="8"] { --size: 13; }
-  ul.cloud a[data-weight="1.0"] { --size: 16; }
 
   ul[data-show-value] a::after {
     content: " (" attr(data-weight) ")";
     font-size: 1rem;
   }
 
-  ul.cloud li:nth-child(2n+1) a { --color: #181; }
-  ul.cloud li:nth-child(3n+1) a { --color: #33a; }
-  ul.cloud li:nth-child(4n+1) a { --color: #c38; }
+  ul.cloud li:nth-child(2n+1) a {
+    --color: #181;
+  }
+
+  ul.cloud li:nth-child(3n+1) a {
+    --color: #33a;
+  }
+
+  ul.cloud li:nth-child(4n+1) a {
+    --color: #c38;
+  }
 
   ul.cloud a:focus {
     outline: 1px dashed;
@@ -77,15 +66,56 @@
     }
   }
 
+  #my_canvas span:hover {
+    background-color: rgba(var(--bs-primary));
+  }
 </style>
+<script src="{% static 'js/wordcloud2.js' %}"></script>
+<script>
 
-{{ docs|length }}<br/>
-{{ docs }}<br/>
+  function create_wc(list) {
+    WordCloud(document.getElementById('my_canvas'), {
+      list: list,
+      click: function(item) {
+        alert(item)
+      },
+    });
+  }
+</script>
+
+<div id="my_canvas" style="height:200px">canvas</div><br />
+<button type="button" name="button" onclick="create_wc({{list_}})">click</button>
+<br />
+{{ list_ }}
+docs length:<br />
+{{ docs|length }}<br /><br />
+properties:<br />
+{% for name, value in wordcloud.get_fields %}
+{{ name }}, {{ value }}
+{% endfor %}
+<br /><br />
+
+words_:
+{{ wordcloud.layout_ }}<br /><br />
+docs:<br />
+{{ docs }}<br /><br />
+size: {{ wordcloud.max_font_size }}<br />
 <ul class="cloud">
   {% for key, val in wordcloud.words_.items %}
   <li><a href="#" data-weight="{{val}}">{{key}}</a></li>
   {% endfor %}
 </ul>
+
+
+<ul class="cloud" role="navigation" aria-label="Webdev word cloud">
+  {% for t in wordcloud.layout_ %}
+
+  <li><a href="#" style="font-size:{{ t.1 }}px">{{ t.0.0 }}</a></li>
+  {% endfor %}
+</ul>
+
+
+
 
 <br />
 <div class="text-center">
