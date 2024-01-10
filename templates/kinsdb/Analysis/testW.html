@@ -79,6 +79,8 @@
       click: function(item) {
         alert(item)
       },
+      drawOutofBound: false,
+      shrinkToFit: true,
     });
   }
 </script>
@@ -86,51 +88,3 @@
 <div id="my_canvas" style="height:200px">canvas</div><br />
 <button type="button" name="button" onclick="create_wc({{list_}})">click</button>
 <br />
-{{ list_ }}
-docs length:<br />
-{{ docs|length }}<br /><br />
-properties:<br />
-{% for name, value in wordcloud.get_fields %}
-{{ name }}, {{ value }}
-{% endfor %}
-<br /><br />
-
-words_:
-{{ wordcloud.layout_ }}<br /><br />
-docs:<br />
-{{ docs }}<br /><br />
-size: {{ wordcloud.max_font_size }}<br />
-<ul class="cloud">
-  {% for key, val in wordcloud.words_.items %}
-  <li><a href="#" data-weight="{{val}}">{{key}}</a></li>
-  {% endfor %}
-</ul>
-
-
-<ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-  {% for t in wordcloud.layout_ %}
-
-  <li><a href="#" style="font-size:{{ t.1 }}px">{{ t.0.0 }}</a></li>
-  {% endfor %}
-</ul>
-
-
-
-
-<br />
-<div class="text-center">
-  <button id="redrawButton" class="button-3" role="button">Redraw</button>
-</div>
-<br />
-<div class="word-cloud-container">
-  <div class="word-cloud-card">
-    <div class="word-cloud-title">Canvas-based Word Cloud</div>
-    <canvas id="word-cloud-canvas" width="800px" height="400px"></canvas>
-    <div id="word-cloud-canvas-hover-box" hidden></div>
-  </div>
-  <div class="word-cloud-card">
-    <div class="word-cloud-title">HTML-based Word Cloud</div>
-    <div id="word-cloud-html" width="800px" height="400px"></div>
-    <div id="word-cloud-canvas-hover-box" hidden></div>
-  </div>
-</div>

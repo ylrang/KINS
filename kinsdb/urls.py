@@ -26,6 +26,8 @@ urlpatterns = [
     path('brnc', views.brnc, name='brnc'), #brnc 데이터베이스 표
     path('regulation_database', views.regulation_database,
          name='regulation_database'), # brnc 데이터베이스 접속 리스트
+    path('regulation_database<str:sector>', views.regulation_database,
+         name='regulation_database_sector'), # brnc 데이터베이스 접속 리스트
          path('docs-details<int:pk>', views.docs_detail, name='docs-details'), # brnc 데이터 상세화면
 
     ### unist ###

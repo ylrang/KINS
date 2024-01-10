@@ -34,30 +34,8 @@ from django.http import HttpResponse
 import pandas as pd
 from django.core.files.base import ContentFile
 
-#
-# okt = Okt()
-# nouns = okt.nouns(content)
-#
-# words = [n for n in nouns if len(n) > 1]
-#
-# c = Counter(words)
-#
-# wc = WordCloud(width=400, height=400, scale=2.0, max_font_size=250, background_color='white',
-#                font_path='/usr/share/fonts/truetype/nanum/NanumSquareB.ttf')
-# gen = wc.generate_from_frequencies(c)
-
 
 def analysis(request):
-    list = [
-        ['foo', 73],
-        ['bar', 27],
-        ['apple', 28],
-        ['grape', 29],
-        ['said', 29],
-        ['min', 29],
-        ['oil', 29]
-    ]
-
     okt = Okt()
     words = []
     docs = Docs.objects.filter(sector='Safety Context')
@@ -76,20 +54,8 @@ def analysis(request):
     plt.axis("off")
     plt.show()
 
-    context = {'wordcloud': wordcloud, 'docs': docs, 'list': list, 'list_': list_}
+    context = {'wordcloud': wordcloud, 'docs': docs, 'list_': list_}
 
-    # Save the HTML content to a file
-    # filename = f"{word}.html"
-    # with open(filename, "w") as file:
-    #     file.write(html_content)
-
-    # Open the webpage in a new tab
-    # webbrowser.open_new_tab(filename)
-    # qs = Docs.objects.all().values()
-    # data = pd.DataFrame(qs)
-    # context = {'df': data.to_html()}
-
-    # return render(request, "kinsdb/Analysis/test.html", context)
     return render(request, "kinsdb/Analysis/testW.html", context)
 
 
@@ -245,6 +211,7 @@ def upload_data(request):
                     wc=wc_uri,
                 )
                 uploaded = uploaded + str(row['index_num']) + ', '
+                # cache.delete('list_')
             except IntegrityError:
                 count += 1
                 failed = failed + str(row['index_num']) + ', '
@@ -281,8 +248,34 @@ MAX_PAGE_CNT = 5
 SECTOR_1 = ['공학적 방벽', '지층구성', '다중 안전기능', '격납']
 SECTOR_2 = ['방사성폐기물', '부지', '개발']
 
+from django.core.cache import cache
 
-def regulation_database(request):
+def texmining(sector):
+    # add filtering
+    ###############
+    docs = Docs.objects.filter(sector=sector)
+
+    okt = Okt()
+    words = []
+    for doc in docs:
+        nouns = okt.nouns(doc.content_kor)
+        words += nouns
+
+    text = " ".join(words)
+    wordcloud = WordCloud().generate(text)
+
+    list_ = []
+    count=0
+    for wc in wordcloud.layout_:
+        list_.append([wc[0][0], wc[1]])
+        count += 1;
+        if count == 15:
+            break;
+
+    return list_;
+
+def regulation_database(request, sector=''):
+    ### get data ###
     regulation_list = ['all', '법률', '규정', '규제지침']
     docs = Docs.objects.all()
     search = request.GET.get('search', '')
@@ -291,34 +284,50 @@ def regulation_database(request):
     # sector = re/quest.GET.get('sector', '')
     documents = Document.objects.all()
     regulation = request.GET.getlist('regulation', regulation_list)
+    sector = sector
 
-    # wordcloud = WordCloud(width=800, height=400)generate_from_frequencies(dict(zip(words, np.ones(len(words)))))
+    if not cache.get("list_{0}".format(sector)):
+        contents = docs.filter(Q(sector__icontains=sector))
+        if not contents:
+            list_ = "x"
+        else:
+            okt = Okt()
+            words = []
+            for c in contents:
+                nouns = okt.nouns(c.content_kor)
+                words += nouns
 
+            text = " ".join(words)
+            wordcloud = WordCloud().generate(text)
+
+            list_ = []
+            count=0
+            for wc in wordcloud.layout_:
+                list_.append([wc[0][0], wc[1]])
+                count += 1;
+                if count == 15:
+                    break;
+
+            list_ = cache.set("list_{0}".format(sector), list_, timeout=None)
+
+    list_ = cache.get("list_{0}".format(sector))
+
+
+    ### search algorithm ###
     docs = docs.filter(Q(title__icontains=search)).filter(
         Q(document__serial_num__icontains=serial)).filter(Q(sector__icontains=field))
-    # .filter(Q(field__in=field))
-
-    # if field == 'title':
-    #     docs = docs.filter(Q(title__icontains=search)).filter(
-    #         Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
-    # elif field == 'tag':
-    #     docs = docs.filter(Q(tags__tag_content__icontains=search)).filter(Q(document__serial_num__icontains=document)).filter(Q(document__institution__in=country))
-
-    # if _tag == '':
-    #     tag = request.GET.get('tag', '')
-    # else:
-    #     tag = _tag
-    #     docs = docs.filter(Q(tags__tag_content__icontains=tag))
 
     docsFilter = DocsFilter(request.GET, queryset=docs)
     docs = docsFilter.qs
 
+    ### pagination ###
     paginator = Paginator(docs, MAX_LIST_CNT)
 
     page_number = request.GET.get('page', '1')
     page_obj = paginator.page(page_number)
 
     last_page_num = 0
+
     for last_page in paginator.page_range:
         last_page_num = last_page_num + 1
 
@@ -328,8 +337,9 @@ def regulation_database(request):
     page_start_number = ((current_block - 1) * MAX_PAGE_CNT) + 1
     page_end_number = page_start_number + MAX_PAGE_CNT - 1
 
+
     context = {'page_obj': page_obj, 'field': field, 'docsFilter': docsFilter, 'page_start_number': page_start_number, 'page_end_number': page_end_number, 'last_page_num': last_page_num,
-               'search': search, 'documents': documents, 'serial': serial, 'regulation': regulation}
+               'search': search, 'documents': documents, 'serial': serial, 'regulation': regulation, 'list_': list_, 'sector': sector}
     return render(request, "kinsdb/BRNC/database.html", context)
 
 

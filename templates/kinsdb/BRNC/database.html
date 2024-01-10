@@ -85,6 +85,11 @@
   .legend {
     font-size: calc(1rem + .2vw) !important;
   }
+
+  .card,
+  .field {
+    height: 100%;
+  }
 </style>
 {% endblock extra_css %}
 {% block content %}
@@ -96,19 +101,6 @@
   }
 </script>
 
-<script>
-  WordCloud(document.getElementById('my_canvas'), {
-    list: [
-      ['foo', 12],
-      ['love', 6],
-      ['lee', 2]
-    ]
-  });
-</script>
-
-
-
-
 <section class="page-title-box">
   <div class="row justify-content-center">
     <div class="col-md-4">
@@ -117,14 +109,12 @@
       </div>
     </div>
 
-
     <!--end col-->
   </div>
   <!--end row-->
   <!--end container-->
 </section>
 <!-- end home -->
-
 <!-- START SHAPE -->
 <div class="position-relative" style="z-index: 1">
   <div class="shape">
@@ -142,49 +132,52 @@
       <!-- <div class="col-lg-12">
         <button type="button" name="button" class="btn btn-primary w-30" onclick=location.href="{% url 'brnc' %}">메인화면 돌아가기</button>
       </div> -->
-      <div class="col-lg-4">
-        <div class="card mt-4">
+      <div class="col-lg-4 mb-4">
+        <div class="card">
           <div class="field p-4">
             <legend class="legend">부문 선택</legend>
 
-            <label class="pill-list" onclick="setImage('공학적방벽')">
-              <input type="radio" name="feature" value="공학적 방벽" checked>
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='공학적 방벽' %}">
+              <input type="radio" name="feature" value="공학적 방벽" {% if sector == '공학적 방벽' %}checked{% endif %}>
               <span class="pill-label">공학적 방벽
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('방사성폐기물')">
-              <input type="radio" name="feature" value="방사성폐기물">
+
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='방사성폐기물' %}">
+              <input type="radio" name="feature" value="방사성폐기물" {% if sector == '방사성폐기물' %}checked{% endif %}>
               <span class="pill-label">방사성폐기물
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('부지개발')">
-              <input type="radio" name="feature" value="부지개발">
+
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='부지개발' %}">
+              <input type="radio" name="feature" value="부지개발" {% if sector == '부지개발' %}checked{% endif %}>
               <span class="pill-label">부지개발
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('부지환경')">
-              <input type="radio" name="feature" value="부지환경">
+
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='부지환경' %}">
+              <input type="radio" name="feature" value="부지환경" {% if sector == '부지환경' %}checked{% endif %}>
               <span class="pill-label">부지환경
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('안전사례')">
-              <input type="radio" name="feature" value="안전사례">
-              <span class="pill-label">안전사례
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='Safety Context' %}">
+              <input type="radio" name="feature" value="Safety Context" {% if sector == 'Safety Context' %}checked{% endif %}>
+              <span class="pill-label">Safety Context
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('처분시설개발')">
-              <input type="radio" name="feature" value="처분시설개발">
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='처분시설개발' %}">
+              <input type="radio" name="feature" value="처분시설개발" {% if sector == '처분시설개발' %}checked{% endif %}>
               <span class="pill-label">처분시설 개발
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
             </label>
-            <label class="pill-list" onclick="setImage('처분안전')">
-              <input type="radio" name="feature" value="처분안전">
+            <label class="pill-list" onclick=location.href="{% url 'regulation_database_sector' sector='처분안전' %}">
+              <input type="radio" name="feature" value="처분안전" {% if sector == '처분안전' %}checked{% endif %}>
               <span class="pill-label">처분안전
                 <span class="icon icon--checkLight icon--smallest"><i class="mdi mdi-check"></i></span>
               </span>
@@ -198,31 +191,25 @@
           var wcurl = ''
           var nturl = ''
 
-          if (img == '공학적방벽'){
+          if (img == '공학적방벽') {
             wcurl = "{% static 'images/wordcloud/공학적방벽.png' %}";
             nturl = "{% static 'images/network/공학적방벽.png' %}";
-          }
-          else if(img == '방사성폐기물'){
+          } else if (img == '방사성폐기물') {
             wcurl = "{% static 'images/wordcloud/방사성폐기물.png' %}";
             nturl = "{% static 'images/network/방사성폐기물.png' %}";
-          }
-          else if(img == '부지개발'){
+          } else if (img == '부지개발') {
             wcurl = "{% static 'images/wordcloud/부지개발.png' %}";
             nturl = "{% static 'images/network/부지개발.png' %}";
-          }
-          else if(img == '부지환경'){
+          } else if (img == '부지환경') {
             wcurl = "{% static 'images/wordcloud/부지환경.png' %}";
             nturl = "{% static 'images/network/부지환경.png' %}";
-          }
-          else if(img == '안전사례'){
+          } else if (img == '안전사례') {
             wcurl = "{% static 'images/wordcloud/안전사례.png' %}";
             nturl = "{% static 'images/network/안전사례.png' %}";
-          }
-          else if(img == '처분시설개발'){
+          } else if (img == '처분시설개발') {
             wcurl = "{% static 'images/wordcloud/처분시설개발.png' %}";
             nturl = "{% static 'images/network/처분시설개발.png' %}";
-          }
-          else if(img == '처분안전'){
+          } else if (img == '처분안전') {
             wcurl = "{% static 'images/wordcloud/처분안전.png' %}";
             nturl = "{% static 'images/network/처분안전.png' %}";
           }
@@ -236,20 +223,17 @@
         }
       </script>
 
-      <div class="col-lg-4">
-        <div class="card mt-4">
-          <div class="field p-4">
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="field p-4" id="my_canvas">
             <legend class="legend">부문별 주요 키워드</legend>
-            <div>
-              <img id="wordcloud" src="{% static 'images/wordcloud/공학적방벽.png' %}" alt="" class="img-fluid rounded-3">
-            </div>
           </div>
         </div>
       </div>
 
 
-      <div class="col-lg-4">
-        <div class="card mt-4">
+      <div class="col-lg-4 mb-4">
+        <div class="card">
           <div class="field p-4">
             <legend class="legend">키워드 관계망</legend>
 
@@ -257,12 +241,29 @@
         </div>
       </div>
 
+      <script src="{% static 'js/wordcloud2.js' %}"></script>
+      <script>
+        function create_wc(list) {
+          WordCloud(document.getElementById('my_canvas'), {
+            list: list,
+            click: function(item) {
+              alert(item)
+            },
+            shape: 'circle',
+            drawOutOfBound: false,
+            shrinkToFit: true,
+          });
+        }
+      </script>
+      <button type="button" name="button" class="btn btn-primary w-30" onclick="create_wc({{list_}})">Click</button>
+
 
     </div>
 
 
   </div>
 </section>
+
 
 
 

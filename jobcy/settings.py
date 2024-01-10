@@ -29,8 +29,17 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'account.myUser'
 
-# Application definition
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +57,7 @@ INSTALLED_APPS = [
     'django_rename_app',
     'import_export',
     'rnd',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [

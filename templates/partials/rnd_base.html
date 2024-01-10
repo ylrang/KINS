@@ -15,11 +15,10 @@
   <!-- App favicon -->
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
   <style>
-    .page-title-box {
-      padding-top: 180px !important;
-      padding-bottom: 100px !important;
-    }
+
+
   </style>
+
   {% block css %}
 
 
@@ -67,7 +66,6 @@
 
 
 <body onload="loadDate()">
-  <!--start page Loader -->
   <div id="preloader">
     <div id="status">
       <ul>
@@ -80,9 +78,7 @@
       </ul>
     </div>
   </div>
-  <!--end page Loader -->
 
-  <!-- Begin page -->
   <div>
 
     {% block topbar %}
@@ -105,7 +101,6 @@
         {% endblock content %}
 
       </div>
-      <!-- End Page-content -->
 
       {% block subscribe %}{% endblock subscribe %}
 
@@ -117,16 +112,12 @@
       {% include 'partials/switcher.html' %}
       {% endblock switcher %}
 
-      <!--start back-to-top-->
       <button onclick="topFunction()" id="back-to-top">
         <i class="mdi mdi-arrow-up"></i>
       </button>
-      <!--end back-to-top-->
     </div> <!-- <>><><><><><><><><> -->
-    <!-- end main content-->
 
   </div>
-  <!-- END layout-wrapper -->
   <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/pages/switcher.init.js' %}"></script>
   {% block javascript %}
