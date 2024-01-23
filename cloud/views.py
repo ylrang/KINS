@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-
+from django.core.files.base import ContentFile
 
 #Cloud
 class CloudIndex(TemplateView):
@@ -96,6 +96,10 @@ def post_update(request, post_id):
         postform = PostEditForm()
         fileform = FileEditForm()
 
+    if postform.is_valid():
+        post = postform.save(commit=False)
+        post.save()
+
 
     context = {'post': post, 'logs': logs, 'postform': postform, 'fileform': fileform}
     return render(request, "cloud/bulletin/post-update.html", context)
@@ -103,26 +107,28 @@ def post_update(request, post_id):
 def post_delete(request, post_id):
     post = Post.objects.get(id=post_id)
     post.delete()
-    return redirect('home')
+    return redirect('post_list')
 
 
 @csrf_exempt
 def post_upload(request):
     if request.method == 'POST':
-        postform = PostForm(request.POST, request.FILES)
-
+        postform = PostForm(request.POST)
         fileform = FileForm(request.POST, request.FILES)
-        files = request.FILES.getlist('files')
+        file_list = request.FILES.getlist('files')
 
-        if postform.is_valid():
+        if postform.is_valid and fileform.is_valid:
             post = postform.save(commit=False)
             post.save()
             log = Log.objects.create(title='생성', description='게시글 생성', post=post)
             log.save()
-            for f in files:
-                file = Files(file=f, log=log)
+
+
+            for f in file_list:
+                file = Files.objects.create(file=f, log=log)
                 file.save()
-            return redirect('folder_list')
+
+            return redirect('post_list')
     else:
         postform = PostForm()
         fileform = FileForm()

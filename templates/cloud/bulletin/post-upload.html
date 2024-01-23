@@ -56,6 +56,7 @@
       <!--end col-->
 
     </div>
+
     <!--end row-->
     {% if postform.errors %}
     <span style="color: red;">{{ postform.errors }}</span>
@@ -64,28 +65,27 @@
     {% if postform.errors %}
     <span style="color: blue;">{{ form.errors }}</span>
     {% endif %}
-    <form method="post" class="job-post-form shadow mt-4">
+    <form method="post"  enctype="multipart/form-data">
       {% csrf_token %}
-
       <div class="job-post-content box-shadow-md rounded-3 p-4">
         <div class="row">
           <div class="col-lg-12">
             <div class="mb-4">
-              <label for="jobtitle" class="form-label">제목</label>
+              <label for="title" class="form-label">제목</label>
               {{ postform.title }}
             </div>
           </div>
           <!--end col-->
           <div class="col-lg-12">
             <div class="mb-4">
-              <label for="jobdescription" class="form-label">설명</label>
+              <label for="description" class="form-label">설명</label>
               {{ postform.description }}
             </div>
           </div>
           <!--end col-->
           <div class="col-lg-6">
             <div class="mb-4">
-              <label for="email" class="form-label">작성자</label>
+              <label for="writer" class="form-label">작성자</label>
               {{ postform.writer }}
               <!-- <input type="email" class="form-control" id="email" placeholder="1234@gmail.com" disabled> -->
             </div>
@@ -94,50 +94,48 @@
 
           <div class="col-lg-6">
             <div class="mb-4">
-              <label for="phoneNumber" class="form-label">연락처</label>
+              <label for="tel" class="form-label">연락처</label>
               {{ postform.tel }}
             </div>
           </div>
           <!--end col-->
           <div class="col-lg-6">
             <div class="mb-4">
-              <label for="choices-single-categories" class="form-label">구분</label>
+              <label for="sector" class="form-label">구분</label>
               {{ postform.sector }}
             </div>
           </div>
           <!--end col-->
           <div class="col-lg-6">
             <div class="mb-4">
-              <label for="choices-single-categories" class="form-label">폴더명</label>
+              <label for="folder" class="form-label">폴더명</label>
               {{ postform.folder }}
             </div>
           </div>
-          <!--end col-->
-          <!-- <div class="col-lg-12">
-                                                <div class="mb-4">
-                                                    <label for="lastdate" class="form-label">작성일자</label>
-                                                    <input type="date" class="form-control" id="lastdate">
-                                                </div>
-                                            </div> -->
+
           <div class="col-lg-12">
             <div class="mb-4">
-              <label for="lastdate" class="form-label">파일 업로드</label>
+              <label for="files" class="form-label">파일 업로드</label>
               {{ fileform.files }}
             </div>
           </div>
+
           <!--end col-->
           <div class="col-lg-12">
             <div class="text-end">
-              <a href="{% url 'file_list' %}" class="btn btn-success">뒤로가기</a>
+              <a href="{% url 'post_list' %}" class="btn btn-success">뒤로가기</a>
               <button type="submit" class="btn btn-primary">업로드 <i class="mdi mdi-send"></i></button>
             </div>
           </div>
+
+
           <!--end col-->
         </div>
         <!--end row-->
       </div>
       <!--end job-post-content-->
     </form>
+
   </div>
   <!--end container-->
 </section>

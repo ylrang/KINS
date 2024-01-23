@@ -177,7 +177,7 @@ def wordcloud(content):
     # return gen
 
 
-def upload_data(request):
+async def upload_data(request):
     with open('static/test_data_1.csv', 'r', encoding='cp949') as csv_file:
         count = 0
         rows = csv.DictReader(csv_file)
@@ -197,7 +197,7 @@ def upload_data(request):
             # img = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
 
             try:
-                wc_uri = wordcloud(row['content_kor'])
+                wc_uri = await wordcloud(row['content_kor'])
                 Docs.objects.create(
                     title=row['title'],
                     content_kor=row['content_kor'],
@@ -211,7 +211,7 @@ def upload_data(request):
                     wc=wc_uri,
                 )
                 uploaded = uploaded + str(row['index_num']) + ', '
-                # cache.delete('list_')
+                cache.delete('list_')
             except IntegrityError:
                 count += 1
                 failed = failed + str(row['index_num']) + ', '

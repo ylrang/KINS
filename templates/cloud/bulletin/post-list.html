@@ -80,152 +80,15 @@
     </div>
     <!--end row-->
     <div class="row">
+      <!-- job-box-->
       <div class="col-lg-12">
         {% for post in posts %}
         {% include 'cloud/partials/post_card.html' %}
         {% endfor %}
-        <!--end job-box-->
-        <div class="job-box card mt-4" onclick=location.href="{% url 'file_detail' post_id=1 %}">
-          <div class="card-body p-4">
-            <div class="row">
-              <div class="col-lg-1">
-                <a href="company-details.html"><img src="{% static 'images/featured-job/img-03.png' %}" alt="" class="img-fluid rounded-3"></a>
-              </div>
-              <!--end col-->
-              <div class="col-lg-9">
-                <div class="mt-3 mt-lg-0">
-                  <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">제목</a></h5>
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-edit"></i> 작성자명</p>
-                    </li>
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-calender"></i> 2023.06.27</p>
-                    </li>
-                  </ul>
-                  <div class="mt-2">
-                    <span class="badge bg-soft-purple mt-1">파일명1</span>
-                    <span class="badge bg-soft-primary mt-1">파일명2</span>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-              <div class="col-lg-2 align-self-center">
-                <ul class="list-inline mt-3 mb-0">
-                  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                    <a href="#" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-edit"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="avatar-sm bg-soft-danger d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-trash-alt"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-        </div>
-        <!--end job-box-->
-
-
-        <div class="job-box card mt-4">
-          <div class="card-body p-4">
-            <div class="row">
-              <div class="col-lg-1">
-                <a href="company-details.html"><img src="{% static 'images/featured-job/img-04.png' %}" alt="" class="img-fluid rounded-3"></a>
-              </div>
-              <!--end col-->
-              <div class="col-lg-9">
-                <div class="mt-3 mt-lg-0">
-                  <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">제목</a></h5>
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-edit"></i> 작성자명</p>
-                    </li>
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-calender"></i> 2023.06.27</p>
-                    </li>
-                  </ul>
-                  <div class="mt-2">
-                    <span class="badge bg-soft-success mt-1">파일명1</span>
-                    <span class="badge bg-soft-info mt-1">파일명2</span>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-              <div class="col-lg-2 align-self-center">
-                <ul class="list-inline mt-3 mb-0">
-                  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                    <a href="{% url 'manage-jobs-post' %}" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-edit"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="avatar-sm bg-soft-danger d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-trash-alt"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-        </div>
-        <!--end job-box-->
-        <div class="job-box card mt-4">
-          <div class="card-body p-4">
-            <div class="row">
-              <div class="col-lg-1">
-                <a href="company-details.html"><img src="{% static 'images/featured-job/img-05.png' %}" alt="" class="img-fluid rounded-3"></a>
-              </div>
-              <!--end col-->
-              <div class="col-lg-9">
-                <div class="mt-3 mt-lg-0">
-                  <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">제목</a></h5>
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-edit"></i> 작성자명</p>
-                    </li>
-                    <li class="list-inline-item">
-                      <p class="text-muted fs-14 mb-0"><i class="uil uil-calender"></i> 2023.06.27</p>
-                    </li>
-                  </ul>
-                  <div class="mt-2">
-                    <span class="badge bg-soft-primary mt-1">파일명111122</span>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-              <div class="col-lg-2 align-self-center">
-                <ul class="list-inline mt-3 mb-0">
-                  <li class="list-inline-item">
-                    <a href="{% url 'manage-jobs-post' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-edit"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="avatar-sm bg-soft-danger d-inline-block text-center rounded-circle fs-18">
-                      <i class="uil uil-trash-alt"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!--end col-->
-            </div>
-            <!--end row-->
-          </div>
-        </div>
-        <!--end job-box-->
-
       </div>
-      <!--end col-->
+
       <div class="col-lg-12 mt-2">
-        <a class="btn btn-soft-primary m-2 float-end" href="{% url 'file_upload' %}"> 글 작성 </a>
+        <a class="btn btn-soft-primary m-2 float-end" href="{% url 'post_upload' %}"> 글 작성 </a>
       </div>
 
     </div>

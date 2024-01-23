@@ -8,12 +8,15 @@ urlpatterns = [
     path('', views.CloudIndex.as_view(),name='index'),
     path('calendar', views.CalendarView.as_view(), name='calendar'),
     path('notice', views.notice, name='notice'),
+
     path('folder-list', views.folder_list, name='folder_list'),
     path('folder-detail', views.folder_detail, name='folder_detail'),
-    path('post-list', views.post_list, name='file_list'),
-    path('post-detail<int:post_id>', views.post_detail, name='file_detail'),
-    path('post-upload', views.post_upload, name='file_upload'),
-    path('post-update<int:post_id>', views.post_update, name='file_update'),
+
+    path('post-list', views.post_list, name='post_list'),
+    path('post-detail<int:post_id>', views.post_detail, name='post_detail'),
+    path('post-upload', views.post_upload, name='post_upload'),
+    path('post-update<int:post_id>', views.post_update, name='post_update'),
+    path('post-delete<int:post_id>', views.post_delete, name='post_delete'),
 
 
     # Jobs

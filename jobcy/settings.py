@@ -29,6 +29,13 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'account.myUser'
 
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Seoul'
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",

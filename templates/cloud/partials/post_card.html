@@ -1,14 +1,14 @@
 {% load static %}
-<div class="job-box card mt-4" onclick=location.href="{% url 'file_detail' post_id=post.id %}">
+<div class="job-box card mt-4">
   <div class="card-body p-4">
     <div class="row">
       <div class="col-lg-1">
         <a href="company-details.html"><img src="{% static 'images/featured-job/img-01.png' %}" alt="" class="img-fluid rounded-3"></a>
       </div>
       <!--end col-->
-      <div class="col-lg-9">
+      <div class="col-lg-9" onclick=location.href="{% url 'post_detail' post_id=post.id %}">
         <div class="mt-3 mt-lg-0">
-          <h5 class="fs-17 mb-1"><a href="{% url 'file_detail' post_id=post.id %}" class="text-dark">{{ post.title }}</a></h5>
+          <h5 class="fs-17 mb-1"><a href="{% url 'post_detail' post_id=post.id %}" class="text-dark">{{ post.title }}</a></h5>
           <ul class="list-inline mb-0">
             <li class="list-inline-item">
               <p class="text-muted fs-14 mb-0"><i class="uil uil-edit"></i> 작성자명</p>
@@ -27,10 +27,11 @@
       <div class="col-lg-2 align-self-center">
         <ul class="list-inline mt-3 mb-0">
           <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-            <a href="{% url 'file_update' post_id=post.id %}" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
+            <a href="{% url 'post_update' post_id=post.id %}" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
               <i class="uil uil-edit"></i>
             </a>
           </li>
+
           <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="avatar-sm bg-soft-danger d-inline-block text-center rounded-circle fs-18">
               <i class="uil uil-trash-alt"></i>
@@ -41,5 +42,27 @@
       <!--end col-->
     </div>
     <!--end row-->
+  </div>
+</div>
+
+<!-- DELETE Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Jobs ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h6 class="text-danger"><i class="uil uil-exclamation-triangle"></i> 주의: 게시글을 영구적으로 삭제하시겠습니까 ?</h6>
+          <p class="text-muted"> 업로드 히스토리 및 파일이 영구적으로 삭제되어 복구할 수 없습니다.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick=location.href="{% url 'post_delete' post_id=post.id %}">Yes, delete</button>
+      </div>
+    </div>
   </div>
 </div>
