@@ -139,6 +139,20 @@ def post_upload(request):
     }
     return render(request, "cloud/bulletin/post-upload.html", context)
 
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse
+
+def download_file(request, filename):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'posts')
+    file_name = os.path.basename(filename)
+    fs = FileSystemStorage(file_path)
+    response = FileResponse(fs.open(filename, 'r'),
+                            content_type='application/force-download')  # mime_type
+    response['Content-Disposition'] = 'attachment; filename=""'
+
+    return response
+
 
 # # from account.models import Folders
 from .utils import Calendar

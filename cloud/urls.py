@@ -17,6 +17,7 @@ urlpatterns = [
     path('post-upload', views.post_upload, name='post_upload'),
     path('post-update<int:post_id>', views.post_update, name='post_update'),
     path('post-delete<int:post_id>', views.post_delete, name='post_delete'),
+    path('download/<path:filename>', views.download_file, name='download_file'),
 
 
     # Jobs

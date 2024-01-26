@@ -1,4 +1,6 @@
 {% load static %}
+{% load split %}
+
 <div class="candidate-education-content mt-4 d-flex pt-4 border-top">
   <div class="circle flex-shrink-0 bg-soft-primary" style="font-size:12px;"> {{ forloop.revcounter|add:"-1"}} </div>
 
@@ -20,11 +22,13 @@
             <i class="uil uil-file"></i>
           </div>
           <div class="ms-3">
-            <h6 class="fs-16 mb-0">{{ f.file }}</h6>
+            <h6 class="fs-16 mb-0"> {% with f.file.name|split:"/"|last as file %}
+              {{ file }}{% endwith %}
+            </h6>
             <p class="text-muted mb-0">{{ f.file.size|filesizeformat }}</p>
           </div>
           <div class="ms-auto">
-            <a href="{% static 'images/dark-logo.png' %}" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
+            <a onclick=location.href="{% url 'download_file' filename=f.file %}" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
           </div>
         </div>
       </li>

@@ -38,8 +38,12 @@ class Log(models.Model):
     # file_id = models.ForeignKey('cloud.Files', on_delete=models.CASCADE, related_name="log", db_column="file_id")
 
 
+def log_file_name(instance, filename):
+    return '/'.join(['posts', str(instance.log.post), str(instance.log), filename])
+
+
 class Files(models.Model):
-    file = models.FileField()
+    file = models.FileField(upload_to=log_file_name)
     log = models.ForeignKey('cloud.Log', on_delete=models.CASCADE, related_name='files')
 
     class Meta:
