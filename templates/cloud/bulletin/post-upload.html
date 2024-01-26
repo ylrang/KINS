@@ -99,16 +99,9 @@
             </div>
           </div>
           <!--end col-->
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div class="mb-4">
-              <label for="sector" class="form-label">구분</label>
-              {{ postform.sector }}
-            </div>
-          </div>
-          <!--end col-->
-          <div class="col-lg-6">
-            <div class="mb-4">
-              <label for="folder" class="form-label">폴더명</label>
+              <label for="folder" class="form-label">폴더선택</label>
               {{ postform.folder }}
             </div>
           </div>
@@ -123,7 +116,7 @@
           <!--end col-->
           <div class="col-lg-12">
             <div class="text-end">
-              <a href="{% url 'post_list' %}" class="btn btn-success">뒤로가기</a>
+              <a href="{% url 'post_list' folder_id='1' %}" class="btn btn-success">뒤로가기</a>
               <button type="submit" class="btn btn-primary">업로드 <i class="mdi mdi-send"></i></button>
             </div>
           </div>

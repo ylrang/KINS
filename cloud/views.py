@@ -62,13 +62,16 @@ def CreateDocument(request):
     return render(request, "cloud/document-board/create_document.html")
 
 def folder_list(request):
-    return render(request, "cloud/bulletin/folder-list.html")
+    folders = Folder.objects.all()
+    context = {'folders': folders}
+    return render(request, "cloud/bulletin/folder-list.html", context)
 
 def folder_detail(request):
     return render(request, "cloud/bulletin/folder-detail.html")
 
-def post_list(request):
-    posts = Post.objects.all()
+def post_list(request, folder_id):
+    forder_id = str(folder_id)
+    posts = Post.objects.filter(folder__sector=folder_id)
     context = {'posts': posts }
     return render(request, "cloud/bulletin/post-list.html", context)
 

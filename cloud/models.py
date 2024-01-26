@@ -51,24 +51,25 @@ class Files(models.Model):
         verbose_name_plural = 'Files'
 
 class Folder(models.Model):
-    title = models.CharField(max_length=20)
-    created_at = models.DateTimeField()
-    owner = models.ForeignKey('account.myUser', on_delete=models.CASCADE)
-
-class Post(models.Model):
     SECTOR = (
         ('1', '기관 제출 공문'),
         ('2', '참여기관 공유'),
         ('3', '회의일정 및 전체자료'),
         ('4', '기타'),
     )
+    title = models.CharField(max_length=20)
+    sector = models.CharField(max_length=100, choices=SECTOR, default='기타')
+    created_at = models.DateTimeField()
+    owner = models.ForeignKey('account.myUser', on_delete=models.CASCADE)
+
+class Post(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     title = models.TextField()
     description = models.TextField()
     writer = models.ForeignKey('account.myUser', on_delete=models.CASCADE)
     tel = models.CharField(max_length=100)
-    sector = models.CharField(max_length=100, choices=SECTOR, default='기타')
+    # sector = models.CharField(max_length=100, choices=SECTOR, default='기타')
     folder = models.ForeignKey('cloud.Folder', on_delete=models.CASCADE)
 
 

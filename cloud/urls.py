@@ -12,7 +12,7 @@ urlpatterns = [
     path('folder-list', views.folder_list, name='folder_list'),
     path('folder-detail', views.folder_detail, name='folder_detail'),
 
-    path('post-list', views.post_list, name='post_list'),
+    path('post-list<int:folder_id>', views.post_list, name='post_list'),
     path('post-detail<int:post_id>', views.post_detail, name='post_detail'),
     path('post-upload', views.post_upload, name='post_upload'),
     path('post-update<int:post_id>', views.post_update, name='post_update'),

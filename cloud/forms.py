@@ -17,12 +17,12 @@ class FileEditForm(forms.ModelForm):
 
 
 class PostEditForm(forms.ModelForm):
-    SECTOR = (
-        ('1', '기관 제출 공문'),
-        ('2', '참여기관 공유'),
-        ('3', '회의일정 및 전체자료'),
-        ('4', '기타'),
-    )
+    # SECTOR = (
+    #     ('1', '기관 제출 공문'),
+    #     ('2', '참여기관 공유'),
+    #     ('3', '회의일정 및 전체자료'),
+    #     ('4', '기타'),
+    # )
 
     class Meta:
         model = Post
@@ -38,12 +38,12 @@ class PostEditForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
 
-    sector = forms.ChoiceField(
-        label="문서 분류",
-        required=True,
-        choices=SECTOR,
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
+    # sector = forms.ChoiceField(
+    #     label="문서 분류",
+    #     required=True,
+    #     choices=SECTOR,
+    #     widget=forms.Select(attrs={'class': 'form-control'})
+    # )
 
     writer = forms.ModelChoiceField(
         label="작성자",
@@ -101,12 +101,12 @@ class PostForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
 
-    sector = forms.ChoiceField(
-        label="문서 분류",
-        required=True,
-        choices=SECTOR,
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
+    # sector = forms.ChoiceField(
+    #     label="문서 분류",
+    #     required=True,
+    #     choices=SECTOR,
+    #     widget=forms.Select(attrs={'class': 'form-control'})
+    # )
 
     writer = forms.ModelChoiceField(
         label="작성자",
