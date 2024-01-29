@@ -72,7 +72,7 @@ def folder_detail(request):
 def post_list(request, folder_id):
     forder_id = str(folder_id)
     posts = Post.objects.filter(folder__sector=folder_id)
-    context = {'posts': posts }
+    context = {'posts': posts, 'folder':folder_id }
     return render(request, "cloud/bulletin/post-list.html", context)
 
 
@@ -81,8 +81,9 @@ def post_list(request, folder_id):
 def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     logs = Log.objects.filter(post__id=post_id).order_by('-creation_date')
+    folder = post.folder.sector
     # files = Log.objects.first().files.all()
-    context = {'post': post, 'logs': logs}
+    context = {'post': post, 'logs': logs, 'folder': folder }
     return render(request, "cloud/bulletin/post-detail.html", context)
 
 
