@@ -14,29 +14,29 @@ urlpatterns = [
 
     path('post-list<int:folder_id>', views.post_list, name='post_list'),
     path('post-detail<int:post_id>', views.post_detail, name='post_detail'),
-    path('post-upload', views.post_upload, name='post_upload'),
+    path('post-upload<folder_id>', views.post_upload, name='post_upload'),
     path('post-update<int:post_id>', views.post_update, name='post_update'),
     path('post-delete<int:post_id>', views.post_delete, name='post_delete'),
     path('download/<path:filename>', views.download_file, name='download_file'),
 
 
     # Jobs
-    path('job-list', views.JobList.as_view(),name="job-list"),
-    path('job-list-2', views.JobList2.as_view(),name="job-list-2"),
-    path('job-grid', views.JobGrid.as_view(),name="job-grid"),
-    path('job-grid-2', views.JobGrid2.as_view(),name="job-grid-2"),
-    path('job-details', views.JobDetails.as_view(),name="job-details"),
-    path('job-categories', views.JobCategories.as_view(),name="job-categories"),
-
-    # Document Board
+    # path('job-list', views.JobList.as_view(),name="job-list"),
+    # path('job-list-2', views.JobList2.as_view(),name="job-list-2"),
+    # path('job-grid', views.JobGrid.as_view(),name="job-grid"),
+    # path('job-grid-2', views.JobGrid2.as_view(),name="job-grid-2"),
+    # path('job-details', views.JobDetails.as_view(),name="job-details"),
+    # path('job-categories', views.JobCategories.as_view(),name="job-categories"),
+    #
+    # # Document Board
     path('shared-documents', views.SharedDocumentList.as_view(),name="shared-documents"),
     path('candidate-grid', views.CandidateGrid.as_view(),name="candidate-grid"),
     path('candidate-details', views.CandidateDetails.as_view(),name="candidate-details"),
     path('company-list', views.CompanyList.as_view(),name="company-list"),
     path('company-details', views.CompanyDetails.as_view(),name="company-details"),
     path('create-document', views.CreateDocument, name='create-document'),
-
-    # Extra-Pages
+    #
+    # # Extra-Pages
     path('sign-up', views.SignUp.as_view(),name="sign-up"),
     path('sign-in', views.Signin.as_view(),name="sign-in"),
     path('sign-out', views.SignOut.as_view(),name="sign-out"),

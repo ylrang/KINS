@@ -7,20 +7,20 @@ class CloudIndex(TemplateView):
 
 
 # Jobs
-class JobList(TemplateView):
-    template_name = "cloud/jobs/job-list.html"
-class JobList2(TemplateView):
-    template_name = "cloud/jobs/job-list-2.html"
-class JobGrid(TemplateView):
-    template_name = "cloud/jobs/job-grid.html"
-class JobGrid2(TemplateView):
-    template_name = "cloud/jobs/job-grid-2.html"
-class JobDetails(TemplateView):
-    template_name = "cloud/jobs/job-details.html"
-class JobCategories(TemplateView):
-    template_name = "cloud/jobs/job-categories.html"
-
-# document-board
+# class JobList(TemplateView):
+#     template_name = "cloud/jobs/job-list.html"
+# class JobList2(TemplateView):
+#     template_name = "cloud/jobs/job-list-2.html"
+# class JobGrid(TemplateView):
+#     template_name = "cloud/jobs/job-grid.html"
+# class JobGrid2(TemplateView):
+#     template_name = "cloud/jobs/job-grid-2.html"
+# class JobDetails(TemplateView):
+#     template_name = "cloud/jobs/job-details.html"
+# class JobCategories(TemplateView):
+#     template_name = "cloud/jobs/job-categories.html"
+#
+# # document-board
 class SharedDocumentList(TemplateView):
     template_name = "cloud/document-board/shared-documents.html"
 class CandidateGrid(TemplateView):
@@ -31,8 +31,8 @@ class CompanyList(TemplateView):
     template_name = "cloud/document-board/company-list.html"
 class CompanyDetails(TemplateView):
     template_name = "cloud/document-board/company-details.html"
-
-# Extra-Pages
+#
+# # Extra-Pages
 class SignUp(TemplateView):
     template_name = "cloud/extra-pages/sign-up.html"
 class Signin(TemplateView):
@@ -111,11 +111,14 @@ def post_update(request, post_id):
 def post_delete(request, post_id):
     post = Post.objects.get(id=post_id)
     post.delete()
-    return redirect('post_list')
+    folder_id = post.folder.id
+    posts = Post.objects.filter(folder__sector=folder_id)
+    context = {'posts': posts, 'folder':folder_id }
+    return render(request, "cloud/bulletin/post-list.html", context)
 
 
 @csrf_exempt
-def post_upload(request):
+def post_upload(request, folder_id):
     if request.method == 'POST':
         postform = PostForm(request.POST)
         fileform = FileForm(request.POST, request.FILES)
@@ -132,7 +135,8 @@ def post_upload(request):
                 file = Files.objects.create(file=f, log=log)
                 file.save()
 
-            return redirect('post_list')
+            context = {'folder':folder_id }
+            return render(request, "cloud/bulletin/post-upload-success.html", context)
     else:
         postform = PostForm()
         fileform = FileForm()

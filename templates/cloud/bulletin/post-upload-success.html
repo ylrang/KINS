@@ -1,0 +1,57 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Manage Jobs{% endblock title %}
+{% block extra_css %}
+<!-- Choise Css -->
+<link rel="stylesheet" href="{% static 'libs/choices.js/public/assets/styles/choices.min.css' %}">
+{% endblock extra_css %}
+{% block content %}
+<style>
+  .job-box:hover {
+    cursor: pointer;
+  }
+</style>
+<!-- Start home -->
+
+<!-- END SHAPE -->
+
+
+<!-- START MANAGE-JOBS -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <!-- job-box-->
+      <div class="col-lg-12">
+        업로드 완료 되었습니다.
+      </div>
+      <div class="col-lg-12">
+        <a class="btn btn-soft-primary m-2 float-end" href="{% url 'post_list' folder_id=folder %}"> 폴더로 이동 </a>
+      </div>
+
+    </div>
+    <!--end row-->
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!-- END MANAGE-JOBS -->
+
+<!-- END DELETE MODAL -->
+{% endblock content %}
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+<!-- Candidate Init Js -->
+<script src="{% static 'js/pages/candidate.init.js' %}"></script>
+
+<!-- Switcher Js -->
+<script src="{% static 'js/pages/switcher.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock javascript %}
