@@ -290,6 +290,7 @@ def regulation_database(request, sector=''):
         contents = docs.filter(Q(sector__icontains=sector))
         if not contents:
             list_ = "x"
+            list_ = cache.set("list_{0}".format(sector), list_, timeout=None)
         else:
             okt = Okt()
             words = []

@@ -186,47 +186,22 @@
         </div>
       </div>
 
-      <script>
-        function setImage(img) {
-          var wcurl = ''
-          var nturl = ''
 
-          if (img == '공학적방벽') {
-            wcurl = "{% static 'images/wordcloud/공학적방벽.png' %}";
-            nturl = "{% static 'images/network/공학적방벽.png' %}";
-          } else if (img == '방사성폐기물') {
-            wcurl = "{% static 'images/wordcloud/방사성폐기물.png' %}";
-            nturl = "{% static 'images/network/방사성폐기물.png' %}";
-          } else if (img == '부지개발') {
-            wcurl = "{% static 'images/wordcloud/부지개발.png' %}";
-            nturl = "{% static 'images/network/부지개발.png' %}";
-          } else if (img == '부지환경') {
-            wcurl = "{% static 'images/wordcloud/부지환경.png' %}";
-            nturl = "{% static 'images/network/부지환경.png' %}";
-          } else if (img == '안전사례') {
-            wcurl = "{% static 'images/wordcloud/안전사례.png' %}";
-            nturl = "{% static 'images/network/안전사례.png' %}";
-          } else if (img == '처분시설개발') {
-            wcurl = "{% static 'images/wordcloud/처분시설개발.png' %}";
-            nturl = "{% static 'images/network/처분시설개발.png' %}";
-          } else if (img == '처분안전') {
-            wcurl = "{% static 'images/wordcloud/처분안전.png' %}";
-            nturl = "{% static 'images/network/처분안전.png' %}";
-          }
-
-          // console.log(img);
-          // console.log(sturl);
-
-          document.getElementById('wordcloud').src = wcurl;
-          document.getElementById('network').src = nturl;
-
-        }
-      </script>
 
       <div class="col-lg-4 mb-4">
         <div class="card">
-          <div class="field p-4" id="my_canvas">
+          <div class="field p-4 d-flex flex-column align-items-center" id="my_canvas">
             <legend class="legend">부문별 주요 키워드</legend>
+
+            <div class="h-100 d-flex flex-column justify-content-center">
+              <div class="">
+                {% if list_ == 'x' %}
+                <a>결과없음</a>
+                {% else %}
+                <a onclick="create_wc({{list_}})" style="text-decoration:underline; cursor:pointer;">보기</a>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -244,18 +219,20 @@
       <script src="{% static 'js/wordcloud2.js' %}"></script>
       <script>
         function create_wc(list) {
-          WordCloud(document.getElementById('my_canvas'), {
-            list: list,
-            click: function(item) {
-              alert(item)
-            },
-            shape: 'circle',
-            drawOutOfBound: false,
-            shrinkToFit: true,
-          });
+
+            WordCloud(document.getElementById('my_canvas'), {
+              list: list,
+              click: function(item) {
+                alert(item)
+              },
+              shape: 'circle',
+              drawOutOfBound: false,
+              shrinkToFit: true,
+            });
+
         }
       </script>
-      <button type="button" name="button" class="btn btn-primary w-30" onclick="create_wc({{list_}})">Click</button>
+
 
 
     </div>

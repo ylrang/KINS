@@ -124,6 +124,6 @@ class PostForm(forms.ModelForm):
     folder = forms.ModelChoiceField(
         label="폴더",
         required=True,
-        queryset=Folder.objects.all(),
+        queryset=Folder.objects.all().values_list('title', flat=True),
         widget=forms.Select(attrs={'class': 'form-control'})
     )
