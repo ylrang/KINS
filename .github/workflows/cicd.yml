@@ -25,9 +25,16 @@ jobs:
       - name: deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/devncnc/project/jobcy && ./.scripts/deploy.sh
+            echo "Deployment started ..."
+            
+            # Pull the latest version of the app
+            echo "Copying New changes...."         
+            cd /home/devncnc/project/jobcy && git pull https://${{ secrets.ACCESS_TOKEN }}@github.com/ylrang/KINS.git main
+            echo "New changes copied to server !"
+            
+            ./.scripts/deploy.sh
