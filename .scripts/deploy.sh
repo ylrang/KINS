@@ -3,27 +3,23 @@ set -e
 
 # Activate Virtual Env
 source /home/devncnc/project/venv/bin/activate
-echo "Virtual env 'venv' Activated !"
+echo "Virtual environment 'venv' activated"
 
-#echo "Clearing Cache..."
-#python manage.py clean_pyc
-#python manage.py clear_cache
-
-echo "Installing Dependencies..."
+echo "Installing dependencies..."
 pip install -r requirements.txt --no-input
 
-echo "Serving Static Files..."
+echo "Serving static files..."
 python manage.py collectstatic --noinput
 
-echo "Running Database migration..."
+echo "Running migration..."
 python manage.py makemigrations
 python manage.py migrate
 
 # Deactivate Virtual Env
 deactivate                          
-echo "Virtual env 'venv' Deactivated !" 
+echo "Virtual environment 'venv' deactivated" 
 
-echo "Restarting App..."
+echo "Restarting the server..."
 sudo systemctl restart uwsgi
 
-echo "Deployment Finished !"
+echo "Deployment complete"
