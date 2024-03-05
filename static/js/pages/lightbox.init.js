@@ -1,7 +1,1 @@
-
-
-// GLightbox Popup
-
-var lightbox = GLightbox({
-    selector: '.image-popup'
-  });
+var lightbox=GLightbox({selector:".image-popup"});

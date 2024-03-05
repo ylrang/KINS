@@ -1,4 +1,1 @@
-
-var singleFilter = new Choices('#choices-single-filter-orderby');
-
-var singleCandidate = new Choices('#choices-candidate-page');
+var singleFilter=new Choices("#choices-single-filter-orderby"),singleCandidate=new Choices("#choices-candidate-page");
