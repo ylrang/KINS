@@ -51,21 +51,23 @@
       min-height: 100vh;
     }
 
-    @media (min-width: 1400px) .container {
+    @media (min-width: 1400px) {
+      .container {
       max-width: 1320px !important;
+      }
     }
   </style>
 </head>
 
 
-<script>
+<!--script>
   function loadDate() {
     document.getElementById('dateControlInput').defaultValue = new Date().toISOString().substring(0, 10);
   }
-</script>
+</script-->
 
 
-<body onload="loadDate()">
+<body>
   <div id="preloader">
     <div id="status">
       <ul>

@@ -1,17 +1,16 @@
-from django.shortcuts import render
-from .models import Regulation
+from django.shortcuts import render, redirect
+from .models import Regulation, Case
 import os
 from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
-
+from .forms import CaseForm
+from django.utils import timezone
 
 def index(request):
     return render(request, "rnd/index.html")
 
-
 def case(request):
     return render(request, "rnd/case.html")
-
 
 def KAERI(request):
     return render(request, "rnd/KAERI_case.html")
@@ -19,17 +18,28 @@ def KAERI(request):
 def KORAD(request):
     return render(request, "rnd/KORAD_case.html")
 
+def CaseView(View):
+    def get(self, request):
+        org = request.GET.get('organization', None)
+        cases = Case.objects.filter(organization=org).values()
 
 def create_case(request):
-    return render(request, "rnd/create_case.html")
+    if request.method == "POST":
+        form = CaseForm(request.POST, request.FILES)
+        if form.is_valid:
+            form.save(commit=False)
+            form.creation_date = timezone.now()
+            form.save()
+            return redirect("rnd:index")
+    else:
+        form=CaseForm()
+    return render(request, "rnd/create_case.html", {'form': form})
 
 def case_detail(request):
     return render(request, "rnd/case_detail.html")
 
-
 def about(request):
     return render(request, "rnd/about.html")
-
 
 def regulation(request):
     reg_list = Regulation.objects.all()
@@ -43,7 +53,6 @@ def regulation_detail(request, pk):
 
     return render(request, "rnd/regulation_detail.html", context)
 
-
 def download_regulation_file(request, filename):
     file_path = os.path.abspath("media")
     file_name = os.path.basename(filename)
@@ -53,8 +62,6 @@ def download_regulation_file(request, filename):
     response['Content-Disposition'] = 'attachment; filename=""'
 
     return response
-
-
 
 def institute(request):
     return render(request, "rnd/institute.html")

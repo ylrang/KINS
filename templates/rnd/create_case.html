@@ -50,37 +50,9 @@
     <div class="row justify-content-center">
 
       <div class="col-lg-10">
-        <form action="{% url 'rnd:case' %}">
-          <div class="mb-3">
-            <label for="dateControlInput" class="form-label">작성 일자</label>
-            <input type="date" class="form-control" id="dateControlInput" readonly>
-          </div>
-
-
-
-          <div class="mb-3">
-            <label for="organization" class="form-label">기관 구분</label>
-              <select class="form-select">
-                <option value="">기관</option>
-                <option value="kaeri">KAERI</option>
-                <option value="korad">KORAD</option>
-
-              </select>
-          </div>
-
-
-          <div class="mb-3">
-            <label for="messageControlTextarea" class="form-label">피드백 요약</label>
-            <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="내용"></textarea>
-          </div>
-          <div class="mb-4">
-            <label class="form-label" for="inputGroupFile01">검토 보고서</label>
-            <input type="file" class="form-control" id="inputGroupFile01">
-          </div>
-          <div class="mb-3">
-            <label for="emailControlInput2" class="form-label">담당자</label>
-            <input type="text" class="form-control" id="emailControlInput2" placeholder="담당자명">
-          </div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
           <div class="m-4" style="text-align:center">
             <button type="button" class="btn btn-soft-primary" style="width:15%" onclick="temp_save()">임시저장</button>
             <button type="button" class="btn btn-primary" style="width:15%" data-bs-toggle="modal" data-bs-target="#saveModal">저장</button>
@@ -97,7 +69,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">확인</button>
+                    <button type="submit" name="save" class="btn btn-primary waves-effect waves-light">확인</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
@@ -117,7 +89,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">확인</button>
+                    <button type="submit" name="cancle" class="btn btn-primary waves-effect waves-light">확인</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

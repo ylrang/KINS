@@ -54,23 +54,18 @@
         <p class="text-muted">R&D 연구과제 진행에 활용되는 참고자료를 활용할 수 있도록 제공되는 페이지 입니다.</p>
       </div>
 
-      <div class="col-lg-10">
-        {% for reg in reg_list %}
-        {% include 'partials/rnd_regulation_card.html' %}
-        {% endfor %}
+      <div class="col-lg-10" id="regulations">
       </div>
 
     </div>
   </div>
 </section>
 
-
 {% endblock content %}
 {% block javascript %}
 <!-- JAVASCRIPT -->
 <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
-
 
 <!-- Choice Js -->
 <script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
@@ -82,4 +77,5 @@
 <script src="{% static 'js/cloud/switcher.init.js' %}"></script>
 
 <script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/pages/api.js' %}"></script>
 {% endblock javascript %}

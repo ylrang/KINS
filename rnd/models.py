@@ -10,3 +10,15 @@ class Regulation(models.Model):
 
     def __str__(self):
         return str(self.id) + ') ' + self.title
+
+class Case(models.Model):
+    ORG = (
+        ('kaeri', 'KAERI'),
+        ('korad', 'KORAD'),
+    )
+    creation_date = models.DateTimeField()
+    update_date = models.DateTimeField(auto_now=True)
+    organization = models.CharField(max_length=100, choices=ORG, default='기관')
+    summary = models.TextField()
+    file = models.FileField()
+    writer = models.CharField(max_length=100)

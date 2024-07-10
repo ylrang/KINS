@@ -66,8 +66,7 @@
     <div class="row justify-content-center">
 
       <div class="col-lg-12">
-
-        <table class="table table-bordered mb-0">
+        <table class="table table-bordered mb-0" id="reg_detail" data-id="{{ reg.pk }}">
           <tbody>
             <tr>
               <th>작성자</th>
@@ -84,7 +83,7 @@
                       <div class="d-flex vertical-align-middle">
                         <i class="uil uil-import"></i>
                         <p class="fs-14 mb-0 ms-2">
-                          {{ reg.file.name }}
+                          {{ reg.file }}
                         </p>
                         <p class="fs-12 mb-0">({{ reg.file.size|filesizeformat }})
                         </p>
@@ -165,4 +164,5 @@
 <script src="{% static 'js/cloud/switcher.init.js' %}"></script>
 
 <script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/rnd/regulation.js' %}"></script>
 {% endblock javascript %}

@@ -1,6 +1,6 @@
 from django.urls import path
 # urls.py
-from rnd import views
+from rnd import views, apis
 
 app_name='rnd'
 
@@ -19,5 +19,9 @@ urlpatterns = [
     path('download/<path:filename>', views.download_regulation_file, name='download_regulation_file'),
 
     path('institute', views.institute, name='institute'),
-
+    
+    path('api/regulation', apis.RegulationList.as_view(), name='regulation_api'),
+    path('api/regulation/<int:pk>', apis.RegulationDetail.as_view(), name='regulation_detail_api'),
+    path('api/case', apis.CaseList.as_view(), name='case_api'),
+    path('api/case/<int:pk>', apis.CaseDetail.as_view(), name='case_detail_api'),
 ]
