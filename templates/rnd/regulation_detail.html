@@ -66,7 +66,7 @@
     <div class="row justify-content-center">
 
       <div class="col-lg-12">
-        <table class="table table-bordered mb-0" id="reg_detail" data-id="{{ reg.pk }}">
+        <table class="table table-bordered mb-0">
           <tbody>
             <tr>
               <th>작성자</th>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary waves-effect waves-light" onclick=location.href="{% url 'rnd:KAERI_case' %}">확인</button>
+                  <button type="button" class="btn btn-primary waves-effect waves-light" onclick=location.href="{% url 'rnd:regulation' %}">확인</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

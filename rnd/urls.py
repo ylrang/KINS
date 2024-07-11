@@ -12,7 +12,7 @@ urlpatterns = [
     path('KAERI_case', views.KAERI, name='KAERI_case'),
     path('KORAD_case', views.KORAD, name='KORAD_case'),
     path('create_case', views.create_case, name='create_case'),
-    path('case_detail', views.case_detail, name='case_detail'),
+    path('case_detail<int:pk>', views.case_detail, name='case_detail'),
 
     path('regulation', views.regulation, name='regulation'),
     path('regulation_detail<int:pk>', views.regulation_detail, name='regulation_detail'),

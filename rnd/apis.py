@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.parsers import FileUploadParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegulationSerializer, CaseSerializer
@@ -26,11 +27,13 @@ class RegulationDetail(APIView):
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     
-
 class CaseList(APIView):
     def get(self, request):
-        cases = Case.objects.all()
-        serializer = CaseSerializer(cases, many=True)
+        queryset = Case.objects.all()
+        if request.query_params:
+            org = request.query_params.get('organization', None)
+            queryset = queryset.filter(organization=org)
+        serializer = CaseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class CaseDetail(APIView):

@@ -18,11 +18,6 @@ def KAERI(request):
 def KORAD(request):
     return render(request, "rnd/KORAD_case.html")
 
-def CaseView(View):
-    def get(self, request):
-        org = request.GET.get('organization', None)
-        cases = Case.objects.filter(organization=org).values()
-
 def create_case(request):
     if request.method == "POST":
         form = CaseForm(request.POST, request.FILES)
@@ -35,33 +30,30 @@ def create_case(request):
         form=CaseForm()
     return render(request, "rnd/create_case.html", {'form': form})
 
-def case_detail(request):
-    return render(request, "rnd/case_detail.html")
+def case_detail(request, pk):
+    case = Case.objects.get(pk=pk)
+    context = {'case': case}
+    return render(request, "rnd/case_detail.html", context)
 
 def about(request):
     return render(request, "rnd/about.html")
 
 def regulation(request):
-    reg_list = Regulation.objects.all()
-    context = {'reg_list': reg_list}
-
-    return render(request, "rnd/regulation.html", context)
+    return render(request, "rnd/regulation.html")
 
 def regulation_detail(request, pk):
     reg = Regulation.objects.get(pk=pk)
     context = {'reg': reg}
-
     return render(request, "rnd/regulation_detail.html", context)
 
 def download_regulation_file(request, filename):
     file_path = os.path.abspath("media")
     file_name = os.path.basename(filename)
     fs = FileSystemStorage(file_path)
-    response = FileResponse(fs.open(filename, 'r'),
+    response = FileResponse(fs.open(file_name, 'r'),
                             content_type='application/force-download')  # mime_type
     response['Content-Disposition'] = 'attachment; filename=""'
 
     return response
-
 def institute(request):
     return render(request, "rnd/institute.html")

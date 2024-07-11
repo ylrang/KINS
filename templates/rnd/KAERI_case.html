@@ -24,7 +24,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="text-center text-white">
-          <h3 class="mb-4">R&D 지원 검토 사례</h3>
+          <h3 class="mb-4">KAERI 연구 검토 사례</h3>
 
         </div>
       </div>
@@ -55,14 +55,42 @@
         <p class="text-muted">진행중 / 완료 목록 확인</p>
       </div>
 
-      <div class="col-lg-10">
-        {% include 'partials/rnd_post_card.html' %}
+      <div class="col-lg-10" id="kaeri_case">
       </div>
 
     </div>
   </div>
 </section>
-
+<script>
+  const loadPages = async () => {
+    const response = await fetch("/api/case?organization=kaeri")
+    .then(response => response.json())
+    .then(data => {
+      console.log('data', data);
+      let cases = '';
+      data.forEach(kaeri => {
+        cases += `<div class="card mt-2">
+                    <div class="card-body p-4">
+                      <div style="display:flex; justify-content:space-between">
+                        <div>
+                          <span class="badge bg-soft-primary">${kaeri.status}</span>
+                          <h5 class="post-title fs-17 mb-0"><a href="/case_detail${kaeri.pk}" class="primary-link"> ${kaeri.title} </a></h5>
+                        </div>
+                        <ul class="list-inline mb-0 text-muted">
+                          <li class="list-inline-item">
+                            <i class="mdi mdi-calendar-clock"></i> ${kaeri.creation_date}
+                            <i class="mdi mdi-account-circle"></i> ${kaeri.writer}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>`;
+      });
+      document.getElementById('kaeri_case').innerHTML = cases;
+    })
+  }
+  loadPages()
+</script>
 
 {% endblock content %}
 {% block javascript %}
