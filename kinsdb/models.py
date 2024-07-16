@@ -134,10 +134,10 @@ def data_file_name(instance, filename):
 
 
 class Data(models.Model):
-        document = models.ForeignKey(
-            'kinsdb.Document', on_delete=models.CASCADE)
-        file = models.FileField(upload_to=data_file_name)
-        last_updated = models.DateTimeField(auto_now_add=True, blank=True)
+    document = models.ForeignKey(
+        'kinsdb.Document', on_delete=models.CASCADE)
+    file = models.FileField(upload_to=data_file_name)
+    last_updated = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 

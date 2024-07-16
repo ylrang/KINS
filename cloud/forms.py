@@ -70,7 +70,7 @@ class FileForm(forms.ModelForm):
 
     class Meta:
         model = Files
-        fields = '__all__'
+        exclude = ('log',)
 
     files = forms.FileField(
         label="파일 업로드",
@@ -124,6 +124,6 @@ class PostForm(forms.ModelForm):
     folder = forms.ModelChoiceField(
         label="폴더",
         required=True,
-        queryset=Folder.objects.all().values_list('title', flat=True),
+        queryset=Folder.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control'})
     )

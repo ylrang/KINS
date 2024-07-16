@@ -86,7 +86,7 @@ def simple_upload(request):
                     Docs.objects.create(
                         title=row['title'],
                         content_kor=row['content_kor'],
-                        content_eng=row['content_eng'],
+                        content_eng=row['content_eng'], 
                         writer_id=row['writer'],
                         index_title_kor=row['index_title_kor'],
                         index_title_eng=row['index_title_eng'],
@@ -101,7 +101,8 @@ def simple_upload(request):
                     failed = failed + str(row['index_num']) + ', '
 
             context = {'uploaded': uploaded,
-                       'count': count, 'failed': failed, 'wc': wc_uri}            # with open(file, 'r', encoding='cp949') as csv_file:
+                       'count': count, 'failed': failed, 'wc': wc_uri}
+            # with open(file, 'r', encoding='cp949') as csv_file:
             # rows = csv.DictReader(csv_file)
             # context = { 'rows': rows, 'file': file.name }
         #     data.save()

@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from django.core.files.base import ContentFile
+from django.utils import timezone
 
 #Cloud
 class CloudIndex(TemplateView):
@@ -123,16 +124,14 @@ def post_upload(request, folder_id):
         postform = PostForm(request.POST)
         fileform = FileForm(request.POST, request.FILES)
         file_list = request.FILES.getlist('files')
-
-        if postform.is_valid and fileform.is_valid:
-            post = postform.save(commit=False)
-            post.save()
-            log = Log.objects.create(title='생성', description='게시글 생성', post=post)
+        if postform.is_valid() and fileform.is_valid():
+            post = postform.save()
+            
+            log = Log(title='생성', description='게시글 생성', post=post)
             log.save()
-
-
+            
             for f in file_list:
-                file = Files.objects.create(file=f, log=log)
+                file = Files(file=f, log=log)
                 file.save()
 
             context = {'folder':folder_id }
@@ -152,10 +151,9 @@ from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 
 def download_file(request, filename):
-    file_path = os.path.join(settings.MEDIA_ROOT, 'posts')
-    file_name = os.path.basename(filename)
+    file_path = os.path.abspath(settings.MEDIA_ROOT, 'posts')
     fs = FileSystemStorage(file_path)
-    response = FileResponse(fs.open(filename, 'r'),
+    response = FileResponse(fs.open(filename, 'r', encoding='cp949'),
                             content_type='application/force-download')  # mime_type
     response['Content-Disposition'] = 'attachment; filename=""'
 

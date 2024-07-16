@@ -24,8 +24,11 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('accounts/', include('account.urls')),
+    
     # Index Page
     path('', include('rnd.urls')),
+    
     # Company
     path('company/',include('company.urls')),
 

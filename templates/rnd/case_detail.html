@@ -169,6 +169,37 @@ th {
 <script>
   document.getElementById('dateControlInput').value = new Date().toISOString().substring(0, 10);;
 </script>
+<!--script>
+  const deleteData = async () => {
+    const response = await fetch("/api/case/" + {{ case.id }}, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('data', data);
+      let cases = '';
+      data.forEach(kaeri => {
+        cases += `<div class="card mt-2">
+                    <div class="card-body p-4">
+                      <div style="display:flex; justify-content:space-between">
+                        <div>
+                          <span class="badge bg-soft-primary">${kaeri.status}</span>
+                          <h5 class="post-title fs-17 mb-0"><a href="/case_detail${kaeri.pk}" class="primary-link"> ${kaeri.title} </a></h5>
+                        </div>
+                        <ul class="list-inline mb-0 text-muted">
+                          <li class="list-inline-item">
+                            <i class="mdi mdi-calendar-clock"></i> ${kaeri.creation_date}
+                            <i class="mdi mdi-account-circle"></i> ${kaeri.writer}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>`;
+      });
+      document.getElementById('kaeri_case').innerHTML = cases;
+    })
+  }
+</script-->
 {% endblock content %}
 {% block javascript %}
 <!-- JAVASCRIPT -->

@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from .serializers import RegulationSerializer, CaseSerializer
 from .models import Regulation, Case
 
@@ -14,6 +15,8 @@ class RegulationList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class RegulationDetail(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request, pk):
         reg = get_object_or_404(Regulation, pk=pk)
         serializer = RegulationSerializer(reg)

@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 from .forms import CaseForm
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required, permission_required
 
 def index(request):
     return render(request, "rnd/index.html")
@@ -18,6 +19,7 @@ def KAERI(request):
 def KORAD(request):
     return render(request, "rnd/KORAD_case.html")
 
+@login_required
 def create_case(request):
     if request.method == "POST":
         form = CaseForm(request.POST, request.FILES)

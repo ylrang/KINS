@@ -43,7 +43,7 @@ def log_file_name(instance, filename):
 
 
 class Files(models.Model):
-    file = models.FileField(upload_to=log_file_name)
+    file = models.FileField(upload_to=log_file_name, blank=True)
     log = models.ForeignKey('cloud.Log', on_delete=models.CASCADE, related_name='files')
 
     class Meta:
@@ -61,6 +61,8 @@ class Folder(models.Model):
     sector = models.CharField(max_length=100, choices=SECTOR, default='기타')
     created_at = models.DateTimeField()
     owner = models.ForeignKey('account.myUser', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
 
 class Post(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
